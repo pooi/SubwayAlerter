@@ -3,10 +3,11 @@ import UIKit
 
 class ViewControllerMain : UIViewController {
     
+    // 상태바 흰색으로 바꿔주기 위한 함수
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    //@IBOutlet var view4BottonCon: NSLayoutConstraint!
+    
     @IBOutlet var mainHeightCon: NSLayoutConstraint!
     
     @IBOutlet var bottomBarCon: NSLayoutConstraint!

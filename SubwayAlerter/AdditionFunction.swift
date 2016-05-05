@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 
+// 사용자 설정을 저장할 함수
 class FavoriteVO {
     
     let config = NSUserDefaults.standardUserDefaults()
     
 }
 
+// 주요 색 저장
 let settingColor = [
     UIColor(red: 233/255, green: 97/255, blue: 97/255, alpha: 1.0),
     UIColor(red: 208/255, green: 84/255, blue: 84/255, alpha: 1.0),
