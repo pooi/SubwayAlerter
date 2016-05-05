@@ -194,6 +194,11 @@
 					F49B16B01CDB2DD7004C9E31 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 56YADXWYDJ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					F49B16C41CDB2DD8004C9E31 = {
 						CreatedOnToolsVersion = 7.3;
