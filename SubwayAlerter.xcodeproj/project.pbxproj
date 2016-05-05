@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */; };
+		F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B61CDB2DD7004C9E31 /* ViewController.swift */; };
+		F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16B81CDB2DD7004C9E31 /* Main.storyboard */; };
+		F49B16BC1CDB2DD7004C9E31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */; };
+		F49B16BF1CDB2DD7004C9E31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */; };
+		F49B16CA1CDB2DD8004C9E31 /* SubwayAlerterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16C91CDB2DD8004C9E31 /* SubwayAlerterTests.swift */; };
+		F49B16D51CDB2DD8004C9E31 /* SubwayAlerterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16D41CDB2DD8004C9E31 /* SubwayAlerterUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F49B16C61CDB2DD8004C9E31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F49B16A91CDB2DD7004C9E31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F49B16B01CDB2DD7004C9E31;
+			remoteInfo = SubwayAlerter;
+		};
+		F49B16D11CDB2DD8004C9E31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F49B16A91CDB2DD7004C9E31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F49B16B01CDB2DD7004C9E31;
+			remoteInfo = SubwayAlerter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayAlerter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F49B16B61CDB2DD7004C9E31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F49B16B91CDB2DD7004C9E31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F49B16BE1CDB2DD7004C9E31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F49B16C01CDB2DD7004C9E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49B16C51CDB2DD8004C9E31 /* SubwayAlerterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubwayAlerterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49B16C91CDB2DD8004C9E31 /* SubwayAlerterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayAlerterTests.swift; sourceTree = "<group>"; };
+		F49B16CB1CDB2DD8004C9E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49B16D01CDB2DD8004C9E31 /* SubwayAlerterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubwayAlerterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49B16D41CDB2DD8004C9E31 /* SubwayAlerterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayAlerterUITests.swift; sourceTree = "<group>"; };
+		F49B16D61CDB2DD8004C9E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F49B16AE1CDB2DD7004C9E31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16C21CDB2DD8004C9E31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16CD1CDB2DD8004C9E31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F49B16A81CDB2DD7004C9E31 = {
+			isa = PBXGroup;
+			children = (
+				F49B16B31CDB2DD7004C9E31 /* SubwayAlerter */,
+				F49B16C81CDB2DD8004C9E31 /* SubwayAlerterTests */,
+				F49B16D31CDB2DD8004C9E31 /* SubwayAlerterUITests */,
+				F49B16B21CDB2DD7004C9E31 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F49B16B21CDB2DD7004C9E31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */,
+				F49B16C51CDB2DD8004C9E31 /* SubwayAlerterTests.xctest */,
+				F49B16D01CDB2DD8004C9E31 /* SubwayAlerterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F49B16B31CDB2DD7004C9E31 /* SubwayAlerter */ = {
+			isa = PBXGroup;
+			children = (
+				F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */,
+				F49B16B61CDB2DD7004C9E31 /* ViewController.swift */,
+				F49B16B81CDB2DD7004C9E31 /* Main.storyboard */,
+				F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */,
+				F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */,
+				F49B16C01CDB2DD7004C9E31 /* Info.plist */,
+			);
+			path = SubwayAlerter;
+			sourceTree = "<group>";
+		};
+		F49B16C81CDB2DD8004C9E31 /* SubwayAlerterTests */ = {
+			isa = PBXGroup;
+			children = (
+				F49B16C91CDB2DD8004C9E31 /* SubwayAlerterTests.swift */,
+				F49B16CB1CDB2DD8004C9E31 /* Info.plist */,
+			);
+			path = SubwayAlerterTests;
+			sourceTree = "<group>";
+		};
+		F49B16D31CDB2DD8004C9E31 /* SubwayAlerterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F49B16D41CDB2DD8004C9E31 /* SubwayAlerterUITests.swift */,
+				F49B16D61CDB2DD8004C9E31 /* Info.plist */,
+			);
+			path = SubwayAlerterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F49B16B01CDB2DD7004C9E31 /* SubwayAlerter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49B16D91CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerter" */;
+			buildPhases = (
+				F49B16AD1CDB2DD7004C9E31 /* Sources */,
+				F49B16AE1CDB2DD7004C9E31 /* Frameworks */,
+				F49B16AF1CDB2DD7004C9E31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SubwayAlerter;
+			productName = SubwayAlerter;
+			productReference = F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F49B16C41CDB2DD8004C9E31 /* SubwayAlerterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49B16DC1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterTests" */;
+			buildPhases = (
+				F49B16C11CDB2DD8004C9E31 /* Sources */,
+				F49B16C21CDB2DD8004C9E31 /* Frameworks */,
+				F49B16C31CDB2DD8004C9E31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F49B16C71CDB2DD8004C9E31 /* PBXTargetDependency */,
+			);
+			name = SubwayAlerterTests;
+			productName = SubwayAlerterTests;
+			productReference = F49B16C51CDB2DD8004C9E31 /* SubwayAlerterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F49B16CF1CDB2DD8004C9E31 /* SubwayAlerterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49B16DF1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterUITests" */;
+			buildPhases = (
+				F49B16CC1CDB2DD8004C9E31 /* Sources */,
+				F49B16CD1CDB2DD8004C9E31 /* Frameworks */,
+				F49B16CE1CDB2DD8004C9E31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F49B16D21CDB2DD8004C9E31 /* PBXTargetDependency */,
+			);
+			name = SubwayAlerterUITests;
+			productName = SubwayAlerterUITests;
+			productReference = F49B16D01CDB2DD8004C9E31 /* SubwayAlerterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F49B16A91CDB2DD7004C9E31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "유태우";
+				TargetAttributes = {
+					F49B16B01CDB2DD7004C9E31 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 56YADXWYDJ;
+					};
+					F49B16C41CDB2DD8004C9E31 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 56YADXWYDJ;
+						TestTargetID = F49B16B01CDB2DD7004C9E31;
+					};
+					F49B16CF1CDB2DD8004C9E31 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 56YADXWYDJ;
+						TestTargetID = F49B16B01CDB2DD7004C9E31;
+					};
+				};
+			};
+			buildConfigurationList = F49B16AC1CDB2DD7004C9E31 /* Build configuration list for PBXProject "SubwayAlerter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F49B16A81CDB2DD7004C9E31;
+			productRefGroup = F49B16B21CDB2DD7004C9E31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F49B16B01CDB2DD7004C9E31 /* SubwayAlerter */,
+				F49B16C41CDB2DD8004C9E31 /* SubwayAlerterTests */,
+				F49B16CF1CDB2DD8004C9E31 /* SubwayAlerterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F49B16AF1CDB2DD7004C9E31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49B16BF1CDB2DD7004C9E31 /* LaunchScreen.storyboard in Resources */,
+				F49B16BC1CDB2DD7004C9E31 /* Assets.xcassets in Resources */,
+				F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16C31CDB2DD8004C9E31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16CE1CDB2DD8004C9E31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F49B16AD1CDB2DD7004C9E31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */,
+				F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16C11CDB2DD8004C9E31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49B16CA1CDB2DD8004C9E31 /* SubwayAlerterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B16CC1CDB2DD8004C9E31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49B16D51CDB2DD8004C9E31 /* SubwayAlerterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F49B16C71CDB2DD8004C9E31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F49B16B01CDB2DD7004C9E31 /* SubwayAlerter */;
+			targetProxy = F49B16C61CDB2DD8004C9E31 /* PBXContainerItemProxy */;
+		};
+		F49B16D21CDB2DD8004C9E31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F49B16B01CDB2DD7004C9E31 /* SubwayAlerter */;
+			targetProxy = F49B16D11CDB2DD8004C9E31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F49B16B81CDB2DD7004C9E31 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F49B16B91CDB2DD7004C9E31 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F49B16BE1CDB2DD7004C9E31 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F49B16D71CDB2DD8004C9E31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F49B16D81CDB2DD8004C9E31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F49B16DA1CDB2DD8004C9E31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SubwayAlerter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F49B16DB1CDB2DD8004C9E31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SubwayAlerter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F49B16DD1CDB2DD8004C9E31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SubwayAlerterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SubwayAlerter.app/SubwayAlerter";
+			};
+			name = Debug;
+		};
+		F49B16DE1CDB2DD8004C9E31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SubwayAlerterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SubwayAlerter.app/SubwayAlerter";
+			};
+			name = Release;
+		};
+		F49B16E01CDB2DD8004C9E31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SubwayAlerterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SubwayAlerter;
+			};
+			name = Debug;
+		};
+		F49B16E11CDB2DD8004C9E31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SubwayAlerterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ldayou.asuscomm.com.SubwayAlerterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SubwayAlerter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F49B16AC1CDB2DD7004C9E31 /* Build configuration list for PBXProject "SubwayAlerter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49B16D71CDB2DD8004C9E31 /* Debug */,
+				F49B16D81CDB2DD8004C9E31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F49B16D91CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49B16DA1CDB2DD8004C9E31 /* Debug */,
+				F49B16DB1CDB2DD8004C9E31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F49B16DC1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49B16DD1CDB2DD8004C9E31 /* Debug */,
+				F49B16DE1CDB2DD8004C9E31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F49B16DF1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49B16E01CDB2DD8004C9E31 /* Debug */,
+				F49B16E11CDB2DD8004C9E31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F49B16A91CDB2DD7004C9E31 /* Project object */;
+}
