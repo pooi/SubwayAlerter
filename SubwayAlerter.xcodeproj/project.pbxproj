@@ -14,6 +14,10 @@
 		F49B16BF1CDB2DD7004C9E31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */; };
 		F49B16CA1CDB2DD8004C9E31 /* SubwayAlerterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16C91CDB2DD8004C9E31 /* SubwayAlerterTests.swift */; };
 		F49B16D51CDB2DD8004C9E31 /* SubwayAlerterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16D41CDB2DD8004C9E31 /* SubwayAlerterUITests.swift */; };
+		F49B16E31CDB31A3004C9E31 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16E21CDB31A3004C9E31 /* ViewControllerMain.swift */; };
+		F49B16E51CDB3256004C9E31 /* MainPageIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F49B16E41CDB3256004C9E31 /* MainPageIcon.png */; };
+		F49B16E71CDB3275004C9E31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49B16E61CDB3275004C9E31 /* Assets.xcassets */; };
+		F49B16E91CDB3332004C9E31 /* AdditionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		F49B16D01CDB2DD8004C9E31 /* SubwayAlerterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubwayAlerterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B16D41CDB2DD8004C9E31 /* SubwayAlerterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayAlerterUITests.swift; sourceTree = "<group>"; };
 		F49B16D61CDB2DD8004C9E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49B16E21CDB31A3004C9E31 /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
+		F49B16E41CDB3256004C9E31 /* MainPageIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainPageIcon.png; sourceTree = "<group>"; };
+		F49B16E61CDB3275004C9E31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		F49B16A81CDB2DD7004C9E31 = {
 			isa = PBXGroup;
 			children = (
+				F49B16E61CDB3275004C9E31 /* Assets.xcassets */,
 				F49B16B31CDB2DD7004C9E31 /* SubwayAlerter */,
 				F49B16C81CDB2DD8004C9E31 /* SubwayAlerterTests */,
 				F49B16D31CDB2DD8004C9E31 /* SubwayAlerterUITests */,
@@ -97,11 +106,14 @@
 		F49B16B31CDB2DD7004C9E31 /* SubwayAlerter */ = {
 			isa = PBXGroup;
 			children = (
+				F49B16E41CDB3256004C9E31 /* MainPageIcon.png */,
 				F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */,
 				F49B16B61CDB2DD7004C9E31 /* ViewController.swift */,
+				F49B16E21CDB31A3004C9E31 /* ViewControllerMain.swift */,
 				F49B16B81CDB2DD7004C9E31 /* Main.storyboard */,
 				F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */,
 				F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */,
+				F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */,
 				F49B16C01CDB2DD7004C9E31 /* Info.plist */,
 			);
 			path = SubwayAlerter;
@@ -239,7 +251,9 @@
 			files = (
 				F49B16BF1CDB2DD7004C9E31 /* LaunchScreen.storyboard in Resources */,
 				F49B16BC1CDB2DD7004C9E31 /* Assets.xcassets in Resources */,
+				F49B16E51CDB3256004C9E31 /* MainPageIcon.png in Resources */,
 				F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */,
+				F49B16E71CDB3275004C9E31 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,8 +278,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F49B16E31CDB31A3004C9E31 /* ViewControllerMain.swift in Sources */,
 				F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */,
 				F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */,
+				F49B16E91CDB3332004C9E31 /* AdditionFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +506,7 @@
 				F49B16DB1CDB2DD8004C9E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F49B16DC1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +515,7 @@
 				F49B16DE1CDB2DD8004C9E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F49B16DF1CDB2DD8004C9E31 /* Build configuration list for PBXNativeTarget "SubwayAlerterUITests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +524,7 @@
 				F49B16E11CDB2DD8004C9E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

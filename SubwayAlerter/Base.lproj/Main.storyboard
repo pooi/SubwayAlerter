@@ -1,26 +1,180 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uQs-EM-Yb5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--지하철 알리미-->
+        <scene sceneID="Q4n-Ow-SYd">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uQs-EM-Yb5" customClass="ViewControllerMain" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Fiu-Nl-lk1"/>
+                        <viewControllerLayoutGuide type="bottom" id="VeM-vb-Jr5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="G8m-NR-KWc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUo-R3-YvV">
+                                <rect key="frame" x="0.0" y="212" width="414" height="475"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainPageIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="oVh-sT-iah">
+                                        <rect key="frame" x="64" y="67" width="286" height="341"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="oVh-sT-iah" secondAttribute="height" multiplier="26:31" id="RkN-Ld-rNh"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="width" secondItem="WUo-R3-YvV" secondAttribute="height" multiplier="286:475" id="MZw-Dj-maX"/>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="centerX" secondItem="WUo-R3-YvV" secondAttribute="centerX" id="Nfn-tJ-Hyf"/>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="centerX" secondItem="WUo-R3-YvV" secondAttribute="centerX" id="PGD-9V-Mpm"/>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="centerY" secondItem="WUo-R3-YvV" secondAttribute="centerY" id="SEL-fW-2O2"/>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="width" secondItem="WUo-R3-YvV" secondAttribute="height" multiplier="286:475" id="XZU-Kb-PBx"/>
+                                    <constraint firstItem="oVh-sT-iah" firstAttribute="centerY" secondItem="WUo-R3-YvV" secondAttribute="centerY" id="YiX-ge-ANC"/>
+                                    <constraint firstAttribute="height" constant="475" id="jsM-YK-UY7"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SEL-fW-2O2"/>
+                                        <exclude reference="Nfn-tJ-Hyf"/>
+                                        <exclude reference="MZw-Dj-maX"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHl-DZ-sFq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지하철 알리미" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoN-DE-QBX">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="centerX" secondItem="xHl-DZ-sFq" secondAttribute="centerX" id="B1u-jP-OTK"/>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="width" secondItem="xHl-DZ-sFq" secondAttribute="width" id="Ke3-mu-50G"/>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="centerY" secondItem="xHl-DZ-sFq" secondAttribute="centerY" id="Teo-9O-RxR"/>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="top" secondItem="xHl-DZ-sFq" secondAttribute="top" id="Upr-fA-CUV"/>
+                                    <constraint firstAttribute="bottom" secondItem="xoN-DE-QBX" secondAttribute="bottom" id="YcD-EO-Sy3"/>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="leading" secondItem="xHl-DZ-sFq" secondAttribute="leading" id="eRr-MF-hPw"/>
+                                    <constraint firstAttribute="trailing" secondItem="xoN-DE-QBX" secondAttribute="trailing" id="k0c-Ju-fkU"/>
+                                    <constraint firstItem="xoN-DE-QBX" firstAttribute="height" secondItem="xHl-DZ-sFq" secondAttribute="height" id="m3W-ab-DuF"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="k0c-Ju-fkU"/>
+                                        <exclude reference="YcD-EO-Sy3"/>
+                                        <exclude reference="Upr-fA-CUV"/>
+                                        <exclude reference="eRr-MF-hPw"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiV-X7-SgW">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="2FA-0r-WLy"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="알림 설정" image="alarm" id="meq-NX-8QD"/>
+                                    <tabBarItem title="가까운 역" image="location" id="X7Z-H9-mdw"/>
+                                    <tabBarItem title="즐겨찾기" image="favorite" id="Oea-V7-IPT"/>
+                                    <tabBarItem title="최근경로" image="recent" id="Yjf-of-NAn"/>
+                                    <tabBarItem title="설정" image="setting" id="GzZ-bH-aFK"/>
+                                </items>
+                                <color key="barTintColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwV-AP-lz8" userLabel="알림설정">
+                                <rect key="frame" x="0.0" y="687" width="83.5" height="49"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEZ-yH-cik" userLabel="가까운역">
+                                <rect key="frame" x="83" y="687" width="83" height="49"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5E-jZ-mVg" userLabel="즐겨찾기">
+                                <rect key="frame" x="167" y="687" width="82" height="49"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-yq-XfR" userLabel="최근">
+                                <rect key="frame" x="249" y="687" width="82.5" height="49"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8W-t1-AGg" userLabel="설정">
+                                <rect key="frame" x="331.5" y="687" width="82.5" height="49"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WUo-R3-YvV" firstAttribute="top" secondItem="xHl-DZ-sFq" secondAttribute="bottom" id="0ep-BK-FXg"/>
+                            <constraint firstItem="WUo-R3-YvV" firstAttribute="leading" secondItem="G8m-NR-KWc" secondAttribute="leadingMargin" constant="-20" id="11T-RQ-r58"/>
+                            <constraint firstItem="x5E-jZ-mVg" firstAttribute="centerY" secondItem="fRk-yq-XfR" secondAttribute="centerY" id="1q6-sE-Fga"/>
+                            <constraint firstItem="fRk-yq-XfR" firstAttribute="width" secondItem="G8W-t1-AGg" secondAttribute="width" id="3BU-hN-4m1"/>
+                            <constraint firstItem="oEZ-yH-cik" firstAttribute="width" secondItem="x5E-jZ-mVg" secondAttribute="width" constant="1" id="4W7-tK-QNu"/>
+                            <constraint firstItem="xHl-DZ-sFq" firstAttribute="top" secondItem="Fiu-Nl-lk1" secondAttribute="bottom" constant="-20" id="4ys-3t-9P6"/>
+                            <constraint firstItem="G8W-t1-AGg" firstAttribute="height" secondItem="DiV-X7-SgW" secondAttribute="height" id="55w-Rz-UsJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WUo-R3-YvV" secondAttribute="trailing" constant="-20" id="9jm-Co-NEJ"/>
+                            <constraint firstItem="DiV-X7-SgW" firstAttribute="centerX" secondItem="G8m-NR-KWc" secondAttribute="centerX" id="9xR-56-WhG"/>
+                            <constraint firstItem="x5E-jZ-mVg" firstAttribute="leading" secondItem="oEZ-yH-cik" secondAttribute="trailing" id="B6b-CV-mQ9"/>
+                            <constraint firstItem="fRk-yq-XfR" firstAttribute="leading" secondItem="x5E-jZ-mVg" secondAttribute="trailing" id="CT6-0l-pJ3"/>
+                            <constraint firstItem="gwV-AP-lz8" firstAttribute="height" secondItem="oEZ-yH-cik" secondAttribute="height" id="F3T-hm-YLx"/>
+                            <constraint firstItem="fRk-yq-XfR" firstAttribute="height" secondItem="G8W-t1-AGg" secondAttribute="height" id="Grk-WZ-3Ur"/>
+                            <constraint firstItem="DiV-X7-SgW" firstAttribute="top" secondItem="WUo-R3-YvV" secondAttribute="bottom" id="Iwa-Ov-sOt"/>
+                            <constraint firstItem="G8W-t1-AGg" firstAttribute="centerY" secondItem="DiV-X7-SgW" secondAttribute="centerY" id="Ixq-ME-YjB"/>
+                            <constraint firstItem="gwV-AP-lz8" firstAttribute="leading" secondItem="DiV-X7-SgW" secondAttribute="leading" id="JHr-Sr-fsd"/>
+                            <constraint firstItem="fRk-yq-XfR" firstAttribute="centerY" secondItem="G8W-t1-AGg" secondAttribute="centerY" id="Nfa-c8-xhK"/>
+                            <constraint firstItem="WUo-R3-YvV" firstAttribute="centerX" secondItem="G8m-NR-KWc" secondAttribute="centerX" id="No0-jb-cPB"/>
+                            <constraint firstItem="gwV-AP-lz8" firstAttribute="centerY" secondItem="oEZ-yH-cik" secondAttribute="centerY" id="Odr-kX-e9p"/>
+                            <constraint firstItem="x5E-jZ-mVg" firstAttribute="width" secondItem="fRk-yq-XfR" secondAttribute="width" id="Pau-x5-eiZ"/>
+                            <constraint firstItem="x5E-jZ-mVg" firstAttribute="height" secondItem="fRk-yq-XfR" secondAttribute="height" id="Q36-je-B9K"/>
+                            <constraint firstItem="gwV-AP-lz8" firstAttribute="width" secondItem="oEZ-yH-cik" secondAttribute="width" id="Xae-h6-AcU"/>
+                            <constraint firstItem="WUo-R3-YvV" firstAttribute="width" secondItem="G8m-NR-KWc" secondAttribute="width" id="a6y-fW-nWy"/>
+                            <constraint firstItem="G8W-t1-AGg" firstAttribute="leading" secondItem="fRk-yq-XfR" secondAttribute="trailing" id="cXW-1e-i5G"/>
+                            <constraint firstItem="xHl-DZ-sFq" firstAttribute="centerX" secondItem="G8m-NR-KWc" secondAttribute="centerX" id="i51-Gp-Tik"/>
+                            <constraint firstItem="oEZ-yH-cik" firstAttribute="leading" secondItem="gwV-AP-lz8" secondAttribute="trailing" id="mit-K3-ZAE"/>
+                            <constraint firstItem="VeM-vb-Jr5" firstAttribute="top" secondItem="DiV-X7-SgW" secondAttribute="bottom" id="pdZ-an-s0j"/>
+                            <constraint firstItem="G8W-t1-AGg" firstAttribute="trailing" secondItem="DiV-X7-SgW" secondAttribute="trailing" id="qFl-Zs-PmZ"/>
+                            <constraint firstItem="oEZ-yH-cik" firstAttribute="centerY" secondItem="x5E-jZ-mVg" secondAttribute="centerY" id="qvU-VG-EyR"/>
+                            <constraint firstItem="DiV-X7-SgW" firstAttribute="width" secondItem="G8m-NR-KWc" secondAttribute="width" id="uVE-9t-JCY"/>
+                            <constraint firstItem="xHl-DZ-sFq" firstAttribute="width" secondItem="G8m-NR-KWc" secondAttribute="width" id="v7I-jf-Jty"/>
+                            <constraint firstItem="WUo-R3-YvV" firstAttribute="top" secondItem="xHl-DZ-sFq" secondAttribute="bottom" id="xgI-hU-sWt"/>
+                            <constraint firstItem="oEZ-yH-cik" firstAttribute="height" secondItem="x5E-jZ-mVg" secondAttribute="height" id="zDQ-jP-ZJV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9jm-Co-NEJ"/>
+                                <exclude reference="11T-RQ-r58"/>
+                                <exclude reference="0ep-BK-FXg"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="지하철 알리미" id="GrR-WI-25w"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="bottomBarCon" destination="2FA-0r-WLy" id="UeW-WT-l4M"/>
+                        <outlet property="mainHeightCon" destination="jsM-YK-UY7" id="5B1-HB-RK4"/>
+                        <outlet property="mainImageView" destination="WUo-R3-YvV" id="wCt-Qz-i05"/>
+                        <outlet property="mainTrainView" destination="oVh-sT-iah" id="Dw6-sv-CZi"/>
+                        <outlet property="mainView" destination="G8m-NR-KWc" id="BVg-ud-4J4"/>
+                        <outlet property="trainImageCon" destination="YiX-ge-ANC" id="act-Wf-Vw8"/>
+                        <outlet property="view0" destination="xHl-DZ-sFq" id="L0M-aF-04R"/>
+                        <outlet property="view0Label" destination="xoN-DE-QBX" id="FDK-UT-scF"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="er0-O7-ISo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="363" y="319"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MainPageIcon.png" width="778" height="943"/>
+        <image name="alarm" width="25" height="25"/>
+        <image name="favorite" width="25" height="25"/>
+        <image name="location" width="25" height="25"/>
+        <image name="recent" width="25" height="25"/>
+        <image name="setting" width="25" height="25"/>
+    </resources>
 </document>
