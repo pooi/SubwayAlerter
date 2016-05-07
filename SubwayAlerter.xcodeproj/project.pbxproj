@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F46C98E41CDC9DFB00431E6F /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C98E31CDC9DFB00431E6F /* ApiKey.swift */; };
 		F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */; };
 		F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B61CDB2DD7004C9E31 /* ViewController.swift */; };
 		F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16B81CDB2DD7004C9E31 /* Main.storyboard */; };
@@ -18,6 +19,17 @@
 		F49B16E51CDB3256004C9E31 /* MainPageIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F49B16E41CDB3256004C9E31 /* MainPageIcon.png */; };
 		F49B16E71CDB3275004C9E31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49B16E61CDB3275004C9E31 /* Assets.xcassets */; };
 		F49B16E91CDB3332004C9E31 /* AdditionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */; };
+		F4B397111CDB93AD0057EDFF /* LastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B397101CDB93AD0057EDFF /* LastPageViewController.swift */; };
+		F4B397131CDB950D0057EDFF /* RouteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B397121CDB950D0057EDFF /* RouteTableCell.swift */; };
+		F4B397151CDB95240057EDFF /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B397141CDB95240057EDFF /* TabbarController.swift */; };
+		F4B397171CDB96210057EDFF /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B397161CDB96210057EDFF /* StationList.swift */; };
+		F4C847BE1CDB8CE40088D651 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847BD1CDB8CE40088D651 /* NavigationController.swift */; };
+		F4C847C01CDB8D270088D651 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847BF1CDB8D270088D651 /* LocationViewController.swift */; };
+		F4C847C21CDB8EB00088D651 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847C11CDB8EB00088D651 /* FavoriteViewController.swift */; };
+		F4C847C41CDB8FC70088D651 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847C31CDB8FC70088D651 /* RecentViewController.swift */; };
+		F4C847C61CDB91640088D651 /* StartSTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847C51CDB91640088D651 /* StartSTViewController.swift */; };
+		F4C847C81CDB91E70088D651 /* FinishSTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847C71CDB91E70088D651 /* FinishSTViewController.swift */; };
+		F4C847CA1CDB92450088D651 /* SetStartTMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C847C91CDB92450088D651 /* SetStartTMViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F46C98E31CDC9DFB00431E6F /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayAlerter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49B16B61CDB2DD7004C9E31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +68,17 @@
 		F49B16E41CDB3256004C9E31 /* MainPageIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainPageIcon.png; sourceTree = "<group>"; };
 		F49B16E61CDB3275004C9E31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionFunction.swift; sourceTree = "<group>"; };
+		F4B397101CDB93AD0057EDFF /* LastPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPageViewController.swift; sourceTree = "<group>"; };
+		F4B397121CDB950D0057EDFF /* RouteTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableCell.swift; sourceTree = "<group>"; };
+		F4B397141CDB95240057EDFF /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		F4B397161CDB96210057EDFF /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		F4C847BD1CDB8CE40088D651 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F4C847BF1CDB8D270088D651 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		F4C847C11CDB8EB00088D651 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		F4C847C31CDB8FC70088D651 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
+		F4C847C51CDB91640088D651 /* StartSTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartSTViewController.swift; sourceTree = "<group>"; };
+		F4C847C71CDB91E70088D651 /* FinishSTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishSTViewController.swift; sourceTree = "<group>"; };
+		F4C847C91CDB92450088D651 /* SetStartTMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetStartTMViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +132,24 @@
 			children = (
 				F49B16E41CDB3256004C9E31 /* MainPageIcon.png */,
 				F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */,
+				F46C98E31CDC9DFB00431E6F /* ApiKey.swift */,
+				F4B397141CDB95240057EDFF /* TabbarController.swift */,
+				F4B397121CDB950D0057EDFF /* RouteTableCell.swift */,
+				F4C847BD1CDB8CE40088D651 /* NavigationController.swift */,
+				F4C847C11CDB8EB00088D651 /* FavoriteViewController.swift */,
 				F49B16B61CDB2DD7004C9E31 /* ViewController.swift */,
 				F49B16E21CDB31A3004C9E31 /* ViewControllerMain.swift */,
+				F4C847C51CDB91640088D651 /* StartSTViewController.swift */,
+				F4C847C71CDB91E70088D651 /* FinishSTViewController.swift */,
+				F4C847C91CDB92450088D651 /* SetStartTMViewController.swift */,
+				F4B397101CDB93AD0057EDFF /* LastPageViewController.swift */,
+				F4C847BF1CDB8D270088D651 /* LocationViewController.swift */,
+				F4C847C31CDB8FC70088D651 /* RecentViewController.swift */,
 				F49B16B81CDB2DD7004C9E31 /* Main.storyboard */,
 				F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */,
 				F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */,
 				F49B16E81CDB3332004C9E31 /* AdditionFunction.swift */,
+				F4B397161CDB96210057EDFF /* StationList.swift */,
 				F49B16C01CDB2DD7004C9E31 /* Info.plist */,
 			);
 			path = SubwayAlerter;
@@ -278,10 +314,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B397171CDB96210057EDFF /* StationList.swift in Sources */,
+				F4C847C81CDB91E70088D651 /* FinishSTViewController.swift in Sources */,
+				F4C847C61CDB91640088D651 /* StartSTViewController.swift in Sources */,
 				F49B16E31CDB31A3004C9E31 /* ViewControllerMain.swift in Sources */,
 				F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */,
+				F4C847BE1CDB8CE40088D651 /* NavigationController.swift in Sources */,
+				F4C847C21CDB8EB00088D651 /* FavoriteViewController.swift in Sources */,
+				F4C847C01CDB8D270088D651 /* LocationViewController.swift in Sources */,
+				F4B397131CDB950D0057EDFF /* RouteTableCell.swift in Sources */,
+				F4C847C41CDB8FC70088D651 /* RecentViewController.swift in Sources */,
+				F46C98E41CDC9DFB00431E6F /* ApiKey.swift in Sources */,
 				F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */,
 				F49B16E91CDB3332004C9E31 /* AdditionFunction.swift in Sources */,
+				F4C847CA1CDB92450088D651 /* SetStartTMViewController.swift in Sources */,
+				F4B397111CDB93AD0057EDFF /* LastPageViewController.swift in Sources */,
+				F4B397151CDB95240057EDFF /* TabbarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
