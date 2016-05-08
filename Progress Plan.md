@@ -48,7 +48,7 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 14일</td><td>출발 역의 시간표를 사용자에게 제시 및 선택 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 14일</td><td>출발 역의 시간표를 사용자에게 제시 및 선택 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
