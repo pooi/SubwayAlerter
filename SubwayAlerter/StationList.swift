@@ -753,7 +753,24 @@ func returnLineList(SubwayId subwayId : String) -> Array<StationNm>{
     return list
 }
 
+struct Express{
+    var line : String
+    var name : String
+    var StationId : String
+    var code : String
+}
 
+func expressList() -> Array<Array<Express>>{
+    let expressList : Array<Array<Express>>=[
+        /*
+        [
+            Express(line: "1001", name: "소요산", StationId: "1001000100", code: "100"),
+        ]
+        */
+    ]
+    
+    return expressList
+}
 
 
 
