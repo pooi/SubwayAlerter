@@ -2,6 +2,10 @@ import UIKit
 
 class SetStartTMViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var start : String = "" //segue를 통해 가져옴
+    var finish : String = ""  //segue를 통해 가져옴
+    
+    
     @IBOutlet var spinnerView: UIView!
     
     @IBOutlet var bottomBarCon: NSLayoutConstraint!

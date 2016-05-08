@@ -14,6 +14,11 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet var bottomBarCon: NSLayoutConstraint!
     
+    
+    var subwayNames : Array<StationNm> = []
+    var filteredSubway  : Array<StationNm> = []
+    var startStation : String = ""
+    
     override func viewDidLoad() {
         
         self.startTableView.dataSource = self
@@ -46,11 +51,33 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         navBarColor.tintColor = UIColor.whiteColor()
         navBarColor.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
+        InfoLabel.text = "현재 설정된 출발역 : 없음"
+        nextBtn.enabled = false
+        
+        self.subwayNames = returnLineList(SubwayId: "")
+        
+        
+        self.subwayNames = self.subwayNames.sort({$0.name <= $1.name})
+        
+        self.filteredSubway = self.subwayNames
+        
         
         self.startTableView.reloadData()
     }
     
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if(searchText.isEmpty == true){
+            self.filteredSubway = self.subwayNames
+        }else{
+            filteredSubway.removeAll(keepCapacity: false)
+            let options = NSStringCompareOptions.DiacriticInsensitiveSearch
+            
+            filteredSubway = subwayNames.filter {
+                $0.code.rangeOfString(searchBar.text!/*searchPredicate as! String*/, options: options) != nil
+            }
+        }
         
         self.startTableView.reloadData()
     }
@@ -98,18 +125,56 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return self.filteredSubway.count
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = startTableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
+        
+        var friend : StationNm
+        
+        friend = self.filteredSubway[indexPath.row]
+        
+        cell.textLabel?.text = friend.name + "역"
+        
+        cell.detailTextLabel?.text = returnLineName(SubwayId : friend.line)
+        
+        
+        
+        
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        //nextBtn.title = "다음"
+        
+        searchBar.resignFirstResponder()
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        var friend : StationNm
+        
+        friend = self.filteredSubway[indexPath.row]
+        self.startStation = friend.name
+        InfoLabel.text = "현재 설정된 출발역 : " + self.startStation
+        
+        
+        nextBtn.enabled = true
+        
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if (segue.identifier == "moveToSetFinish") {
+            //searchBar.resignFirstResponder()
+            (segue.destinationViewController as? FinishSTViewController)?.startStation = self.startStation
+            //(segue.destinationViewController as? FinishSTViewController)?.subwayNames = self.subwayNames
+        }
         
     }
     
