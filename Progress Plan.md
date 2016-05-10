@@ -1,6 +1,6 @@
 2016년
 ------------------------
-<p align=right>2016.05.08 기준</p>
+<p align=right>2016.05.10 기준</p>
 <img src="http://i.imgur.com/rYY8YtZ.png">빨강[이슈처리중]
 <img src="http://i.imgur.com/jSMdeJB.png">주황[대기]
 <img src="http://i.imgur.com/mjiGu2c.png">초록[진행중]
@@ -64,7 +64,7 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
@@ -92,55 +92,55 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 25일</td><td rowspan=13>세부 적인 UI 구현 및 수정,<br>부가 기능 구현,<br>버그 수정 및 기능 안정화</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 25일</td><td rowspan=13>세부 적인 UI 구현 및 수정,<br>부가 기능 구현,<br>버그 수정 및 기능 안정화</td><td></td><td rowspan=13><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 26일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 26일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 27일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 27일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 28일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 28일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 29일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 29일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td rowspan=7>5주차</td><td>5월 30일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td rowspan=7>5주차</td><td>5월 30일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 31일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 31일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6월 1일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6월 1일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6월 2일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6월 2일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6월 3일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6월 3일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6월 4일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6월 4일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6월 5일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6월 5일</td><td></td>
 			</tr>
 			
 			<tr align=center>
-				<td>6주차</td><td>6월 6일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>6주차</td><td>6월 6일</td><td></td>
 			</tr>
 			
 			
