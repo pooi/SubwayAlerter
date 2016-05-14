@@ -1,3 +1,3 @@
 import Foundation
 
-let KEY = ""
+let KEY = "" // please enter your api key!!
