@@ -44,19 +44,19 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 13일</td><td>입력 받은 역을 사용하여 이동경로 요약 제시기능 구현</td><td>기초기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 13일</td><td>입력 받은 역을 사용하여 이동경로 요약 제시기능 구현</td><td>기초기능</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/14</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 14일</td><td>출발 역의 시간표를 사용자에게 제시 및 선택 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 14일</td><td>출발 역의 시간표를 사용자에게 제시 및 선택 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/14</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 15일</td><td>환승역들의 시간표를 사용자에게 제시하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 15일</td><td>환승역들의 시간표를 사용자에게 제시하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
-				<td rowspan=7>3주차</td><td>5월 16일</td><td>설정된 시간표를 기준으로 각 도착역별 <br>도착 알림을 설정하는 기능 구현(~18.)</td><td>메인 기능</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td rowspan=7>3주차</td><td>5월 16일</td><td>설정된 시간표를 기준으로 각 도착역별 <br>도착 알림을 설정하는 기능 구현(~18.)</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
@@ -64,7 +64,7 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
@@ -72,7 +72,7 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 20일</td><td></td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 20일</td><td></td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/14</td>
 			</tr>
 			
 			<tr align=center>
