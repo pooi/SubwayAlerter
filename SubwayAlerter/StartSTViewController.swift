@@ -56,6 +56,9 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         
         self.subwayNames = returnLineList(SubwayId: "")
         
+        for i in 0..<self.subwayNames.count{
+            self.subwayNames[i].code = self.subwayNames[i].name + self.subwayNames[i].name.hangul
+        }
         
         self.subwayNames = self.subwayNames.sort({$0.name <= $1.name})
         

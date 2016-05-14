@@ -70,6 +70,27 @@ struct trainTime{
     var arriveTime : Int
 }
 
+extension String { // 초성을 가져오기 위해 함수 추가
+    var hangul: String {
+        get {
+            let hangle = [ // 초성, 중성, 종성 순
+                ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"],
+                ["ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ","ㅘ","ㅙ","ㅚ","ㅛ","ㅜ","ㅝ","ㅞ","ㅟ","ㅠ","ㅡ","ㅢ","ㅣ"],
+                ["","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"]
+            ]
+            
+            return characters.reduce("") { result, char in
+                if case let code = Int(String(char).unicodeScalars.reduce(0){$0.0 + $0.1.value}) - 44032
+                    where code > -1 && code < 11172 {
+                    let cho = code / 21 / 28//, jung = code % (21 * 28) / 28, jong = code % 28;
+                    return result + hangle[0][cho]// + hangle[1][jung] + hangle[2][jong]
+                }
+                return result + String(char)
+            }
+        }
+    }
+}
+
 //################################# 부가 기능 함수 #################################
 
 func convertStartToFinishString(let Start start : Int, let Finish finish : Int, let string str : String) -> String{
