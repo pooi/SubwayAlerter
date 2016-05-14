@@ -139,6 +139,7 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
         for subView in topView.subviews {
             if subView.isKindOfClass(NSClassFromString("UINavigationButton")!) {
                 cancelButton = subView as! UIButton
+                cancelButton.tintColor = UIColor.whiteColor()
                 cancelButton.setTitle("닫기", forState: UIControlState.Normal)
             }
         }
