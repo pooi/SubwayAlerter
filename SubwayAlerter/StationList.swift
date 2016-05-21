@@ -921,7 +921,54 @@ func expressList() -> Array<Array<Express>>{
             Express(line: "1067", name: "남춘천", StationId: "1067080139", code: "P139"),
             Express(line: "1067", name: "춘천", StationId: "1067080140", code: "P140")
         ],
-        
+        [
+            Express(line: "1063", name: "문산", StationId: "1063075335", code: "K335"),
+            Express(line: "1063", name: "금촌", StationId: "1063075331", code: "K331"),
+            Express(line: "1063", name: "금릉", StationId: "1063075330", code: "K330"),
+            Express(line: "1063", name: "운정", StationId: "1063075329", code: "K329"),
+            Express(line: "1063", name: "야당", StationId: "1063075328", code: "K328"),
+            Express(line: "1063", name: "탄현", StationId: "1063075327", code: "K327"),
+            Express(line: "1063", name: "일산", StationId: "1063075326", code: "K326"),
+            Express(line: "1063", name: "백마", StationId: "1063075324", code: "K324"),
+            Express(line: "1063", name: "대곡", StationId: "1063075322", code: "K322"),
+            Express(line: "1063", name: "행신", StationId: "1063075320", code: "K320"),
+            Express(line: "1063", name: "디지털미디어시티", StationId: "1063075316", code: "K316"),
+            Express(line: "1063", name: "신촌(경의중앙선)", StationId: "1063080312", code: "P312"),
+            Express(line: "1063", name: "서울(경의중앙선)", StationId: "1063080313", code: "P313")
+        ],
+        [
+            Express(line: "1063", name: "문산", StationId: "1063075335", code: "K335"),
+            Express(line: "1063", name: "금촌", StationId: "1063075331", code: "K331"),
+            Express(line: "1063", name: "금릉", StationId: "1063075330", code: "K330"),
+            Express(line: "1063", name: "운정", StationId: "1063075329", code: "K329"),
+            Express(line: "1063", name: "야당", StationId: "1063075328", code: "K328"),
+            Express(line: "1063", name: "탄현", StationId: "1063075327", code: "K327"),
+            Express(line: "1063", name: "일산", StationId: "1063075326", code: "K326"),
+            Express(line: "1063", name: "백마", StationId: "1063075324", code: "K324"),
+            Express(line: "1063", name: "대곡", StationId: "1063075322", code: "K322"),
+            Express(line: "1063", name: "행신", StationId: "1063075320", code: "K320"),
+            Express(line: "1063", name: "디지털미디어시티", StationId: "1063075316", code: "K316"),
+            Express(line: "1063", name: "홍대입구", StationId: "1063075314", code: "K314"),
+            Express(line: "1063", name: "공덕", StationId: "1063075312", code: "K312"),
+            Express(line: "1063", name: "용산", StationId: "1063075110", code: "K110"),
+            Express(line: "1063", name: "이촌", StationId: "1063075111", code: "K111"),
+            Express(line: "1063", name: "옥수", StationId: "1063075114", code: "K114"),
+            Express(line: "1063", name: "왕십리", StationId: "1063075116", code: "K116"),
+            Express(line: "1063", name: "청량리", StationId: "1063075117", code: "K117"),
+            Express(line: "1063", name: "회기", StationId: "1063075118", code: "K118"),
+            Express(line: "1063", name: "상봉", StationId: "1063075120", code: "K120"),
+            Express(line: "1063", name: "구리", StationId: "1063075123", code: "K123"),
+            Express(line: "1063", name: "도농", StationId: "1063075124", code: "K124"),
+            Express(line: "1063", name: "덕소", StationId: "1063075126", code: "K126"),
+            Express(line: "1063", name: "도심", StationId: "1063075127", code: "K127"),
+            Express(line: "1063", name: "양수", StationId: "1063075130", code: "K130"),
+            Express(line: "1063", name: "양평(경의중앙선)", StationId: "1063075135", code: "K135"),
+            Express(line: "1063", name: "용문", StationId: "1063075137", code: "K137")
+        ],
+        [
+            Express(line: "1065", name: "서울", StationId: "1065006501", code: "A01"),
+            Express(line: "1065", name: "인천국제공항", StationId: "1065006510", code: "A10")
+        ]
     ]
     
     return expressList
