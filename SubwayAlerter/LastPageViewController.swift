@@ -52,6 +52,12 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     
+    func swipedViewRight(){
+        
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -64,6 +70,12 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         returnTransferBtn.enabled = false
         self.pickerView.dataSource = self;
         self.pickerView.delegate = self;
+        
+        let swipeRec = UISwipeGestureRecognizer()
+        swipeRec.direction = .Right
+        swipeRec.addTarget(self, action: #selector(LastPageViewController.swipedViewRight))
+        mainView.addGestureRecognizer(swipeRec)
+        mainView.userInteractionEnabled = true
         
         
     }

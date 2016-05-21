@@ -51,6 +51,13 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         navBarColor.tintColor = UIColor.whiteColor()
         navBarColor.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
+        // 스와이프 관려 문구
+        let swipeRec = UISwipeGestureRecognizer()
+        swipeRec.direction = .Left
+        swipeRec.addTarget(self, action: #selector(StartSTViewController.swipedView))
+        mainView.addGestureRecognizer(swipeRec)
+        mainView.userInteractionEnabled = true
+        
         InfoLabel.text = "현재 설정된 출발역 : 없음"
         nextBtn.enabled = false
         
@@ -110,6 +117,15 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        
+    }
+    
+    // 스와이프 관련 함수
+    func swipedView(){
+        searchBar.resignFirstResponder()
+        if(self.startStation != ""){
+            performSegueWithIdentifier("moveToSetFinish", sender: self)
+        }
         
     }
     
