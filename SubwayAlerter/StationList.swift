@@ -880,6 +880,47 @@ func expressList() -> Array<Array<Express>>{
             Express(line: "1009", name: "봉은사", StationId: "1009000929", code: "929"),
             Express(line: "1009", name: "종합운동장", StationId: "1009000930", code: "930")
         ],
+        [
+            Express(line: "1075", name: "왕십리", StationId: "1075075210", code: "K210"),
+            Express(line: "1075", name: "서울숲", StationId: "1075075211", code: "K211"),
+            Express(line: "1075", name: "압구정로데오", StationId: "1075075212", code: "K212"),
+            Express(line: "1075", name: "강남구청", StationId: "1075075213", code: "K213"),
+            Express(line: "1075", name: "선정릉", StationId: "1075075214", code: "K214"),
+            Express(line: "1075", name: "선릉", StationId: "1075075215", code: "K215"),
+            Express(line: "1075", name: "한티", StationId: "1075075216", code: "k216"),
+            Express(line: "1075", name: "도곡", StationId: "1075075217", code: "K217"),
+            Express(line: "1075", name: "구룡", StationId: "1075075218", code: "k218"),
+            Express(line: "1075", name: "개포동", StationId: "1075075219", code: "k219"),
+            Express(line: "1075", name: "대모산입구", StationId: "1075075220", code: "k220"),
+            Express(line: "1075", name: "수서", StationId: "1075075221", code: "K221"),
+            Express(line: "1075", name: "복정", StationId: "1075075222", code: "K222"),
+            Express(line: "1075", name: "가천대", StationId: "1075075223", code: "K223"),
+            Express(line: "1075", name: "태평", StationId: "1075075224", code: "K224"),
+            Express(line: "1075", name: "모란", StationId: "1075075225", code: "K225"),
+            Express(line: "1075", name: "야탑", StationId: "1075075226", code: "K226"),
+            Express(line: "1075", name: "이매", StationId: "1075075227", code: "K227"),
+            Express(line: "1075", name: "서현", StationId: "1075075228", code: "K228"),
+            Express(line: "1075", name: "수내", StationId: "1075075229", code: "K229"),
+            Express(line: "1075", name: "정자", StationId: "1075075230", code: "K230"),
+            Express(line: "1075", name: "미금", StationId: "1075075231", code: "K231"),
+            Express(line: "1075", name: "오리", StationId: "1075075232", code: "K232"),
+            Express(line: "1075", name: "죽전", StationId: "1075075233", code: "K233"),
+            Express(line: "1075", name: "기흥", StationId: "1075075237", code: "K237"),
+            Express(line: "1075", name: "망포", StationId: "1075075241", code: "K241"),
+            Express(line: "1075", name: "수원시청", StationId: "1075075243", code: "K243"),
+            Express(line: "1075", name: "수원", StationId: "1075075245", code: "K245")
+        ],
+        [
+            Express(line: "1067", name: "퇴계원", StationId: "1067080125", code: "P125"),
+            Express(line: "1067", name: "사릉", StationId: "1067080126", code: "P126"),
+            Express(line: "1067", name: "평내호평", StationId: "1067080128", code: "P128"),
+            Express(line: "1067", name: "마석", StationId: "1067080130", code: "P130"),
+            Express(line: "1067", name: "청평", StationId: "1067080132", code: "P132"),
+            Express(line: "1067", name: "가평", StationId: "1067080134", code: "P134"),
+            Express(line: "1067", name: "강촌", StationId: "1067080137", code: "P137"),
+            Express(line: "1067", name: "남춘천", StationId: "1067080139", code: "P139"),
+            Express(line: "1067", name: "춘천", StationId: "1067080140", code: "P140")
+        ],
         
     ]
     
