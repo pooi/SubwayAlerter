@@ -762,11 +762,69 @@ struct Express{
 
 func expressList() -> Array<Array<Express>>{
     let expressList : Array<Array<Express>>=[
-        /*
-         [
-         Express(line: "1001", name: "소요산", StationId: "1001000100", code: "100"),
-         ]
-         */
+        [
+            Express(line: "1001", name: "소요산", StationId: "1001000100", code: "100"),
+            Express(line: "1001", name: "동두천", StationId: "1001000101", code: "101"),
+            Express(line: "1001", name: "동두천중앙", StationId: "1001000103", code: "103"),
+            Express(line: "1001", name: "덕정", StationId: "1001000105", code: "105"),
+            Express(line: "1001", name: "양주", StationId: "1001000107", code: "107"),
+            Express(line: "1001", name: "의정부", StationId: "1001000110", code: "110"),
+            Express(line: "1001", name: "회룡", StationId: "1001000111", code: "111"),
+            Express(line: "1001", name: "도봉산", StationId: "1001000113", code: "113"),
+            Express(line: "1001", name: "창동", StationId: "1001000116", code: "116"),
+            Express(line: "1001", name: "광운대", StationId: "1001000119", code: "119")
+        ],
+        [
+            Express(line: "1001", name: "서울", StationId: "1001000133", code: "133"),
+            Express(line: "1001", name: "금천구청", StationId: "1001080144", code: "P144"),
+            Express(line: "1001", name: "안양", StationId: "1001080147", code: "P147"),
+            Express(line: "1001", name: "군포", StationId: "1001080150", code: "P150"),
+            Express(line: "1001", name: "의왕", StationId: "1001080152", code: "P152"),
+            Express(line: "1001", name: "성균관대", StationId: "1001080153", code: "P153"),
+            Express(line: "1001", name: "수원", StationId: "1001080155", code: "P155"),
+            Express(line: "1001", name: "병점", StationId: "1001080157", code: "P157"),
+            Express(line: "1001", name: "오산", StationId: "1001080160", code: "P160"),
+            Express(line: "1001", name: "서정리", StationId: "1001080163", code: "P163"),
+            Express(line: "1001", name: "평택", StationId: "1001080165", code: "P165"),
+            Express(line: "1001", name: "성환", StationId: "1001080166", code: "P166"),
+            Express(line: "1001", name: "두정", StationId: "1001080168", code: "P168"),
+            Express(line: "1001", name: "천안", StationId: "1001080169", code: "P169")
+        ],
+        [
+            Express(line: "1001", name: "용산", StationId: "1001000135", code: "135"),
+            Express(line: "1001", name: "노량진", StationId: "1001000136", code: "136"),
+            Express(line: "1001", name: "대방", StationId: "1001000137", code: "137"),
+            Express(line: "1001", name: "신길", StationId: "1001000138", code: "138"),
+            Express(line: "1001", name: "영등포", StationId: "1001000139", code: "139"),
+            Express(line: "1001", name: "신도림", StationId: "1001000140", code: "140"),
+            Express(line: "1001", name: "구로", StationId: "1001000141", code: "141"),
+            Express(line: "1001", name: "가산디지털단지", StationId: "1001080142", code: "P142"),
+            Express(line: "1001", name: "안양", StationId: "1001080147", code: "P147"),
+            Express(line: "1001", name: "수원", StationId: "1001080155", code: "P155"),
+            Express(line: "1001", name: "병점", StationId: "1001080157", code: "P157"),
+            Express(line: "1001", name: "오산", StationId: "1001080160", code: "P160"),
+            Express(line: "1001", name: "서정리", StationId: "1001080163", code: "P163"),
+            Express(line: "1001", name: "평택", StationId: "1001080165", code: "P165"),
+            Express(line: "1001", name: "성환", StationId: "1001080166", code: "P166"),
+            Express(line: "1001", name: "두정", StationId: "1001080168", code: "P168"),
+            Express(line: "1001", name: "천안", StationId: "1001080169", code: "P169")
+        ],
+        [
+            Express(line: "1001", name: "용산", StationId: "1001000135", code: "135"),
+            Express(line: "1001", name: "노량진", StationId: "1001000136", code: "136"),
+            Express(line: "1001", name: "대방", StationId: "1001000137", code: "137"),
+            Express(line: "1001", name: "신길", StationId: "1001000138", code: "138"),
+            Express(line: "1001", name: "영등포", StationId: "1001000139", code: "139"),
+            Express(line: "1001", name: "신도림", StationId: "1001000140", code: "140"),
+            Express(line: "1001", name: "구로", StationId: "1001000141", code: "141"),
+            Express(line: "1001", name: "역곡", StationId: "1001000146", code: "146"),
+            Express(line: "1001", name: "부천", StationId: "1001000148", code: "148"),
+            Express(line: "1001", name: "송내", StationId: "1001000150", code: "150"),
+            Express(line: "1001", name: "부평", StationId: "1001000152", code: "152"),
+            Express(line: "1001", name: "동암", StationId: "1001000154", code: "154"),
+            Express(line: "1001", name: "주안", StationId: "1001000156", code: "156"),
+            Express(line: "1001", name: "동인천", StationId: "1001000160", code: "160")
+        ],
     ]
     
     return expressList
