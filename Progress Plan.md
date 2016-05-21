@@ -52,15 +52,15 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 15일</td><td>환승역들의 시간표를 사용자에게 제시하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 15일</td><td>환승역들의 시간표를 사용자에게 제시하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/19</td>
 			</tr>
 			
 			<tr align=center>
-				<td rowspan=7>3주차</td><td>5월 16일</td><td>설정된 시간표를 기준으로 각 도착역별 <br>도착 알림을 설정하는 기능 구현(~18.)</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td rowspan=7>3주차</td><td>5월 16일</td><td>설정된 시간표를 기준으로 각 도착역별 <br>도착 알림을 설정하는 기능 구현(~18.)</td><td>메인 기능</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/19</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 17일</td><td>2차 회의, 현재까지 구현된 기능에 대한 피드백,<br>빠른 환승 및 급행 역 정보 수집</td><td>수집은 4일<br>이내 완료</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 17일</td><td>2차 회의, 현재까지 구현된 기능에 대한 피드백,<br>빠른 환승 및 급행 역 정보 수집</td><td>수집은 4일<br>이내 완료</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
 			</tr>
 			
 			<tr align=center>
