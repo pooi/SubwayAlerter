@@ -43,6 +43,21 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
         nextBtn.enabled = false
         searchBar.placeholder = "도착역 검색(ex.서울 또는 ㅅㅇ)"
         
+        // 스와이프 관련 문구
+        // 오른쪽으로 스와이프
+        let swipeLec = UISwipeGestureRecognizer()
+        swipeLec.direction = .Left
+        swipeLec.addTarget(self, action: #selector(FinishSTViewController.swipedViewLeft))
+        mainView.addGestureRecognizer(swipeLec)
+        mainView.userInteractionEnabled = true
+        
+        // 왼쪽으로 스와이프
+        let swipeRec = UISwipeGestureRecognizer()
+        swipeRec.direction = .Right
+        swipeRec.addTarget(self, action: #selector(FinishSTViewController.swipedViewRight))
+        mainView.addGestureRecognizer(swipeRec)
+        
+        
         self.subwayNames = returnLineList(SubwayId: "")
         
         for i in 0..<self.subwayNames.count{
@@ -57,6 +72,23 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
         
         self.finishTableView.reloadData()
     }
+    
+    // 스와이프 관련 함수
+    // 다음페이지로
+    func swipedViewLeft(){
+        
+        if(self.finishStation != ""){
+            performSegueWithIdentifier("moveToSetTm", sender: self)
+        }
+    }
+    
+    // 이전페이지로
+    func swipedViewRight(){
+        
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         

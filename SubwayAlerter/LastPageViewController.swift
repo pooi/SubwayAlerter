@@ -86,6 +86,12 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     
+    func swipedViewRight(){
+        
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()

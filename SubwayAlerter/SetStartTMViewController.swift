@@ -202,7 +202,35 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         inital()
         
+        // 스와이프 관련 문구
+        let swipeLec = UISwipeGestureRecognizer()
+        swipeLec.direction = .Left
+        swipeLec.addTarget(self, action: #selector(SetStartTMViewController.swipedViewLeft))
+        mainView.addGestureRecognizer(swipeLec)
+        
+        let swipeRec = UISwipeGestureRecognizer()
+        swipeRec.direction = .Right
+        swipeRec.addTarget(self, action: #selector(SetStartTMViewController.swipedViewRight))
+        mainView.addGestureRecognizer(swipeRec)
+        mainView.userInteractionEnabled = true
+        
         super.viewDidLoad()
+    }
+    
+    // 스와이프 관련 함수
+    func swipedViewLeft(){ // 다음페이지로
+        
+        
+        if(nextBtn.enabled == true){
+            performSegueWithIdentifier("moveToLast", sender: self)
+        }
+        
+    }
+    
+    func swipedViewRight(){ // 이전페이지로
+        
+        navigationController?.popViewControllerAnimated(true)
+        
     }
     
     
