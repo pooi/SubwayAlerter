@@ -753,6 +753,29 @@ func returnLineList(SubwayId subwayId : String) -> Array<StationNm>{
     return list
 }
 
+struct FastExit{
+    var SubwayId : String = ""
+    var FirstNm : String = ""
+    var SecondNm : String = ""
+    var toLine : String = ""
+    var Exit : String = ""
+}
+
+func returnFastExit(SubwayId subwayId : String) -> Array<FastExit>{
+    
+    var list : Array<FastExit> = [
+        //FastExit(SubwayId :"", FirstNm :"", SecondNm :"", toLine :"",Exit :""),
+    ]
+    
+    list = list.filter({$0.SubwayId == subwayId})
+    
+    return list
+}
+
+
+
+
+
 struct Express{
     var line : String
     var name : String
