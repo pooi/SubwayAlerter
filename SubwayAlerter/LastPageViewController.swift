@@ -7,6 +7,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     var totaltimeMain : Int = 0
     
     var transferTimeSchedulCount : Int = 0
+    var notiStartTm : String = ""
+    var notiNextTm : Int = 0
     
     var timer = NSTimer()//타이머 관련
     
@@ -15,11 +17,16 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     var setTransTimeBtnText1 : String = ""
     var setTransTimeBtnText2 : String = ""
     
+    //알림 관련 변수
+    var setAlertTime : Int = 0 //x분전 알림
+    var setAlertMessage : String = ""//x분전 알림 문구
+    
     var datePickerSource : Array<Schedule> = []
     var datePickerBool : Bool = false
     
-    var notiNextTm : Int = 0
     var checkTouchAlert : Bool = false
+    
+    
     var checkWhile : Bool = false
     var checkReturnBtn : Bool = false
     
@@ -47,7 +54,9 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     @IBAction func cancelBtnAct(sender: AnyObject) {
         let alert = UIAlertController(title: "현재 경로를 취소하시겠습니까?", message: nil, preferredStyle: .ActionSheet)
         let okAction = UIAlertAction(title: "예", style: .Default){ (_) in
+            self.timer.invalidate()//타이머 종료
             
+            UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
             
             self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)//페이지 닫기
         }
@@ -61,6 +70,15 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     @IBAction func cancelNotification(sender: AnyObject) {
         
+        let alert = UIAlertController(title: "확인", message: "해당 경로의 모든 알림이 해제됩니다.\n모든 알림을 해제하시겠습니까?", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "확인", style: .Default){ (_) in
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .Cancel, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
@@ -88,6 +106,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     func swipedViewRight(){
         
+        timer.invalidate()
+        UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
         navigationController?.popViewControllerAnimated(true)
         
     }
@@ -108,9 +128,42 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         completeBtnOutlet.tintColor = UIColor(red:  230/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 0.0)
         completeBtnOutlet.enabled = false
         
+        let swipeRec = UISwipeGestureRecognizer()
+        swipeRec.direction = .Right
+        swipeRec.addTarget(self, action: #selector(LastPageViewController.swipedViewRight))
+        mainView.addGestureRecognizer(swipeRec)
+        mainView.userInteractionEnabled = true
+        
+        self.setAlertTime = 1
+        
+        switch setAlertTime{
+        case 0:
+            self.setAlertTime = 30
+            self.setAlertMessage = "역까지 약 30초 남았습니다."
+            break;
+        case 1:
+            self.setAlertTime = 60
+            self.setAlertMessage = "역까지 약 1분 남았습니다."
+            break;
+        case 2:
+            self.setAlertTime = 90
+            self.setAlertMessage = "역까지 약 90초 남았습니다."
+            break;
+        case 3:
+            self.setAlertTime = 120
+            self.setAlertMessage = "역까지 약 2분 남았습니다."
+            break;
+        default:
+            break;
+        }
+        
+        timer.invalidate()
+        UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
+        
         self.transferTimeSchedulCount = 0
         countTimeAct.text = "00분 00초"
         
+        self.checkTouchAlert = false
         
         
         if(self.info.count != 1){ //환승역이 있을 경우
@@ -176,6 +229,111 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    //푸시알림관련====================================
+    func localNotificationFunc(FinishTime finishTm : Int, StationName stationNm : String, FirstSchedule first : String, SecondSchedule second : String, FastExit fastExit : String){
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct1(_:)), name: "actionOnePressed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct2(_:)), name: "actionTwoPressed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct3(_:)), name: "actionThreePressed", object: nil)
+        
+        let now = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") // 로케일 설정
+        dateFormatter.dateFormat = "HH:mm:ss" // 날짜 형식 설정
+        let current : Int = returnCurrentTime()
+        
+        let alertTime : Int = current + finishTm - self.setAlertTime//%%60 //
+        
+        if(current < alertTime){ //현재시간보다 알람시간이 더 큰 경우 알람 설정
+            
+            let hour : Int = Int(alertTime/3600)
+            let min : Int = (alertTime - (hour*3600))/60
+            let sec : Int = alertTime - hour*3600 - min*60
+            
+            
+            let dateComp:NSDateComponents = NSDateComponents()
+            
+            dateFormatter.dateFormat = "yyyy"
+            var currentTime : Int = Int(dateFormatter.stringFromDate(now))!
+            dateComp.year = currentTime//local notification 설정
+            
+            dateFormatter.dateFormat = "MM"
+            currentTime = Int(dateFormatter.stringFromDate(now))!
+            dateComp.month = currentTime//local notification 설정
+            
+            dateFormatter.dateFormat = "dd"
+            currentTime = Int(dateFormatter.stringFromDate(now))!
+            dateComp.day = currentTime//local notification 설정
+            
+            
+            dateComp.hour = hour//local notification 설정
+            dateComp.minute = min//local notification 설정
+            dateComp.second = sec//local notification 설정
+            
+            
+            dateComp.timeZone = NSTimeZone.systemTimeZone()
+            
+            
+            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            let date:NSDate = calender.dateFromComponents(dateComp)!
+            
+            let notification:UILocalNotification = UILocalNotification()
+            
+            
+            
+            if (first == ""){
+                notification.alertBody = stationNm + self.setAlertMessage//%%"역까지 1분 남았습니다."
+                notification.soundName = UILocalNotificationDefaultSoundName
+            }else{
+                
+                
+                notification.category = "FIRST_CATEGORY"
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.alertBody = stationNm + "\(self.setAlertMessage)\n첫번째 : \(first)\n두번째 : \(second)\n다음 시간표 미설정시 첫번째로 설정됩니다."
+            }
+            
+            
+            
+            notification.fireDate = date
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            
+        }else{ //아닐경우 알람설정 안함
+            
+            if(checkTouchAlert == false && checkReturnBtn == false){
+                
+                
+                var message : String = ""
+                
+                switch 0{
+                case 0:
+                    message = "남은 시간이 30초 미만이라 알림을 설정하지 않습니다."
+                    break;
+                case 1:
+                    message = "남은 시간이 1분 미만이라 알림을 설정하지 않습니다."
+                    break;
+                case 2:
+                    message = "남은 시간이 1분 30초 미만이라 알림을 설정하지 않습니다."
+                    break;
+                case 3:
+                    message = "남은 시간이 2분 미만이라 알림을 설정하지 않습니다."
+                    break;
+                default:
+                    break;
+                }
+                
+                let alert = UIAlertController(title: "확인", message: message, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: "확인", style: .Default, handler: nil)
+                alert.addAction(cancelAction)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
+        
+    }
+    
     
     //타이머 관련 함수 ========================================
     func updateCounter() {
@@ -218,6 +376,58 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     //끝 ==================================================
+    
+    func notificationAct1(notification:NSNotification){
+        
+            
+        let index : Int = self.transferTimeSchedulCount
+        
+        for i in  index..<self.info.count{
+            
+            if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
+                break;
+            }else{
+                self.checkReturnBtn = true
+                transferAct1(ButtonNumber: 1)
+                self.checkReturnBtn = false
+            }
+            
+        }
+        
+        
+        transferAct1(ButtonNumber: 1)
+        
+        
+        
+    }
+    
+    func notificationAct2(notification:NSNotification){
+        
+        
+        let index : Int = self.transferTimeSchedulCount
+        
+        for i in  index..<self.info.count{
+            
+            if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
+                break;
+            }else{
+                self.checkReturnBtn = true
+                transferAct1(ButtonNumber: 1)
+                self.checkReturnBtn = false
+            }
+            
+        }
+        
+        
+        transferAct1(ButtonNumber: 2)
+        
+        
+        
+    }
+    
+    func notificationAct3(notification:NSNotification){
+        transferActPicker()
+    }
     
     
     
@@ -436,6 +646,20 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
                 transferBtn1.setTitle(self.setTransTimeBtnText1, forState: .Normal)
                 
                 
+                self.notiStartTm = self.setTransTimeBtnText1//schedule1 //다다음 출발 시간을 설정하기 위함
+                
+                let fTime : Int = self.info[transferTimeSchedulCount].navigateTm[self.info[transferTimeSchedulCount].navigateTm.count-1] //다음역의 도착시간
+                
+                let currentTime : Int = returnCurrentTime()
+                
+                if((fTime - currentTime) <= 0){
+                    
+                    self.notiNextTm = 0
+                }else{
+                    
+                    self.notiNextTm = fTime - (self.setAlertTime + 10)//%%70
+                }
+                
                 
             }else{
                 transferBtn1.setTitle("없음", forState: .Normal)
@@ -499,10 +723,13 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
             //finishTime.numberOfLines = 1
             finishTime.text = "목적지 예상 도착 시간 : " + convertSecondToString(sTime + viaTime, Mode: 2)
             
+            localNotificationFunc(FinishTime: convertStringToSecond(countTimeAct.text!, Mode: 3), StationName: self.info[transferTimeSchedulCount-1].navigate[self.info[transferTimeSchedulCount-1].navigate.count - 1], FirstSchedule: /*schedule1*/self.setTransTimeBtnText1, SecondSchedule: /*schedule2*/self.setTransTimeBtnText2, FastExit: self.info[transferTimeSchedulCount-1].fastExit)
+            
         }else{ //다음 역이 있는 경우
             
             finishTime.text = String(transferTimeSchedulCount) + "번째 환승역 예상 도착 시간 : " + convertSecondToString(sTime + viaTime, Mode: 2)
             
+            localNotificationFunc(FinishTime: convertStringToSecond(countTimeAct.text!, Mode: 3), StationName: self.info[transferTimeSchedulCount].navigate[0], FirstSchedule: /*schedule1*/self.setTransTimeBtnText1, SecondSchedule: /*schedule2*/self.setTransTimeBtnText2,FastExit: self.info[transferTimeSchedulCount-1].fastExit)
             
         }
         
@@ -510,8 +737,80 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         tabBar.hidden = true
         pickerView.reloadAllComponents()
         
+        for i in self.transferTimeSchedulCount..<self.info.count{
+            
+            self.checkTouchAlert = true
+            transferStationTimeSchduel2(StartTime: convertStringToSecond(self.notiStartTm, Mode: 2), Index: i)
+            self.checkTouchAlert = false
+            
+        }
         
         
+    }
+    
+    //전체적으로 알림을 설정하기 위한 함수
+    func transferStationTimeSchduel2(StartTime sTime : Int, Index index : Int) {
+        
+        let fTime : Int = self.info[index].navigateTm[self.info[index].navigateTm.count-1]
+        
+        var schedule1 : String = ""
+        var schedule2 : String = ""
+        
+        var countTimeActTemp : String = ""
+        
+        
+        //여기부터 다음 역에 대한 구문임
+        
+        if(self.info.count != index+1){//다음역이 있을경우
+            
+            let schedule = self.info[index+1].startSchedule
+            
+            
+            let indexTemp : Int = self.info[index+1].startScheduleIndex
+            
+            if(schedule.count - 1 > indexTemp){
+                
+                if(schedule[indexTemp].expressYN == "Y"){
+                    schedule1 = convertSecondToString(schedule[indexTemp].arriveTime, Mode: 1) + " " + schedule[indexTemp].directionNm + "행 (급행)"
+                }else{
+                    schedule1 = convertSecondToString(schedule[indexTemp].arriveTime, Mode: 1) + " " + schedule[indexTemp].directionNm + "행"
+                }
+                
+                
+            }else{
+                schedule1 = ""
+            }
+            self.notiStartTm = schedule1
+            
+            if(schedule.count - 2 > indexTemp){
+                
+                if(schedule[indexTemp+1].expressYN == "Y"){
+                    schedule2 = convertSecondToString(schedule[indexTemp+1].arriveTime, Mode: 1) + " " + schedule[indexTemp+1].directionNm + "행 (급행)"
+                }else{
+                    schedule2 = convertSecondToString(schedule[indexTemp+1].arriveTime, Mode: 1) + " " + schedule[indexTemp+1].directionNm + "행"
+                }
+                
+            }else{
+                schedule2 = ""
+            }
+            
+            
+        }
+        
+        
+        let currentTime : Int = returnCurrentTime()
+        
+        if((fTime - currentTime) <= 0){
+            countTimeActTemp = "00분 00초"
+        }else{
+            countTimeActTemp = convertSecondToString(fTime - currentTime, Mode: 4)
+        }
+        
+        if(index+1 == self.info.count){
+            localNotificationFunc(FinishTime: convertStringToSecond(countTimeActTemp, Mode: 3), StationName: self.info[index].navigate[self.info[index].navigate.count - 1], FirstSchedule: schedule1, SecondSchedule: schedule2, FastExit: self.info[index].fastExit)
+        }else{
+            localNotificationFunc(FinishTime: convertStringToSecond(countTimeActTemp, Mode: 3), StationName: self.info[index+1].navigate[0], FirstSchedule: schedule1, SecondSchedule: schedule2, FastExit: self.info[index].fastExit)
+        }
         
     }
     

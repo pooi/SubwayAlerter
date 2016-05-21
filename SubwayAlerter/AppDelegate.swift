@@ -15,7 +15,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Actions
+        let firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        firstAction.identifier = "FIRST_ACTION"
+        firstAction.title = "첫번째 시간표"
+        
+        firstAction.activationMode = UIUserNotificationActivationMode.Background
+        firstAction.destructive = true
+        firstAction.authenticationRequired = false
+        
+        let secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        secondAction.identifier = "SECOND_ACTION"
+        secondAction.title = "두번째 시간표"
+        
+        secondAction.activationMode = UIUserNotificationActivationMode.Background
+        secondAction.destructive = false
+        secondAction.authenticationRequired = false
+        
+        let thirdAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        thirdAction.identifier = "THIRD_ACTION"
+        thirdAction.title = "기타"
+        
+        thirdAction.activationMode = UIUserNotificationActivationMode.Foreground
+        thirdAction.destructive = false
+        thirdAction.authenticationRequired = false
+        
+        // category
+        
+        let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        firstCategory.identifier = "FIRST_CATEGORY"
+        
+        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
+        let minimalActions:NSArray = [secondAction, firstAction]
+        
+        firstCategory.setActions(defaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+        firstCategory.setActions(minimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+        
+        //NSSet of all our categories
+        
+        let categories:NSSet = NSSet(objects: firstCategory)
+        
+        
+        
+        
+        let types:UIUserNotificationType = UIUserNotificationType.Alert.union(UIUserNotificationType.Badge).union(UIUserNotificationType.Sound)
+        
+        let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as? Set<UIUserNotificationCategory>)
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
+        
+        //=============
+        
         return true
     }
 
