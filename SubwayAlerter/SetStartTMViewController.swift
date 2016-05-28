@@ -804,6 +804,15 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             
             (segue.destinationViewController as? LastPageViewController)?.info = self.info
             
+        }else if (segue.identifier == "viewToRoute") {
+            
+            let navController = segue.destinationViewController as! NavigationController
+            let detailController = navController.topViewController as! AllRouteViewController
+            
+            detailController.info = self.info
+            detailController.totalTime = self.totalTime
+            
+            
         }
     }
     
