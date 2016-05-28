@@ -60,15 +60,15 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 17일</td><td>2차 회의, 현재까지 구현된 기능에 대한 피드백,<br>빠른 환승 및 급행 역 정보 수집</td><td>수집은 4일<br>이내 완료</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 17일</td><td>2차 회의, 현재까지 구현된 기능에 대한 피드백,<br>빠른 환승 및 급행 역 정보 수집</td><td>수집은 4일<br>이내 완료</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/mjiGu2c.png"><br>진행중</td>
+				<td>5월 18일</td><td>설정된 시간표를 기준으로 각 도착역별<br> 도착 알림을 설정하는 기능 구현</td><td>메인 기능</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 19일</td><td rowspan=2>전체 경로를 보여주는 기능 구현, 각 역별로 <br>도착시간을 보여주는 기능 구현</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 19일</td><td rowspan=2>전체 경로를 보여주는 기능 구현, 각 역별로 <br>도착시간을 보여주는 기능 구현</td><td></td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
@@ -76,23 +76,23 @@
 			</tr>
 			
 			<tr align=center>
-				<td>5월 21일</td><td rowspan=2>출발 시간표 선택 및 환승 시간표<br> 선택 페이지기능 추가 및 안정화</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 21일</td><td rowspan=2>출발 시간표 선택 및 환승 시간표<br> 선택 페이지기능 추가 및 안정화</td><td></td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 22일</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 22일</td><td></td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td rowspan=7>4주차</td><td>5월 23일</td><td>지금까지 구현된 내용 개별 검토</td><td></td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td rowspan=7>4주차</td><td>5월 23일</td><td>지금까지 구현된 내용 개별 검토</td><td></td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 24일</td><td>UI 중심 3차 회의, PPT제작 및 보고서 제작 시작</td><td>회의</td><td><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 24일</td><td>UI 중심 3차 회의, PPT제작 및 보고서 제작 시작</td><td>회의</td><td><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
-				<td>5월 25일</td><td rowspan=13>세부 적인 UI 구현 및 수정,<br>부가 기능 구현,<br>버그 수정 및 기능 안정화</td><td></td><td rowspan=13><img src="http://i.imgur.com/jSMdeJB.png"><br>대기</td>
+				<td>5월 25일</td><td rowspan=13>세부 적인 UI 구현 및 수정,<br>부가 기능 구현,<br>버그 수정 및 기능 안정화</td><td></td><td rowspan=13><img src="http://i.imgur.com/o60D8UD.png"><br>완료 5/28</td>
 			</tr>
 			
 			<tr align=center>
