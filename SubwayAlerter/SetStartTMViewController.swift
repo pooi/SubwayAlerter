@@ -9,15 +9,17 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     var upOrDown : String = "" //상행,내선 : 1 , 하행,외선 : 2
     var minStatnId : Array<String> = [] //경유하는 역 ID
     var minStatnNm : Array<String> = []//경유하는 역 이름
+    //var listTransferStation : Array<Transfer> = [] //환승역들의 정보 저장
     var totalTime : Int = 0 //총 소요시간 저장 (분 단위)
     var standardInfo : Int = 0 //0 = 추천, 1 = 최소시간, 2 = 최소환승
     var startTimeText : String = ""
     var pickerViewFirstTime : String = ""
     var info : Array<SubwayInfo> = []//경로 분석정보
     var info2 : Array<SubwayInfo> = []//경로 분석정보 복사본
+    var info3 : Array<SubwayInfo> = []//경로 분석정보 복사본
     
     var checkLoad : Bool = false
-    
+    //@IBOutlet var underView: UIView!
     @IBOutlet var spinnerView: UIView!
     
     @IBOutlet var bottomBarCon: NSLayoutConstraint!
@@ -44,6 +46,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var pickerView: UIPickerView!
     
     @IBOutlet var toolBar: UIToolbar!
+    //var pickerDataSoruce : Array<String> = []
     
     @IBOutlet var spinner: UIActivityIndicatorView!
     
@@ -55,17 +58,17 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     
     //*****************************테이블셀*****************************//
-    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if (scrollView.contentOffset.y<=0) {
             scrollView.contentOffset = CGPointZero;
+            
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         
-        return self.info.count
+        return self.info3.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,23 +80,23 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
+        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! RouteTableCell
         
         let section = indexPath.section
-        //let row = indexPath.row
         
         
-        cell.startStation.text = "출발 : " + self.info[section].navigate[0] + "역"
+        cell.startStation.text = "출발 : " + self.info3[section].navigate[0] + "역"
         cell.startStation.setFontSize(settingFontSize(1)+1)
-        cell.finishStation.text = "도착 : " + self.info[section].navigate[self.info[section].navigate.count-1] + "역"
+        cell.finishStation.text = "도착 : " + self.info3[section].navigate[self.info3[section].navigate.count-1] + "역"
         cell.finishStation.setFontSize(settingFontSize(1)+1)
         
         
-        cell.stationInfo.text = String(self.info[section].navigate.count-2) + "개역 이동"
+        cell.stationInfo.text = String(self.info3[section].navigate.count-2) + "개역 이동"
         
-        if(self.info[section].fastExit == ""){
+        if(self.info3[section].fastExit == ""){
             
-            if(section < self.info.count - 1){
+            if(section < self.info3.count - 1){
                 cell.stationInfo.text = cell.stationInfo.text! + ", 빠른환승 : 지원안함"
             }
             
@@ -101,20 +104,21 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             
         }else{
             
-            cell.stationInfo.text = cell.stationInfo.text! + ", 빠른환승 : " + self.info[section].fastExit
+            cell.stationInfo.text = cell.stationInfo.text! + ", 빠른환승 : " + self.info3[section].fastExit
             
         }
         
         cell.stationInfo.setFontSize(settingFontSize(1)-1)
         
-        if(self.info[section].navigateTm.count != 0){
+        
+        if(self.info3[section].navigateTm.count != 0){
             
-            cell.startTime.text = convertSecondToString(self.info[section].navigateTm[0], Mode: 1)
-            cell.finishTime.text = convertSecondToString(self.info[section].navigateTm[self.info[section].navigateTm.count-1], Mode: 1)
+            cell.startTime.text = convertSecondToString(self.info3[section].navigateTm[0], Mode: 1)
+            cell.finishTime.text = convertSecondToString(self.info3[section].navigateTm[self.info3[section].navigateTm.count-1], Mode: 1)
             
             
             
-            let viaTime : Int = self.info[section].navigateTm[self.info[section].navigateTm.count-1] - self.info[section].navigateTm[0]
+            let viaTime : Int = self.info3[section].navigateTm[self.info3[section].navigateTm.count-1] - self.info3[section].navigateTm[0]
             
             cell.timeInfo.text = convertSecondToString(viaTime, Mode: 4) + " 소요"
         }else{
@@ -122,12 +126,11 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             cell.finishTime.text = ""
             cell.timeInfo.text = "미설정"
         }
-        
         cell.startTime.setFontSize(settingFontSize(1))
         cell.finishTime.setFontSize(settingFontSize(1))
         cell.timeInfo.setFontSize(settingFontSize(1)-1)
         
-        cell.lineColor.backgroundColor = returnLineColor(SubwayId: self.info[section].subwayId)
+        cell.lineColor.backgroundColor = returnLineColor(SubwayId: self.info3[section].subwayId)
         
         return cell
     }
@@ -148,15 +151,16 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         return 30
     }
     
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         var name : String = ""
         
-        if(info[section].expressYN == true){
+        if(info3[section].expressYN == true){
             name = "(급행)"
         }
         
-        name = returnLineName(SubwayId: info[section].subwayId) + name
+        name = returnLineName(SubwayId: info3[section].subwayId) + name
         
         return name
     }
@@ -167,16 +171,16 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         var time : Int = 0
         var waitTime : Int = 0
         
-        if(info[section].navigateTm.count == 0){
-            time = info[section].time
+        if(info3[section].navigateTm.count == 0){
+            time = info3[section].time
         }else{
-            time = info[section].navigateTm[info[section].navigateTm.count-1] - info[section].navigateTm[0]
+            time = info3[section].navigateTm[info3[section].navigateTm.count-1] - info3[section].navigateTm[0]
         }
         
-        if(section != info.count-1){
-            if(info[section+1].navigateTm.count != 0){
+        if(section != info3.count-1){
+            if(info3[section+1].navigateTm.count != 0){
                 
-                waitTime = info[section+1].navigateTm[0] - info[section].navigateTm[info[section].navigateTm.count-1]
+                waitTime = info3[section+1].navigateTm[0] - info3[section].navigateTm[info3[section].navigateTm.count-1]
             }
             
         }
@@ -186,7 +190,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             //version.setFontSize(settingFontSize(1))
             version.font = version.font.fontWithSize(settingFontSize(1))
             version.numberOfLines = 1
-            version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)"
+            version.text = "\(info3[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)"
             version.textColor = UIColor.whiteColor()
             version.textAlignment = .Center;
             
@@ -199,10 +203,10 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             version.font = version.font.fontWithSize(settingFontSize(1))
             version.numberOfLines = 2
             
-            if(info[section].fastExit == ""){
-                version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4))"
+            if(info3[section].fastExit == ""){
+                version.text = "\(info3[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4))"
             }else{
-                version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4)) | 빠른환승 : \(info[section].fastExit)"
+                version.text = "\(info3[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4)) | 빠른환승 : \(info3[section].fastExit)"
             }
             
             version.textColor = UIColor.whiteColor()
@@ -226,6 +230,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         
     }
+    
     
     //*****************************피커뷰*****************************//
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -283,6 +288,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         }
         
         
+        
     }
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -302,12 +308,14 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     
     
-    
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
+        spinnerView.layer.cornerRadius = 10
         
         informView.setHeight(settingFontSize(6)+10)
-        //self.spinnerCon.constant = (settingFontSize(6)+10) / 2
+        
         self.transferNumLabel.setFontSize(settingFontSize(1)+1)
         self.transferTimeLabel.setFontSize(settingFontSize(1)+1)
         self.viaStationLabel.setFontSize(settingFontSize(1)+1)
@@ -318,10 +326,6 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         self.viewAllRouteText.setFontSize(settingFontSize(1))
         self.standardBtnText.setFontSize(settingFontSize(1))
         
-        //self.standardBtnText.setFontSize(settingFontSize(0))
-        //self.predictionTime.setFontSize(settingFontSize(0))
-        //self.transferInfoText.setFontSize(settingFontSize(0))
-        //self.viaStationLabel.setFontSize(settingFontSize(0))
         self.setTimeTitle.setFontSize(settingFontSize(0))
         self.startTimeText1.setFontSize(settingFontSize(0))
         self.startTimeText2.setFontSize(settingFontSize(0))
@@ -329,6 +333,12 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         self.startTimeText4.setFontSize(settingFontSize(0))
         self.finishTime.setFontSize(settingFontSize(0))
         self.bottomBarCon.constant = settingFontSize(6)
+        
+        
+        self.tabBarController?.tabBar.hidden = true
+        
+        spinnerView.hidden = false
+        spinner.startAnimating()
         
         standardBtnText.hidden = true
         viewAllRouteText.hidden = true
@@ -339,7 +349,8 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         inital()
         
-        // 스와이프 관련 문구
+        
+        
         let swipeLec = UISwipeGestureRecognizer()
         swipeLec.direction = .Left
         swipeLec.addTarget(self, action: #selector(SetStartTMViewController.swipedViewLeft))
@@ -351,8 +362,38 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         mainView.addGestureRecognizer(swipeRec)
         mainView.userInteractionEnabled = true
         
-        super.viewDidLoad()
+        
     }
+    
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        
+        if(checkLoad == false){
+            checkLoad = true
+            
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+                self.callSubwayApi()
+                dispatch_async(dispatch_get_main_queue()){
+                    self.viewAllRouteText.hidden = false
+                    self.standardBtnText.hidden = false
+                    self.spinnerView.hidden = true
+                    self.spinner.stopAnimating()
+                }
+                
+            }
+            
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = true
@@ -361,23 +402,23 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     func networkAlert(mode : Int){
         
-        
-        
-        let alert = UIAlertController(title: "오류", message: "네트워크 연결을 확인해주세요.", preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
-            
-            if(mode == 1){
-                self.navigationController?.popViewControllerAnimated(true)
+        dispatch_async(dispatch_get_main_queue()){
+            let alert = UIAlertController(title: "오류", message: "네트워크 연결을 확인해주세요.", preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                
+                if(mode == 1){
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                
             }
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
             
         }
-        alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
-    // 스와이프 관련 함수
-    func swipedViewLeft(){ // 다음페이지로
+    func swipedViewLeft(){
         
         
         if(nextBtn.enabled == true){
@@ -386,13 +427,11 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func swipedViewRight(){ // 이전페이지로
+    func swipedViewRight(){
         
         navigationController?.popViewControllerAnimated(true)
         
     }
-    
-    
     
     func inital(){
         self.StartStationCode = ""
@@ -408,25 +447,97 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         nextBtn.enabled = false
     }
     
-    override func viewDidAppear(animated: Bool) {
+    var timer = NSTimer()//타이머 관련
+    
+    @IBAction func standardBtn(sender: AnyObject) {
         
-        
-        if(checkLoad == false){
-            checkLoad = true
-            viewAllRouteText.hidden = false
-            standardBtnText.hidden = false
-            callSubwayApi()
+        if Reachability.isConnectedToNetwork() == true {
+            
+            spinner.hidden = false
+            spinner.startAnimating()
+            spinnerView.hidden = false
+            
+            
+            self.startTimeText1.setTitle("-", forState: .Normal)
+            self.startTimeText2.setTitle("-", forState: .Normal)
+            self.startTimeText3.setTitle("-", forState: .Normal)
+            self.startTimeText4.setTitle("-", forState: .Normal)
+            
+            self.startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            self.startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            self.startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            self.startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            
+            self.buttonsEnabled(false)
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                
+                
+                self.inital()
+                
+                if(self.standardBtnText.titleLabel?.text == "최소 시간 기준"){
+                    self.standardInfo = 2
+                }else{
+                    self.standardInfo = 1
+                }
+                
+                
+                self.callSubwayApi()
+                
+                dispatch_async(dispatch_get_main_queue()){
+                    
+                    self.spinnerView.hidden = true
+                    self.spinner.stopAnimating()
+                    
+                    self.buttonsEnabled(true)
+                    
+                }
+                
+                
+            }
+            
+        }else {
+            
+            networkAlert(0)
+            
         }
         
         
+    }
+    func updateCounter() {
+        timer.invalidate()
         
+        inital()
+        
+        if(standardBtnText.titleLabel?.text == "최소 시간 기준"){
+            self.standardInfo = 2
+        }else{
+            self.standardInfo = 1
+        }
+        
+        startTimeText1.setTitle("-", forState: .Normal)
+        startTimeText2.setTitle("-", forState: .Normal)
+        startTimeText3.setTitle("-", forState: .Normal)
+        startTimeText4.setTitle("-", forState: .Normal)
+        
+        callSubwayApi()
+        
+        startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        spinnerView.hidden = true
+        spinner.stopAnimating()
         
     }
     
+    
+    //최초의 지하철 이동경로 가져옴
     func callSubwayApi() {
         
         if Reachability.isConnectedToNetwork() == true {
-        
+            
             let root = returnRootApi(StartNm: self.start, FinishNm: self.finish, Mode: self.standardInfo)
             
             let row = root.0
@@ -501,44 +612,49 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                 var scheduleYN : Bool = false
                 for ce in 0..<info.count{
                     if(self.info[ce].startSchedule.count == 0){
-                        scheduleYN = true
-                        
-                        let alert = UIAlertController(title: "오류", message: "시간표 정보를 가져오는데 실패하였습니다.", preferredStyle: .Alert)
-                        let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            scheduleYN = true
                             
-                            self.navigationController?.popViewControllerAnimated(true)
-                            
+                            let alert = UIAlertController(title: "오류", message: "시간표 정보를 가져오는데 실패하였습니다.", preferredStyle: .Alert)
+                            let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                                
+                                //self.navigationController?.popViewControllerAnimated(true)
+                                
+                            }
+                            alert.addAction(cancelAction)
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.setAllItem()
+                            //print(info)
                         }
-                        alert.addAction(cancelAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        setAllItem()
-                        //print(info)
                     }
                 }
                 
                 if(scheduleYN == false){
-                    setAllItem()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.setAllItem()
+                        
+                        self.pickerView.reloadAllComponents()
+                        
+                        self.setSubwayTime()
+                    }
                     
-                    pickerView.reloadAllComponents()
-                    
-                    setSubwayTime()
                 }
                 
             }else{
-                
-                let alert = UIAlertController(title: "오류", message: "이동경로를 가져오는데 실패하였습니다.\n역명을 확인해주세요.", preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
-                    
-                    self.navigationController?.popViewControllerAnimated(true)
+                dispatch_async(dispatch_get_main_queue()) {
+                    let alert = UIAlertController(title: "오류", message: "이동경로를 가져오는데 실패하였습니다.\n역명을 확인해주세요.", preferredStyle: .Alert)
+                    let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                        
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
+                    }
+                    alert.addAction(cancelAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
                 }
-                alert.addAction(cancelAction)
-                self.presentViewController(alert, animated: true, completion: nil)
                 
             }
-        
-        
-        
+            
         }else {
             
             networkAlert(1)
@@ -548,9 +664,12 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         
         
+        
     }
     
     func setAllItem(){
+        
+        self.info3 = self.info
         
         var time : Int = 0
         
@@ -705,28 +824,14 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    
-    @IBAction func standardBtn(sender: AnyObject) {
+    func buttonsEnabled(check : Bool){
         
-        inital()
-        
-        if(standardBtnText.titleLabel?.text == "최소 시간 기준"){
-            self.standardInfo = 2
-        }else{
-            self.standardInfo = 1
-        }
-        
-        startTimeText1.setTitle("-", forState: .Normal)
-        startTimeText2.setTitle("-", forState: .Normal)
-        startTimeText3.setTitle("-", forState: .Normal)
-        startTimeText4.setTitle("-", forState: .Normal)
-        
-        callSubwayApi()
-        
-        startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.startTimeText1.enabled = check
+        self.startTimeText2.enabled = check
+        self.startTimeText3.enabled = check
+        self.startTimeText4.enabled = check
+        self.standardBtnText.enabled = check
+        self.viewAllRouteText.enabled = check
         
     }
     
@@ -734,38 +839,60 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var startTimeText1: UIButton!
     @IBAction func startTime1(sender: AnyObject) {
         
-        if Reachability.isConnectedToNetwork() == true {
         
+        if Reachability.isConnectedToNetwork() == true {
+            
             if(startTimeText1.titleLabel?.text != "-"){
                 
-                startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
-                startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                spinnerView.hidden = false
+                spinner.startAnimating()
                 
-                checkInfo2()
+                buttonsEnabled(false)
                 
-                self.startTimeText = (startTimeText1.titleLabel?.text)!
-                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-                
-                
-                info = setAllTimeToInfo(Info: info, Index: 0)
-                
-                checkFinishLine()
-                
-                setAllItem()
-                
-                finishTime.text = calculateFinishTime()
-                
-                
-                nextBtn.enabled = true
-            }else {
-                
-                networkAlert(0)
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+                    self.checkInfo2()
+                    
+                    self.startTimeText = (self.startTimeText1.titleLabel?.text)!
+                    self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                    
+                    
+                    self.info = setAllTimeToInfo(Info: self.info, Index: 0)
+                    
+                    self.nextBtn.enabled = true
+                    
+                    self.startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                    self.startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.checkFinishLine()
+                        self.setAllItem()
+                        
+                        self.finishTime.text = self.calculateFinishTime()
+                        
+                        self.buttonsEnabled(true)
+                        
+                        self.spinnerView.hidden = true
+                        self.spinner.stopAnimating()
+                    }
+                    
+                    
+                }
                 
             }
             
+            
+        }else {
+            
+            networkAlert(0)
+            
         }
+        
+        
+        
         
     }
     
@@ -773,36 +900,59 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBAction func startTime2(sender: AnyObject) {
         
         if Reachability.isConnectedToNetwork() == true {
-        
+            
             if(startTimeText2.titleLabel?.text != "-"){
                 
-                startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
-                startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                spinnerView.hidden = false
+                spinner.startAnimating()
                 
-                checkInfo2()
+                buttonsEnabled(false)
                 
-                self.startTimeText = (startTimeText2.titleLabel?.text)!
-                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+                    self.checkInfo2()
+                    
+                    self.startTimeText = (self.startTimeText2.titleLabel?.text)!
+                    self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                    
+                    
+                    self.info = setAllTimeToInfo(Info: self.info, Index: 0)
+                    
+                    self.nextBtn.enabled = true
+                    
+                    self.startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                    self.startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.checkFinishLine()
+                        self.setAllItem()
+                        
+                        self.finishTime.text = self.calculateFinishTime()
+                        
+                        
+                        
+                        self.buttonsEnabled(true)
+                        
+                        self.spinnerView.hidden = true
+                        self.spinner.stopAnimating()
+                    }
+                    
+                    
+                }
                 
-                info = setAllTimeToInfo(Info: info, Index: 0)
-                
-                checkFinishLine()
-                
-                setAllItem()
-                
-                finishTime.text = calculateFinishTime()
-                
-                
-                nextBtn.enabled = true
                 
             }
+            
         }else {
             
             networkAlert(0)
             
         }
+        
+        
         
     }
     
@@ -810,29 +960,47 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBAction func startTime3(sender: AnyObject) {
         
         if Reachability.isConnectedToNetwork() == true {
-        
+            
             if(startTimeText3.titleLabel?.text != "-"){
                 
-                startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
-                startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
-                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                spinnerView.hidden = false
+                spinner.startAnimating()
                 
-                checkInfo2()
+                buttonsEnabled(false)
                 
-                self.startTimeText = (startTimeText3.titleLabel?.text)!
-                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+                    self.checkInfo2()
+                    
+                    self.startTimeText = (self.startTimeText3.titleLabel?.text)!
+                    self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                    
+                    
+                    self.info = setAllTimeToInfo(Info: self.info, Index: 0)
+                    
+                    self.nextBtn.enabled = true
+                    
+                    self.startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                    self.startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    self.startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                    
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.checkFinishLine()
+                        self.setAllItem()
+                        
+                        self.finishTime.text = self.calculateFinishTime()
+                        
+                        self.buttonsEnabled(true)
+                        
+                        self.spinnerView.hidden = true
+                        self.spinner.stopAnimating()
+                    }
+                    
+                    
+                }
                 
-                info = setAllTimeToInfo(Info: info, Index: 0)
-                
-                checkFinishLine()
-                
-                setAllItem()
-                
-                finishTime.text = calculateFinishTime()
-                
-                
-                nextBtn.enabled = true
                 
             }
             
@@ -842,13 +1010,15 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             
         }
         
+        
+        
     }
     
     @IBOutlet var startTimeText4: UIButton!
     @IBAction func startTimeText4(sender: AnyObject) {
         
         if Reachability.isConnectedToNetwork() == true {
-        
+            
             if(startTimeText4.titleLabel?.text != "-"){
                 
                 startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -893,11 +1063,13 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                 toolBar.hidden = false
                 
             }
+            
         }else {
             
             networkAlert(0)
             
         }
+        
         
     }
     
@@ -912,10 +1084,6 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     func checkFinishLine(){
         
-        //        if(self.info2.count != 0){
-        //            self.info = self.info2 //백업을 통해 다시 원상복구
-        //            self.info2.removeAll()
-        //        }
         
         for i in 0..<self.info.count{
             
@@ -965,6 +1133,8 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     
     
+    
+    
     @IBOutlet var standardBtnText: UIButton!
     @IBOutlet var viewAllRouteText: UIButton!
     
@@ -990,8 +1160,6 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             
         }
     }
-    
-    
     
     
 }

@@ -975,75 +975,117 @@ func parsingRoot(minStatNm statNm : Array<String>, minStatId statId : Array<Stri
     
     let count = mainIdArray.count
     
-    for ce in 0..<count{
-        var subwayIdTemp = convertStartToFinishString(Start: 1, Finish: 4, string: mainIdArray[ce][0])
-        
-        if(subwayIdTemp == "1061"){subwayIdTemp = "1063"}
-        
-        subwayIdArray.append(subwayIdTemp)
-        
-        
-        
-        var updn = checkUpOrDown(StartSTNm: mainNmArray[ce][0], StartSTId: subwayIdTemp, NextSTNm: mainNmArray[ce][1])
-        
-        
-        
-        updnArray.append(updn)
-        
-        let checkExpress : Bool = setExpress(SubwayId: subwayIdTemp, Navigate: mainNmArray[ce])
-        
-        //시작역
-        var scheduleTemp = setTranferTimeBySubwayId2(StationNm: mainNmArray[ce][0], SubwayId: subwayIdTemp, UpDnLine: updn, ExpressCheck: checkExpress)
-        
-        
-        startschedule.append(scheduleTemp)
-        
-        
-        let timeTemp = returnRootApi(StartNm: mainNmArray[ce][0], FinishNm: mainNmArray[ce][mainNmArray[ce].count - 1], Mode: 0).0.shtTravelTm
-        timeArray.append(timeTemp)
-    }
+    let que = dispatch_queue_create("parsingRoot", DISPATCH_QUEUE_CONCURRENT)
     
-    for ce in 0..<count{
+    var queueFinish = false
+    
+    for _ in 0..<count{
         
-        info.append(SubwayInfo(navigate: mainNmArray[ce], navigateId: mainIdArray[ce], copyNavigate: mainNmArray[ce], copyNavigateId: mainIdArray[ce], navigateTm: [], subwayId: subwayIdArray[ce], time: timeArray[ce], copyTime: timeArray[ce], updn: updnArray[ce], startTime: 0, startSchedule: startschedule[ce], startScheduleIndex: 0,/* finishSchedule: finishschedule[ce],*/ expressYN: false, fastExit : ""))
+        subwayIdArray.append("0")
+        updnArray.append("0")
+        let temp : Array<Schedule> = []
+        startschedule.append(temp)
+        timeArray.append(0)
         
     }
     
-    for i in 0..<info.count{
+    for te in 0..<count{
         
-        if(i+1 == info.count){
-            info[i].fastExit = ""
-        }else{
+        dispatch_async(que){
             
-            let firstNm : String = info[i].navigate[info[i].navigate.count-2]
-            let secondNm : String = info[i+1].navigate[1]
-            let subwayId : String = info[i+1].subwayId
+            let ce = te
             
-            let firstFastExit = returnFastExit(SubwayId: info[i].subwayId)
+            var subwayIdTemp = convertStartToFinishString(Start: 1, Finish: 4, string: mainIdArray[ce][0])
             
-            let index : Int? = firstFastExit.indexOf({
-                
-                var check : Bool = false
-                
-                if($0.toLine == ""){
-                    check = ($0.FirstNm == firstNm && $0.SecondNm == secondNm)
-                }else{
-                    check = $0.FirstNm == firstNm && $0.SecondNm == secondNm && $0.toLine == subwayId
+            if(subwayIdTemp == "1061"){subwayIdTemp = "1063"}
+            
+            subwayIdArray[ce] = subwayIdTemp
+            
+            
+            
+            var updn = checkUpOrDown(StartSTNm: mainNmArray[ce][0], StartSTId: subwayIdTemp, NextSTNm: mainNmArray[ce][1])
+            
+            if(subwayIdTemp == "1002"){
+                if(mainNmArray[ce].indexOf("용답") != nil || mainNmArray[ce].indexOf("신답") != nil || mainNmArray[ce].indexOf("용두") != nil){
+                    if(updn == "1"){updn = "0"}
+                    else{updn = "1"}
                 }
-                
-                return check
-            })
-            
-            if(index != nil){
-                if(firstFastExit[index!].Exit == "20"){
-                    info[i].fastExit = "모든문"
-                }else{
-                    info[i].fastExit = firstFastExit[index!].Exit
-                }
-            }else{
-                info[i].fastExit = ""
             }
+            
+            updnArray[ce] = updn
+            //updnArray.append(updn)
+            
+            let checkExpress : Bool = setExpress(SubwayId: subwayIdTemp, Navigate: mainNmArray[ce])
+            //express.append(checkExpress)
+            
+            //시작역
+            var scheduleTemp = setTranferTimeBySubwayId2(StationNm: mainNmArray[ce][0], SubwayId: subwayIdTemp, UpDnLine: updn, ExpressCheck: checkExpress)
+            
+            
+            startschedule[ce] = scheduleTemp
+            
+            let timeTemp = returnRootApi(StartNm: mainNmArray[ce][0], FinishNm: mainNmArray[ce][mainNmArray[ce].count - 1], Mode: 0).0.shtTravelTm
+            
+            timeArray[ce] = timeTemp
+            
         }
+    }
+    
+    
+    dispatch_barrier_async(que){
+        
+        for ce in 0..<count{
+            
+            info.append(SubwayInfo(navigate: mainNmArray[ce], navigateId: mainIdArray[ce], copyNavigate: mainNmArray[ce], copyNavigateId: mainIdArray[ce], navigateTm: [], subwayId: subwayIdArray[ce], time: timeArray[ce], copyTime: timeArray[ce], updn: updnArray[ce], startTime: 0, startSchedule: startschedule[ce], startScheduleIndex: 0,/* finishSchedule: finishschedule[ce],*/ expressYN: false, fastExit : ""))
+            
+        }
+        
+        //여기서 환승출구 추가
+        
+        for i in 0..<info.count{
+            
+            if(i+1 == info.count){
+                info[i].fastExit = ""
+            }else{
+                
+                let firstNm : String = info[i].navigate[info[i].navigate.count-2]
+                let secondNm : String = info[i+1].navigate[1]
+                let subwayId : String = info[i+1].subwayId
+                
+                let firstFastExit = returnFastExit(SubwayId: info[i].subwayId)
+                
+                let index : Int? = firstFastExit.indexOf({
+                    
+                    var check : Bool = false
+                    
+                    if($0.toLine == ""){
+                        check = ($0.FirstNm == firstNm && $0.SecondNm == secondNm)
+                    }else{
+                        check = $0.FirstNm == firstNm && $0.SecondNm == secondNm && $0.toLine == subwayId
+                    }
+                    
+                    return check
+                })
+                
+                if(index != nil){
+                    if(firstFastExit[index!].Exit == "20"){
+                        info[i].fastExit = "모든문"
+                    }else{
+                        info[i].fastExit = firstFastExit[index!].Exit
+                    }
+                }else{
+                    info[i].fastExit = ""
+                }
+            }
+            
+        }
+        
+        queueFinish = true
+        
+        
+    }
+    
+    while(queueFinish == false){
         
     }
     
