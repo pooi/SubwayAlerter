@@ -57,6 +57,18 @@ struct Root{
     var minStatnNm : String = ""
 }
 
+
+struct Transfer {
+    var name : String //환승역명
+    var Id : String //환승역 ID
+}
+
+struct SubwayList {
+    var line : String //열차 호선
+    var stationNm : String //지하철 역명
+    var chosung : String //지하철 역명 초성
+}
+
 struct Schedule {
     var arriveTime : Int //도착 시간 단위 : 초
     var leftTime : Int //출발 시간
@@ -68,6 +80,13 @@ struct Schedule {
 struct trainTime{
     var station : String
     var arriveTime : Int
+}
+
+struct nealStation{
+    var statnNm : String = ""
+    var subwayId : String = ""
+    var subwayNm : String = ""
+    var ord : Int = 0
 }
 
 extension String { // 초성을 가져오기 위해 함수 추가
@@ -91,7 +110,167 @@ extension String { // 초성을 가져오기 위해 함수 추가
     }
 }
 
+
+extension UILabel {
+    
+    func setFontSize (sizeFont: CGFloat) {
+        self.font =  UIFont(name: self.font.fontName, size: sizeFont)!
+        self.sizeToFit()
+    }
+    
+}
+
+extension UIButton {
+    func setFontSize (size : CGFloat){
+        self.titleLabel?.font = UIFont(name: self.titleLabel!.font.fontName, size: size)
+    }
+}
+
 //################################# 부가 기능 함수 #################################
+
+func settingFontSize(mode : Int) -> CGFloat{
+    
+    if(UIScreen.mainScreen().bounds.size.width == 320.0 && UIScreen.mainScreen().bounds.size.height == 480.0){
+        //3.5인치
+        switch mode{
+        case 0:
+            return 14.0 //메인 버튼, 라벨
+        case 1:
+            return 12.0 //부가 버튼
+        case 3:
+            return 20 //마지막 페이지 맨위 레이블 constraint
+        case 4:
+            return 24.0 //마지막 페이지 맨위 레이블
+        case 5:
+            return 64.0 //마지막 페이지 시간초 레이블
+        case 6:
+            return 42 //하단바 높이
+        case 7:
+            return 40 //첫페이지 타이틀
+        case 8:
+            return 80 //셀 높이
+        case 9:
+            return 42 //셀 높이2
+        case 10:
+            return 38 //footer 높이
+        case 11:
+            return -15 //메인페이지 기차 이미지 constraint
+        case 12:
+            return 73.5 * 4 //메인페이지 높이 constraint
+        case 13:
+            return 16 //메인페이지 역 이름
+        case 14:
+            return 11 //메인페이지 서브 역 이름
+        default:
+            return 1
+        }
+    }else if(UIScreen.mainScreen().bounds.size.width == 320.0){
+        //4인치
+        switch mode{
+        case 0:
+            return 15.0 //메인 버튼, 라벨
+        case 1:
+            return 13.0 //부가 버튼
+        case 3:
+            return 35 //마지막 페이지 맨위 레이블 constraint
+        case 4:
+            return 24 //마지막 페이지 맨위 레이블
+        case 5:
+            return 64 //마지막 페이지 시간초 레이블
+        case 6:
+            return 45 //하단바 높이
+        case 7:
+            return 43 //첫페이지 타이틀
+        case 8:
+            return 90 //셀 높이
+        case 9:
+            return 43 //셀 높이2
+        case 10:
+            return 39 //footer 높이
+        case 11:
+            return -20 //메인페이지 기차 이미지 constraint
+        case 12:
+            return 73.5 * 5 //메인페이지 높이 constraint
+        case 13:
+            return 16 //메인페이지 역 이름
+        case 14:
+            return 11 //메인페이지 서브 역 이름
+        default:
+            return 1
+        }
+    }else if(UIScreen.mainScreen().bounds.size.width == 375.0){
+        
+        //4.7인치
+        switch mode{
+        case 0:
+            return 16.0 //메인 버튼, 라벨
+        case 1:
+            return 14.0 //부가 버튼
+        case 3:
+            return 45 //마지막 페이지 맨위 레이블 constraint
+        case 4:
+            return 28 //마지막 페이지 맨위 레이블
+        case 5:
+            return 72.0 //마지막 페이지 시간초 레이블
+        case 6:
+            return 50 //하단바 높이
+        case 7:
+            return 46 //첫페이지 타이틀
+        case 8:
+            return 100 //셀 높이
+        case 9:
+            return 44 //셀 높이2
+        case 10:
+            return 40 //footer 높이
+        case 11:
+            return -25 //메인페이지 기차 이미지 constraint
+        case 12:
+            return 86.5 * 5 //메인페이지 높이 constraint
+        case 13:
+            return 18 //메인페이지 역 이름
+        case 14:
+            return 13 //메인페이지 서브 역 이름
+        default:
+            return 1
+        }
+        
+    }else{
+        //5.5인치
+        switch mode{
+        case 0:
+            return 17.0 //메인 버튼, 라벨
+        case 1:
+            return 15.0 //부가 버튼
+        case 3:
+            return 50 //마지막 페이지 맨위 레이블 constraint
+        case 4:
+            return 30 //마지막 페이지 맨위 레이블
+        case 5:
+            return 76.0 //마지막 페이지 시간초 레이블
+        case 6:
+            return 50 //하단바 높이
+        case 7:
+            return 49 //첫페이지 타이틀
+        case 8:
+            return 110 //셀 높이1
+        case 9:
+            return 45 //셀 높이2
+        case 10:
+            return 41 //footer 높이
+        case 11:
+            return -30 //메인페이지 기차 이미지 constraint
+        case 12:
+            return 95 * 5 //메인페이지 높이 constraint
+        case 13:
+            return 18 //메인페이지 역 이름
+        case 14:
+            return 13 //메인페이지 서브 역 이름
+        default:
+            return 1
+        }
+    }
+    
+}
 
 func convertStartToFinishString(let Start start : Int, let Finish finish : Int, let string str : String) -> String{
     
@@ -213,6 +392,89 @@ func convertStringToSecond(set : String, Mode mode2 : Int) -> Int {
     
     
     return time
+    
+}
+
+func removeComma(Name name : String) -> (String, String){
+    
+    var start : String = ""
+    var finish : String = ""
+    
+    var count : Int = 0
+    
+    for ce in name.characters{
+        if(ce == ","){
+            count += 1
+        }else{
+            if(count == 0){
+                start = start + String(ce)
+            }else{
+                finish = finish + String(ce)
+            }
+        }
+    }
+    
+    return (start, finish)
+    
+}
+
+func convertTitle(Title name : String) -> String{
+    
+    var start : String = ""
+    var finish : String = ""
+    
+    var count : Int = 0
+    for ce in name.characters{
+        if(ce == ","){
+            count += 1
+        }else{
+            if(count == 0){
+                start = start + String(ce)
+            }else{
+                finish = finish + String(ce)
+            }
+        }
+    }
+    
+    return start + "역 -> " + finish + "역"
+    
+}
+
+func removeString(Name name : String) -> String {
+    
+    var stationYN : Bool = false
+    var count : Int = 0
+    var count2 : Int = 0
+    var tempS : String = ""
+    
+    for _ in name.characters{
+        count += 1
+    }
+    for ce in name.characters{
+        count2+=1
+        if(count2 == count){
+            if(ce == "역"){
+                stationYN = true
+            }
+        }
+    }
+    if(stationYN == true){
+        
+        count2 = 0
+        if(stationYN == true){
+            for ce in name.characters{
+                count2+=1
+                if(count2<count){
+                    tempS = tempS + String(ce)
+                }
+            }
+        }
+        
+        return tempS
+    }else{
+        return name
+    }
+    
     
 }
 
