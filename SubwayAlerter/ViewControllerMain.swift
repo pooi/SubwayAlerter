@@ -31,6 +31,14 @@ class ViewControllerMain : UIViewController {
         
     override func viewDidLoad() {
         
+        self.mainHeightCon.constant = settingFontSize(12)
+        
+        view0Label.setFontSize(settingFontSize(7))
+        self.trainImageCon.constant = settingFontSize(11)
+        
+        self.bottomBarCon.constant = settingFontSize(6)
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -24,6 +24,9 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         
+        self.InfoLabel.setFontSize(settingFontSize(0))
+        
+        self.bottomBarCon.constant = settingFontSize(6)
         
         for parent in self.searchBar.subviews{
             for childView in parent.subviews{
@@ -100,6 +103,10 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
         return self.filteredSubway.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return settingFontSize(9)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = finishTableView.dequeueReusableCellWithIdentifier("cell2", forIndexPath: indexPath) as UITableViewCell
         
@@ -108,6 +115,8 @@ class FinishSTViewController : UIViewController, UITableViewDataSource, UITableV
         friend = self.filteredSubway[indexPath.row]
         
         cell.textLabel?.text = friend.name + "역"
+        
+        cell.textLabel?.setFontSize(settingFontSize(0))
         
         cell.detailTextLabel?.text = returnLineName(SubwayId : friend.line)
         
