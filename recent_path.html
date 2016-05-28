@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    
+        <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+        <title>지하철 알리미</title>
+        
+        <style>
+		
+			@font-face{
+				
+				font-family : "Yoon";
+				src : url("210 모던고딕L.ttf") format("truetype");	
+				
+			}
+		
+			*{
+				
+				list-style-type : none;
+				text-decoration : none;	
+				margin : 0;
+				padding : 0;
+				font-family : "Yoon";
+				
+			}
+			
+			a{
+				
+				color : black;	
+				
+			}
+		
+			body{
+				
+				width : 960px;
+				margin : 0 auto;	
+				font-size : 16px;
+				
+			}
+		
+			header{
+				
+				position : relative;
+				width : 100%;
+				margin-top : 20px;
+				background-color : white;
+				height : 50px;
+				box-shadow : 0px 3px 2px #eee;
+				
+			}
+			
+			header hgroup{
+				
+				font-size : 0.8em;
+				float : left;
+				margin-top : 3px;
+				margin-left : 3px;
+				color : #444;
+				overflow : hidden;
+				
+			}
+			
+			header h1{
+				
+				font-size : 1.7em;
+				float : left;
+				line-height : 50px;
+				
+			}
+			
+			header h2{
+				
+				float : left;
+				font-size : 1.1em;
+				width : 140px;
+				margin-top : 23px;
+				margin-left : 5px;
+				
+			}
+			
+			header img.logo{
+				
+				width : 45px;
+				height : 45px;
+				float : left;
+				display : block;
+				margin-top : 2.5px;
+				margin-left : 5px;
+				
+			}
+			
+			header nav#lnb{
+				
+				height : 43px;
+				line-height : 43px;
+				float : left;
+				width : 45%;
+				margin-top : 7px;
+				
+			}
+			
+			header nav#lnb ul li{
+				
+				width : 20%;
+				float : left;
+				
+			}
+			
+			header nav#lnb ul li a{
+				
+				display : block;
+				height : 43px;
+				line-height : 43px;
+				padding : 0 13px;
+				color : #444;
+				font-size : 0.9em;
+				
+			}
+			
+			header nav#lnb ul li a:hover{
+			
+				color : #c75655;
+				text-shadow : 0px 1px 1px #eee;
+				
+			}
+			
+			header div.button_wrap{
+				
+				position : absolute;	
+				right : 0;
+				bottom : 0;
+				
+			}
+			
+			header div.button_wrap div.button{
+				
+				float : left;
+				
+			}
+			
+			header div.button_wrap div.button a{
+				
+				font-size : 0.7em;
+				display : block;
+				float : left;
+				color : #444;
+				height : 43px;
+				line-height : 43px;
+				padding : 0 10px;
+				margin-top : 7px;
+				
+			}
+			
+			header div.button_wrap div.button a:hover{
+				
+				color : #c75655;	
+				
+			}
+			
+			header div.button_wrap div.dropdown:hover + ul.dropdown_list{
+				
+				display : block;
+				
+			}
+			
+			header div.button_wrap ul.dropdown_list{
+				
+				display : none;
+				width : 73px;
+				position : absolute;
+				top : 50px;	
+				right : 0;
+				border : 1px solid #c55554;
+				
+			}
+			
+			header div.button_wrap ul.dropdown_list:hover{
+				
+				display : block;
+				
+			}
+			
+			header div.button_wrap ul.dropdown_list li a{
+				
+				text-align : center;
+				font-size : 0.7em;
+				display : block;
+				color : #444;
+				height : 50px;
+				line-height : 50px;
+				padding : 0 10px;
+				background-color : white;
+				box-sizing : border-box;
+				
+			}
+			
+			header div.button_wrap ul.dropdown_list li a:hover{
+				
+				color : #c75655;
+				background-color : #fabfbe;
+				
+			}
+			
+			section{
+				
+				width : 100%;
+				box-sizing : border-box;
+				margin-top : 20px;	
+				overflow : hidden;
+				background-color : #DD5F5E;
+				padding-bottom : 25px;
+				padding-top : 20px;
+				
+			}
+			
+			section h1{
+				
+				font-size : 1.3em;	
+				color : white;
+				margin-top : 3px;
+				text-align : center;
+				
+			}
+			
+			section article{
+				
+				width : 100%;
+				height : 520px;
+				box-sizing : border-box;
+				padding : 15px;	
+					
+				
+			}
+			
+			section article div.view{
+				
+				width : 90%;
+				height : 480px;
+				float : left;
+				overflow : hidden;
+				margin-left : 45px;
+				padding-top : 15px;
+				background-color : #d95e5d;
+				box-shadow : 0px 0px 6px #c35353;
+				
+			}
+			
+			section article div.view h1{
+			
+				width : 105px;
+				text-align : left;	
+				margin-left : 140px;
+				line-height : 40px;
+				
+			}
+			
+			section article div.view p{
+				
+				width : 450px;
+				color : white;
+				float : left;
+				padding : 25px;
+				line-height : 25px;
+				
+			}
+			
+			section div.view img{
+				
+				width : 225px;
+				height : 400px;
+				float : left;
+				margin-left : 75px;
+				border : 1px solid white;
+				
+			}
+			
+			section div#main_image{
+				
+				width : 150px;
+				
+			}
+			
+			section div#main_image img.logo{
+				
+				width : 150px;
+				height : 150px;
+				margin-left : 405px;
+				border : 1px solid white;
+				border-radius : 30px;
+				margin-top : 20px;
+				
+			}
+			
+			section article.explanation{
+				
+				color : white;
+				margin-top : 15px;
+				font-size : 0.9em;
+				line-height : 30px;	
+				
+			}
+			
+			section article.explanation ul li div.term::before{
+				
+				content : "| ";	
+				
+			}
+			
+			section article.explanation ul{
+				
+				margin-left : 180px;
+				
+			}
+			
+			section article.explanation ul li{
+				
+				height : 30px;
+				line-height : 30px;	
+				
+			}
+			
+			section article.explanation ul li div.term{
+				
+				float : left;
+				width : 140px;
+				
+			}
+			
+			section article.explanation ul li div.bar{
+				
+				width : 300px;
+				height : 20px;
+				background-color : white;
+				float : left;
+				margin-left : 15px;
+				margin-top : 3px;
+				
+			}
+			
+			section article.explanation ul li:nth-child(1) div.bar{
+				
+				width : 280px;	
+				-webkit-animation-name : slide1;
+				-webkit-animation-duration : 2.5s;
+				-webkit-animation-fill-mode : forward;
+				
+				-o-animation-name : slide1;
+				-o-animation-duration : 2.5s;
+				-o-animation-fill-mode : forward;
+				
+				-moz-animation-name : slide1;
+				-moz-animation-duration : 2.5s;
+				-moz-animation-fill-mode : forward;
+				
+				-ms-animation-name : slide1;
+				-ms-animation-duration : 2.5s;
+				-ms-animation-fill-mode : forward;
+				
+				animation-name : slide1;
+				animation-duration : 2.5s;
+				animation-fill-mode : forward;
+				
+			}
+			
+			section article.explanation ul li:nth-child(2) div.bar{
+				
+				width : 350px;
+				-webkit-animation-name : slide2;
+				-webkit-animation-duration : 2.5s;
+				-webkit-animation-fill-mode : forward;
+				
+				-o-animation-name : slide2;
+				-o-animation-duration : 2.5s;
+				-o-animation-fill-mode : forward;
+				
+				-moz-animation-name : slide2;
+				-moz-animation-duration : 2.5s;
+				-moz-animation-fill-mode : forward;
+				
+				-ms-animation-name : slide2;
+				-ms-animation-duration : 2.5s;
+				-ms-animation-fill-mode : forward;
+				
+				animation-name : slide2;
+				animation-duration : 2.5s;
+				animation-fill-mode : forward;
+				
+			}
+			
+			section article.explanation ul li:nth-child(3) div.bar{
+				
+				width : 330px;
+				-webkit-animation-name : slide3;
+				-webkit-animation-duration : 2.5s;
+				-webkit-animation-fill-mode : forward;
+				
+				-o-animation-name : slide3;
+				-o-animation-duration : 2.5s;
+				-o-animation-fill-mode : forward;
+				
+				-moz-animation-name : slide3;
+				-moz-animation-duration : 2.5s;
+				-moz-animation-fill-mode : forward;
+				
+				-ms-animation-name : slide3;
+				-ms-animation-duration : 2.5s;
+				-ms-animation-fill-mode : forward;
+				
+				animation-name : slide3;
+				animation-duration : 2.5s;
+				animation-fill-mode : forward;
+				
+			}
+			
+			@keyframes slide1{
+				
+				from{
+					
+					width : 0px;
+					
+				}
+				
+				to{
+					
+					width : 280px;
+					
+				}
+				
+			}
+			
+			@keyframes slide2{
+				
+				from{
+					
+					width : 0px;
+					
+				}
+				
+				to{
+					
+					width : 350px;
+					
+				}
+				
+			}
+			
+			@keyframes slide3{
+				
+				from{
+					
+					width : 0px;
+					
+				}
+				
+				to{
+					
+					width : 330px;
+					
+				}
+				
+			}
+			
+			section article.explanation ul li:nth-child(2){
+				
+				clear : both;	
+				
+			}
+			
+			section article.explanation p{
+				
+				font-size : 1.3em;
+				margin-left : 180px;	
+				margin-top : 30px;	
+				padding-top : 10px;
+				width : 650px;
+				border-top : 1px solid white;
+				
+			}
+		
+			footer{
+				
+				width : 100%;
+				box-sizing : border-box;
+				padding : 0 20px;
+				height : 420px;
+				
+			}
+			
+			footer div.API_origin{
+				
+				width : 100%;
+				box-sizing : border-box;
+				
+				
+			}
+			
+			footer div.API_origin div.API{
+				
+				color : #444;
+				width : 45%;
+				box-sizing : border-box;
+				float : left;
+				padding-top : 50px;
+				margin : 0 2.5%;
+				
+			}
+			
+			footer div.API_origin div.API p{
+				
+				padding : 20px;
+				line-height : 25px;	
+				text-align : center;
+				font-size : 0.9em;
+				
+			}
+			
+			footer div.API_origin h2{
+				
+				font-size : 1.4em;	
+				padding : 10px;
+				text-align : center;
+				
+			}
+			
+			footer div.API_origin img{
+				
+				margin-left : 135px;
+				width : 150px;
+				height : 150px;
+				
+			}
+			
+			div#info{
+				
+				width : 920px;
+				background-color : #333;	
+				margin-bottom : 15px;
+				padding : 20px;
+				color : white;
+				
+			}
+			
+			div#info p{
+				
+				margin-top : 15px;	
+				color : #DDD;
+				font-size : 0.9em;
+				
+			}
+		
+		</style>
+        
+    </head>
+
+    <body>
+    
+    	<header>
+        
+        	<a href = "index.html">
+            
+            	<img class = "logo" src = "images/logo1.png" alt = "mainlogo" title = "mainlogo" />
+            
+            	<hgroup>
+                
+                    <h1>지하철 알리미</h1>
+                    <h2>Subway Alerter</h2>
+                
+                </hgroup>
+                
+            </a>
+            
+            <nav id = "lnb">
+            
+            	<ul>
+                
+                	<li>
+                    
+                    	<a href = "setalert.html">알림 설정</a>
+                    
+                    </li>
+                    
+                    <li>
+                    
+                    	<a href = "nearest_station.html">가까운 역</a>
+                    
+                    </li>
+                    
+                    <li>
+                    
+                    	<a href = "favorite.html">즐겨찾기</a>
+                    
+                    </li>
+                    
+                    <li>
+                    
+                    	<a href = "recent_path.html">최근경로</a>
+                    
+                    </li>
+                    
+                    <li>
+                    
+                    	<a href = "setting.html">설정</a>
+                    
+                    </li>
+                
+                </ul>
+            
+            </nav>
+                
+            <div class = "button_wrap">
+            
+                <div class = "button"><a href="https://github.com/pooi/SubwayAlerter">View on Github</a></div>
+                <div class = "button dropdown"><a href = "#">Download</a></div>
+                <ul class = "dropdown_list">
+                
+                    <li><a href="https://github.com/pooi/SubwayAlerter/zipball/master">.ZIP</a></li>
+                    <li><a href="https://github.com/pooi/SubwayAlerter/tarball/master">.tar.gz</a></li>
+                
+                </ul>
+            
+            </div>
+        
+        </header>
+        
+        <section>
+        
+        	<article>
+            
+            	<div class = "view">
+                
+                	<h1><최근 경로></h1>
+                
+                	<img src = "images/recent_path.png" alt = "최근 경로" />
+                    
+                    <p>
+                
+                		1. 최근경로 - 최근에 찾았던 경로에 대해 저장해 놓은 뒤 사용자가 찾고 싶을 때 찾게 해줍니다.
+                
+                	</p>
+                
+                </div>
+                        
+            </article>
+        
+        </section>
+        
+        <div id = "info">
+                
+        	<address>https://github.com/pooi/SubwayAlerter</address>
+            <p>
+            
+            	SubwayAlerter Maintained by pooiGroup<br />
+                This page was generated by GitHub Pages using the Cayman theme by Jason Long.
+            
+            </p>
+                
+        </div>
+        
+    </body>
+
+</html>
