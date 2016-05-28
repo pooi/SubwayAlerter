@@ -30,7 +30,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     var checkWhile : Bool = false
     var checkReturnBtn : Bool = false
     
-    
+    var fvo = FavoriteVO()//사용자 함수를 위해
     
     
     @IBOutlet var mainView: UIView!
@@ -103,6 +103,41 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    func addRecentList(){
+        
+        let name : String = self.info[0].navigate[0] + "," + self.info[self.info.count-1].navigate[self.info[self.info.count-1].navigate.count-1]
+        
+        var list : Array<String> = self.fvo.config.objectForKey("RecentArray") as! Array<String>
+        
+        var check : Bool = false
+        
+        for ce in list{
+            
+            if(ce == name){
+                check = true
+                
+                list.removeAtIndex(list.indexOf(ce)!)
+                list.append(ce)
+                self.fvo.config.setObject(list, forKey: "RecentArray")
+                
+                break;
+            }
+            
+        }
+        
+        if(check == false){
+            
+            if(list.count >= 20){
+                list.removeAtIndex(0)
+            }
+            
+            list.append(name)
+            self.fvo.config.setObject(list, forKey: "RecentArray")
+            
+        }
+        
+        
+    }
     
     func swipedViewRight(){
         
@@ -139,6 +174,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         self.pickerView.dataSource = self;
         self.pickerView.delegate = self;
         
+        
+        
         completeBtnOutlet.tintColor = UIColor(red:  230/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 0.0)
         completeBtnOutlet.enabled = false
         
@@ -148,7 +185,9 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         mainView.addGestureRecognizer(swipeRec)
         mainView.userInteractionEnabled = true
         
-        self.setAlertTime = 1
+        let fvo = FavoriteVO()
+        
+        self.setAlertTime = fvo.config.objectForKey("setAlertTime") as! Int
         
         switch setAlertTime{
         case 0:
@@ -176,6 +215,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
         self.transferTimeSchedulCount = 0
         countTimeAct.text = "00분 00초"
+        
+        addRecentList()//최근경로에 추가
         
         self.checkTouchAlert = false
         
@@ -246,105 +287,108 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     //푸시알림관련====================================
     func localNotificationFunc(FinishTime finishTm : Int, StationName stationNm : String, FirstSchedule first : String, SecondSchedule second : String, FastExit fastExit : String){
         
+        let fvo = FavoriteVO()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct1(_:)), name: "actionOnePressed", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct2(_:)), name: "actionTwoPressed", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct3(_:)), name: "actionThreePressed", object: nil)
+        if(fvo.config.objectForKey("SetAlert") as! Bool == true){
         
-        let now = NSDate()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") // 로케일 설정
-        dateFormatter.dateFormat = "HH:mm:ss" // 날짜 형식 설정
-        let current : Int = returnCurrentTime()
-        
-        let alertTime : Int = current + finishTm - self.setAlertTime//%%60 //
-        
-        if(current < alertTime){ //현재시간보다 알람시간이 더 큰 경우 알람 설정
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct1(_:)), name: "actionOnePressed", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct2(_:)), name: "actionTwoPressed", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LastPageViewController.notificationAct3(_:)), name: "actionThreePressed", object: nil)
             
-            let hour : Int = Int(alertTime/3600)
-            let min : Int = (alertTime - (hour*3600))/60
-            let sec : Int = alertTime - hour*3600 - min*60
+            let now = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") // 로케일 설정
+            dateFormatter.dateFormat = "HH:mm:ss" // 날짜 형식 설정
+            let current : Int = returnCurrentTime()
             
+            let alertTime : Int = current + finishTm - self.setAlertTime//%%60 //
             
-            let dateComp:NSDateComponents = NSDateComponents()
-            
-            dateFormatter.dateFormat = "yyyy"
-            var currentTime : Int = Int(dateFormatter.stringFromDate(now))!
-            dateComp.year = currentTime//local notification 설정
-            
-            dateFormatter.dateFormat = "MM"
-            currentTime = Int(dateFormatter.stringFromDate(now))!
-            dateComp.month = currentTime//local notification 설정
-            
-            dateFormatter.dateFormat = "dd"
-            currentTime = Int(dateFormatter.stringFromDate(now))!
-            dateComp.day = currentTime//local notification 설정
-            
-            
-            dateComp.hour = hour//local notification 설정
-            dateComp.minute = min//local notification 설정
-            dateComp.second = sec//local notification 설정
-            
-            
-            dateComp.timeZone = NSTimeZone.systemTimeZone()
-            
-            
-            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            let date:NSDate = calender.dateFromComponents(dateComp)!
-            
-            let notification:UILocalNotification = UILocalNotification()
-            
-            
-            
-            if (first == ""){
-                notification.alertBody = stationNm + self.setAlertMessage//%%"역까지 1분 남았습니다."
-                notification.soundName = UILocalNotificationDefaultSoundName
-            }else{
+            if(current < alertTime){ //현재시간보다 알람시간이 더 큰 경우 알람 설정
+                
+                let hour : Int = Int(alertTime/3600)
+                let min : Int = (alertTime - (hour*3600))/60
+                let sec : Int = alertTime - hour*3600 - min*60
                 
                 
-                notification.category = "FIRST_CATEGORY"
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.alertBody = stationNm + "\(self.setAlertMessage)\n첫번째 : \(first)\n두번째 : \(second)\n다음 시간표 미설정시 첫번째로 설정됩니다."
-            }
-            
-            
-            
-            notification.fireDate = date
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            
-        }else{ //아닐경우 알람설정 안함
-            
-            if(checkTouchAlert == false && checkReturnBtn == false){
+                let dateComp:NSDateComponents = NSDateComponents()
+                
+                dateFormatter.dateFormat = "yyyy"
+                var currentTime : Int = Int(dateFormatter.stringFromDate(now))!
+                dateComp.year = currentTime//local notification 설정
+                
+                dateFormatter.dateFormat = "MM"
+                currentTime = Int(dateFormatter.stringFromDate(now))!
+                dateComp.month = currentTime//local notification 설정
+                
+                dateFormatter.dateFormat = "dd"
+                currentTime = Int(dateFormatter.stringFromDate(now))!
+                dateComp.day = currentTime//local notification 설정
                 
                 
-                var message : String = ""
+                dateComp.hour = hour//local notification 설정
+                dateComp.minute = min//local notification 설정
+                dateComp.second = sec//local notification 설정
                 
-                switch 0{
-                case 0:
-                    message = "남은 시간이 30초 미만이라 알림을 설정하지 않습니다."
-                    break;
-                case 1:
-                    message = "남은 시간이 1분 미만이라 알림을 설정하지 않습니다."
-                    break;
-                case 2:
-                    message = "남은 시간이 1분 30초 미만이라 알림을 설정하지 않습니다."
-                    break;
-                case 3:
-                    message = "남은 시간이 2분 미만이라 알림을 설정하지 않습니다."
-                    break;
-                default:
-                    break;
+                
+                dateComp.timeZone = NSTimeZone.systemTimeZone()
+                
+                
+                let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                let date:NSDate = calender.dateFromComponents(dateComp)!
+                
+                let notification:UILocalNotification = UILocalNotification()
+                
+                
+                
+                if (first == ""){
+                    notification.alertBody = stationNm + self.setAlertMessage//%%"역까지 1분 남았습니다."
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                }else{
+                    
+                    
+                    notification.category = "FIRST_CATEGORY"
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                    notification.alertBody = stationNm + "\(self.setAlertMessage)\n첫번째 : \(first)\n두번째 : \(second)\n다음 시간표 미설정시 첫번째로 설정됩니다."
                 }
                 
-                let alert = UIAlertController(title: "확인", message: message, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "확인", style: .Default, handler: nil)
-                alert.addAction(cancelAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+                
+                
+                notification.fireDate = date
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                
+            }else{ //아닐경우 알람설정 안함
+                
+                if(checkTouchAlert == false && checkReturnBtn == false){
+                    
+                    
+                    var message : String = ""
+                    
+                    switch fvo.config.objectForKey("setAlertTime") as! Int{
+                    case 0:
+                        message = "남은 시간이 30초 미만이라 알림을 설정하지 않습니다."
+                        break;
+                    case 1:
+                        message = "남은 시간이 1분 미만이라 알림을 설정하지 않습니다."
+                        break;
+                    case 2:
+                        message = "남은 시간이 1분 30초 미만이라 알림을 설정하지 않습니다."
+                        break;
+                    case 3:
+                        message = "남은 시간이 2분 미만이라 알림을 설정하지 않습니다."
+                        break;
+                    default:
+                        break;
+                    }
+                    
+                    let alert = UIAlertController(title: "확인", message: message, preferredStyle: .Alert)
+                    let cancelAction = UIAlertAction(title: "확인", style: .Default, handler: nil)
+                    alert.addAction(cancelAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                
             }
-            
         }
-        
         
     }
     
