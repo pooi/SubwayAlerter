@@ -1902,7 +1902,7 @@
         <!--설정-->
         <scene sceneID="fiw-pO-bpO">
             <objects>
-                <tableViewController id="9eW-Un-7UT" customClass="SettingViewController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="9eW-Un-7UT" customClass="SettingViewController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="EIK-K3-2IJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2133,7 +2133,7 @@
         <!--Navigation Controller-->
         <scene sceneID="U3O-Ge-SZr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tXt-Nq-acH" customClass="NavigationController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tXt-Nq-acH" customClass="NavigationController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pm7-6N-10T">
