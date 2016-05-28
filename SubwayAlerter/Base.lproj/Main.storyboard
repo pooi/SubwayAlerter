@@ -1319,7 +1319,8 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="환승역(어린이대공원)까지 남은 시간" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-sa-Pye">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="환승역(어린이대공원)까지
+남은 시간" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-sa-Pye">
                                         <rect key="frame" x="46" y="45" width="324" height="77"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1501,7 +1502,7 @@
         <!--전체 경로-->
         <scene sceneID="1wn-Xm-RDy">
             <objects>
-                <viewController id="FfQ-Ad-Lhy" customClass="AllRouteViewController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FfQ-Ad-Lhy" customClass="AllRouteViewController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QDr-EW-fYu"/>
                         <viewControllerLayoutGuide type="bottom" id="m5u-KW-9gs"/>
@@ -1584,7 +1585,7 @@
                                 <rect key="frame" x="0.0" y="124" width="414" height="612"/>
                                 <color key="backgroundColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="hOD-kT-prm" customClass="AllRouteViewCell" customModule="_______________" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="hOD-kT-prm" customClass="AllRouteViewCell" customModule="SubwayAlerter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOD-kT-prm" id="WUi-Py-DLm">
@@ -1683,7 +1684,7 @@
         <!--Navigation Controller-->
         <scene sceneID="pZg-c0-LBP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NwQ-Mh-AA5" customClass="NavigationController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NwQ-Mh-AA5" customClass="NavigationController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rby-DL-LKY">
