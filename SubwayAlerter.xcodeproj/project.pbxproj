@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F46C98E41CDC9DFB00431E6F /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C98E31CDC9DFB00431E6F /* ApiKey.swift */; };
+		F478AB281CF9853600154074 /* AllRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478AB271CF9853600154074 /* AllRouteViewController.swift */; };
 		F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */; };
 		F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B61CDB2DD7004C9E31 /* ViewController.swift */; };
 		F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16B81CDB2DD7004C9E31 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		F46C98E31CDC9DFB00431E6F /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		F478AB271CF9853600154074 /* AllRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRouteViewController.swift; sourceTree = "<group>"; };
 		F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayAlerter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49B16B61CDB2DD7004C9E31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				F4B397141CDB95240057EDFF /* TabbarController.swift */,
 				F4B397121CDB950D0057EDFF /* RouteTableCell.swift */,
 				F4C847BD1CDB8CE40088D651 /* NavigationController.swift */,
+				F478AB271CF9853600154074 /* AllRouteViewController.swift */,
 				F4C847C11CDB8EB00088D651 /* FavoriteViewController.swift */,
 				F49B16B61CDB2DD7004C9E31 /* ViewController.swift */,
 				F49B16E21CDB31A3004C9E31 /* ViewControllerMain.swift */,
@@ -317,6 +320,7 @@
 				F4B397171CDB96210057EDFF /* StationList.swift in Sources */,
 				F4C847C81CDB91E70088D651 /* FinishSTViewController.swift in Sources */,
 				F4C847C61CDB91640088D651 /* StartSTViewController.swift in Sources */,
+				F478AB281CF9853600154074 /* AllRouteViewController.swift in Sources */,
 				F49B16E31CDB31A3004C9E31 /* ViewControllerMain.swift in Sources */,
 				F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */,
 				F4C847BE1CDB8CE40088D651 /* NavigationController.swift in Sources */,

@@ -338,17 +338,22 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
                 
                 let notification:UILocalNotification = UILocalNotification()
                 
-                
+                var fastExitText : String = ""
                 
                 if (first == ""){
                     notification.alertBody = stationNm + self.setAlertMessage//%%"역까지 1분 남았습니다."
                     notification.soundName = UILocalNotificationDefaultSoundName
                 }else{
                     
+                    if(fastExit == ""){
+                        fastExitText = ""
+                    }else{
+                        fastExitText = "\n빠른환승 : " + fastExit
+                    }
                     
                     notification.category = "FIRST_CATEGORY"
                     notification.soundName = UILocalNotificationDefaultSoundName
-                    notification.alertBody = stationNm + "\(self.setAlertMessage)\n첫번째 : \(first)\n두번째 : \(second)\n다음 시간표 미설정시 첫번째로 설정됩니다."
+                    notification.alertBody = stationNm + "\(self.setAlertMessage)\n첫번째 : \(first)\n두번째 : \(second)\(fastExitText)\n다음 시간표 미설정시 첫번째로 설정됩니다."
                 }
                 
                 
@@ -657,6 +662,12 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
             
             info = setAllTimeToInfo(Info: info, Index: transferTimeSchedulCount)
             
+        }
+        
+        if(self.info[self.transferTimeSchedulCount].fastExit == ""){
+            self.fastExitLabel.text = ""
+        }else{
+            self.fastExitLabel.text = "빠른환승\n\(self.info[self.transferTimeSchedulCount].fastExit)"
         }
         
         

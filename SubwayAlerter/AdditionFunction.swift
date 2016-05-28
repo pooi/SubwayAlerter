@@ -289,6 +289,7 @@ func convertStartToFinishString(let Start start : Int, let Finish finish : Int, 
         
     }
     
+    if(extraText == "1061"){extraText = "1063"}
     
     return extraText
     
@@ -640,7 +641,26 @@ func setAllTimeToInfo(Info info2 : Array<SubwayInfo>, Index mainIndex : Int) -> 
     
     var fTime : Int = info[mainIndex].navigateTm[info[mainIndex].navigateTm.count-1]
     
-    var addTime = 60
+    let fvo = FavoriteVO()
+    
+    var addTime : Int = fvo.config.objectForKey("addTransTime") as! Int
+    
+    switch addTime{
+    case 0:
+        addTime = 30
+        break;
+    case 1:
+        addTime = 60
+        break;
+    case 2:
+        addTime = 120
+        break;
+    case 3:
+        addTime = 180
+        break;
+    default:
+        break;
+    }
     
     for i in mainIndex+1..<info.count{
         
@@ -943,12 +963,14 @@ func parsingRoot(minStatNm statNm : Array<String>, minStatId statId : Array<Stri
         var updn = checkUpOrDown(StartSTNm: mainNmArray[ce][0], StartSTId: subwayIdTemp, NextSTNm: mainNmArray[ce][1])
         
         
+        
         updnArray.append(updn)
         
-        let checkExpress : Bool = false
+        let checkExpress : Bool = setExpress(SubwayId: subwayIdTemp, Navigate: mainNmArray[ce])
         
         //시작역
         var scheduleTemp = setTranferTimeBySubwayId2(StationNm: mainNmArray[ce][0], SubwayId: subwayIdTemp, UpDnLine: updn, ExpressCheck: checkExpress)
+        
         
         startschedule.append(scheduleTemp)
         
@@ -963,6 +985,43 @@ func parsingRoot(minStatNm statNm : Array<String>, minStatId statId : Array<Stri
         
     }
     
+    for i in 0..<info.count{
+        
+        if(i+1 == info.count){
+            info[i].fastExit = ""
+        }else{
+            
+            let firstNm : String = info[i].navigate[info[i].navigate.count-2]
+            let secondNm : String = info[i+1].navigate[1]
+            let subwayId : String = info[i+1].subwayId
+            
+            let firstFastExit = returnFastExit(SubwayId: info[i].subwayId)
+            
+            let index : Int? = firstFastExit.indexOf({
+                
+                var check : Bool = false
+                
+                if($0.toLine == ""){
+                    check = ($0.FirstNm == firstNm && $0.SecondNm == secondNm)
+                }else{
+                    check = $0.FirstNm == firstNm && $0.SecondNm == secondNm && $0.toLine == subwayId
+                }
+                
+                return check
+            })
+            
+            if(index != nil){
+                if(firstFastExit[index!].Exit == "20"){
+                    info[i].fastExit = "모든문"
+                }else{
+                    info[i].fastExit = firstFastExit[index!].Exit
+                }
+            }else{
+                info[i].fastExit = ""
+            }
+        }
+        
+    }
     
     return info
 }
@@ -1098,13 +1157,17 @@ func setInfoToTrainNo(Info info2 : SubwayInfo) -> SubwayInfo{
     
     let trainNo = info.startSchedule[index].trainNo
     
-    
+    if(info.startSchedule[index].expressYN == "Y"){
+        info.expressYN = true
+        info = setNavigateToExpress(Info: info, SubwayId: info.subwayId)
+    }else{
+        
         info.navigate = info.copyNavigate
         info.navigateId = info.copyNavigateId
         info.navigateTm.removeAll()
         info.time = info.copyTime
         
-    
+    }
     
     
     

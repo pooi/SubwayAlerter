@@ -85,6 +85,20 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         cell.stationInfo.text = String(self.info[section].navigate.count-2) + "개역 이동"
         
+        if(self.info[section].fastExit == ""){
+            
+            if(section < self.info.count - 1){
+                cell.stationInfo.text = cell.stationInfo.text! + ", 빠른환승 : 지원안함"
+            }
+            
+            
+            
+        }else{
+            
+            cell.stationInfo.text = cell.stationInfo.text! + ", 빠른환승 : " + self.info[section].fastExit
+            
+        }
+        
         cell.stationInfo.setFontSize(settingFontSize(1)-1)
         
         if(self.info[section].navigateTm.count != 0){
@@ -141,6 +155,71 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         return name
     }
     
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        
+        var time : Int = 0
+        var waitTime : Int = 0
+        
+        if(info[section].navigateTm.count == 0){
+            time = info[section].time
+        }else{
+            time = info[section].navigateTm[info[section].navigateTm.count-1] - info[section].navigateTm[0]
+        }
+        
+        if(section != info.count-1){
+            if(info[section+1].navigateTm.count != 0){
+                
+                waitTime = info[section+1].navigateTm[0] - info[section].navigateTm[info[section].navigateTm.count-1]
+            }
+            
+        }
+        
+        if(waitTime == 0){
+            let version = UILabel(frame: CGRectMake(0, 0, tableView.frame.width, settingFontSize(10)))
+            //version.setFontSize(settingFontSize(1))
+            version.font = version.font.fontWithSize(settingFontSize(1))
+            version.numberOfLines = 1
+            version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)"
+            version.textColor = UIColor.whiteColor()
+            version.textAlignment = .Center;
+            
+            view.addSubview(version)
+            
+            return view
+        }else{
+            let version = UILabel(frame: CGRectMake(0, 0, tableView.frame.width, settingFontSize(10)))
+            //version.setFontSize(settingFontSize(1))
+            version.font = version.font.fontWithSize(settingFontSize(1))
+            version.numberOfLines = 2
+            
+            if(info[section].fastExit == ""){
+                version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4))"
+            }else{
+                version.text = "\(info[section].navigate.count)개역 이동 (약 \(convertSecondToString(time, Mode: 4)) 소요)\n환승 대기시간 : 약 \(convertSecondToString(waitTime, Mode: 4)) | 빠른환승 : \(info[section].fastExit)"
+            }
+            
+            version.textColor = UIColor.whiteColor()
+            version.textAlignment = .Center;
+            
+            view.addSubview(version)
+            
+            return view
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return settingFontSize(10)
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
+        
+        
+    }
     
     //*****************************피커뷰*****************************//
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -212,6 +291,31 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         
+        
+        informView.setHeight(settingFontSize(6)+10)
+        //self.spinnerCon.constant = (settingFontSize(6)+10) / 2
+        self.transferNumLabel.setFontSize(settingFontSize(1)+1)
+        self.transferTimeLabel.setFontSize(settingFontSize(1)+1)
+        self.viaStationLabel.setFontSize(settingFontSize(1)+1)
+        self.subject1.setFontSize(settingFontSize(1))
+        self.subject2.setFontSize(settingFontSize(1))
+        self.subject3.setFontSize(settingFontSize(1))
+        
+        self.viewAllRouteText.setFontSize(settingFontSize(1))
+        self.standardBtnText.setFontSize(settingFontSize(1))
+        
+        //self.standardBtnText.setFontSize(settingFontSize(0))
+        //self.predictionTime.setFontSize(settingFontSize(0))
+        //self.transferInfoText.setFontSize(settingFontSize(0))
+        //self.viaStationLabel.setFontSize(settingFontSize(0))
+        self.setTimeTitle.setFontSize(settingFontSize(0))
+        self.startTimeText1.setFontSize(settingFontSize(0))
+        self.startTimeText2.setFontSize(settingFontSize(0))
+        self.startTimeText3.setFontSize(settingFontSize(0))
+        self.startTimeText4.setFontSize(settingFontSize(0))
+        self.finishTime.setFontSize(settingFontSize(0))
+        self.bottomBarCon.constant = settingFontSize(6)
+        
         standardBtnText.hidden = true
         viewAllRouteText.hidden = true
         pickerView.hidden = true
@@ -234,6 +338,11 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         mainView.userInteractionEnabled = true
         
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
+        UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
     }
     
     // 스와이프 관련 함수

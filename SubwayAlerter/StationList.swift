@@ -1729,7 +1729,86 @@ func expressList() -> Array<Array<Express>>{
 }
 
 
+func setExpress(SubwayId subwayId : String, Navigate navigate : Array<String>) -> Bool{
+    let express = expressList()
+    
+    var check : Bool = false
+    for i in 0..<express.endIndex{
+        if(express[i][0].line == subwayId){
+            
+            if(express[i].indexOf({$0.name == navigate[0]}) != nil && express[i].indexOf({$0.name == navigate[navigate.count-1]}) != nil){
+                
+                check = true
+                
+            }
+            
+        }
+    }
+    
+    return check
+}
 
+func setNavigateToExpress(Info info2 : SubwayInfo, SubwayId subwayId : String) -> SubwayInfo{
+    
+    var info = info2
+    
+    //var navigate : Array<String> = info.navigate
+    
+    let express = expressList()
+    
+    var check : Bool = false
+    for i in 0..<express.endIndex{
+        if(express[i][0].line == subwayId){
+            
+            if(express[i].indexOf({$0.name == info.navigate[0]}) != nil && express[i].indexOf({$0.name == info.navigate[info.navigate.count-1]}) != nil){
+                
+                let realList = express[i]
+                
+                info.navigate = info.navigate.filter({
+                    let name = $0
+                    
+                    if(realList.indexOf({$0.name == name}) != nil){
+                        
+                        return true
+                        
+                    }else{
+                        return false
+                    }
+                    
+                })
+                
+                check = true
+            }
+            
+        }
+        if(check == true){
+            break;
+        }
+    }
+    
+    var realIdtemp : Array<String> = []
+    
+    for cert in info.navigate{
+        
+        let index : Int = info.copyNavigate.indexOf(cert)!
+        
+        realIdtemp.append(info.copyNavigateId[index])
+        
+    }
+    
+    info.navigateId = info.navigateId.filter({
+        let Id = $0
+        
+        if(realIdtemp.indexOf({$0 == Id}) != nil){
+            return true
+        }else{
+            return false
+        }
+    })
+    
+    
+    return info
+}
 
 
 
