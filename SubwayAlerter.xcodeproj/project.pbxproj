@@ -10,6 +10,8 @@
 		F46C98E41CDC9DFB00431E6F /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C98E31CDC9DFB00431E6F /* ApiKey.swift */; };
 		F478AB281CF9853600154074 /* AllRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478AB271CF9853600154074 /* AllRouteViewController.swift */; };
 		F478AB2A1CF9985900154074 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478AB291CF9985900154074 /* SettingViewController.swift */; };
+		F478AB2D1CF99A8B00154074 /* FavoriteAddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478AB2B1CF99A8B00154074 /* FavoriteAddListViewController.swift */; };
+		F478AB2E1CF99A8B00154074 /* FavoriteAddListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478AB2C1CF99A8B00154074 /* FavoriteAddListViewController2.swift */; };
 		F49B16B51CDB2DD7004C9E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */; };
 		F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B16B61CDB2DD7004C9E31 /* ViewController.swift */; };
 		F49B16BA1CDB2DD7004C9E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B16B81CDB2DD7004C9E31 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		F46C98E31CDC9DFB00431E6F /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		F478AB271CF9853600154074 /* AllRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRouteViewController.swift; sourceTree = "<group>"; };
 		F478AB291CF9985900154074 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		F478AB2B1CF99A8B00154074 /* FavoriteAddListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteAddListViewController.swift; sourceTree = "<group>"; };
+		F478AB2C1CF99A8B00154074 /* FavoriteAddListViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteAddListViewController2.swift; sourceTree = "<group>"; };
 		F49B16B11CDB2DD7004C9E31 /* SubwayAlerter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayAlerter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B16B41CDB2DD7004C9E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49B16B61CDB2DD7004C9E31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				F4B397101CDB93AD0057EDFF /* LastPageViewController.swift */,
 				F4C847BF1CDB8D270088D651 /* LocationViewController.swift */,
 				F4C847C31CDB8FC70088D651 /* RecentViewController.swift */,
+				F478AB2B1CF99A8B00154074 /* FavoriteAddListViewController.swift */,
+				F478AB2C1CF99A8B00154074 /* FavoriteAddListViewController2.swift */,
 				F49B16B81CDB2DD7004C9E31 /* Main.storyboard */,
 				F49B16BB1CDB2DD7004C9E31 /* Assets.xcassets */,
 				F49B16BD1CDB2DD7004C9E31 /* LaunchScreen.storyboard */,
@@ -324,6 +330,8 @@
 				F4C847C81CDB91E70088D651 /* FinishSTViewController.swift in Sources */,
 				F4C847C61CDB91640088D651 /* StartSTViewController.swift in Sources */,
 				F478AB281CF9853600154074 /* AllRouteViewController.swift in Sources */,
+				F478AB2D1CF99A8B00154074 /* FavoriteAddListViewController.swift in Sources */,
+				F478AB2E1CF99A8B00154074 /* FavoriteAddListViewController2.swift in Sources */,
 				F49B16E31CDB31A3004C9E31 /* ViewControllerMain.swift in Sources */,
 				F478AB2A1CF9985900154074 /* SettingViewController.swift in Sources */,
 				F49B16B71CDB2DD7004C9E31 /* ViewController.swift in Sources */,
