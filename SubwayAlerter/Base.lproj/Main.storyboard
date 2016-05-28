@@ -243,6 +243,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hF0-TU-qo9" kind="show" identifier="moveToFinish" id="zKA-aL-RDz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -365,6 +368,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="jgf-li-qgP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -449,6 +455,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="2up-D5-rax"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1495,4 +1504,8 @@
         <image name="recent" width="25" height="25"/>
         <image name="setting" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zKA-aL-RDz"/>
+        <segue reference="jgf-li-qgP"/>
+    </inferredMetricsTieBreakers>
 </document>
