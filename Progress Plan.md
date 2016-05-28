@@ -1,6 +1,6 @@
 2016년
 ------------------------
-<p align=right>2016.05.13 기준</p>
+<p align=right>2016.05.28 기준</p>
 <img src="http://i.imgur.com/rYY8YtZ.png">빨강[이슈처리중]
 <img src="http://i.imgur.com/jSMdeJB.png">주황[대기]
 <img src="http://i.imgur.com/mjiGu2c.png">초록[진행중]
