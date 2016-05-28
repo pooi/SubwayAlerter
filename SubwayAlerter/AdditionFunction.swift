@@ -1219,7 +1219,20 @@ func returnTrainSchedule(TrainNo trainNo : String, UpDn updn2 : String) -> Array
 }
 
 
-
+extension UIView {
+    
+    func setWidth(width:CGFloat) {
+        var frame:CGRect = self.frame
+        frame.size.width = width
+        self.frame = frame
+    }
+    
+    func setHeight(height:CGFloat) {
+        var frame:CGRect = self.frame
+        frame.size.height = height
+        self.frame = frame
+    }
+}
 
 
 
