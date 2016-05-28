@@ -8,12 +8,36 @@
 
 import Foundation
 import UIKit
+import SystemConfiguration
 
 // 사용자 설정을 저장할 함수
 class FavoriteVO {
     
     let config = NSUserDefaults.standardUserDefaults()
     
+}
+
+//네트워크 연결 확인
+public class Reachability {
+    
+    class func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+        
+        
+    }
 }
 
 // 주요 색 저장
@@ -616,7 +640,7 @@ func checkNetworkApiData(ApiURI apiURI : NSURL) -> NSData?{
     
     while(true){
         do{
-            if(true){
+            if(Reachability.isConnectedToNetwork() == true){
                 data = try NSData(contentsOfURL: apiURI, options: [])
                 break;
             }else{

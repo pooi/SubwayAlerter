@@ -243,30 +243,38 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        checkInfo2()
-        
-        if(self.startStationInfo[row].expressYN == "Y"){
-            startTimeText4.setTitle(convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행 (급행)", forState: .Normal)
+        if Reachability.isConnectedToNetwork() == true {
             
-            self.startTimeText = convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행 (급행)"
-        }else{
-            startTimeText4.setTitle(convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행", forState: .Normal)
+            checkInfo2()
             
-            self.startTimeText = convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행"
+            if(self.startStationInfo[row].expressYN == "Y"){
+                startTimeText4.setTitle(convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행 (급행)", forState: .Normal)
+                
+                self.startTimeText = convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행 (급행)"
+            }else{
+                startTimeText4.setTitle(convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행", forState: .Normal)
+                
+                self.startTimeText = convertSecondToString(self.startStationInfo[row].arriveTime, Mode: 1)+" "+startStationInfo[row].directionNm+"행"
+            }
+            
+            self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+            
+            info = setAllTimeToInfo(Info: info, Index: 0)
+            
+            checkFinishLine()
+            
+            setAllItem()
+            
+            finishTime.text = calculateFinishTime()
+            
+            
+            nextBtn.enabled = true
+            
+        }else {
+            
+            networkAlert(0)
+            
         }
-        
-        self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-        
-        info = setAllTimeToInfo(Info: info, Index: 0)
-        
-        checkFinishLine()
-        
-        setAllItem()
-        
-        finishTime.text = calculateFinishTime()
-        
-        
-        nextBtn.enabled = true
         
         
     }
@@ -345,6 +353,23 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
     }
     
+    func networkAlert(mode : Int){
+        
+        
+        
+        let alert = UIAlertController(title: "오류", message: "네트워크 연결을 확인해주세요.", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+            
+            if(mode == 1){
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            
+        }
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     // 스와이프 관련 함수
     func swipedViewLeft(){ // 다음페이지로
         
@@ -394,120 +419,125 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     func callSubwayApi() {
         
+        if Reachability.isConnectedToNetwork() == true {
         
-        let root = returnRootApi(StartNm: self.start, FinishNm: self.finish, Mode: self.standardInfo)
-        
-        let row = root.0
-        self.standardInfo = root.1
-        
-        if(row.statnFid != ""){
+            let root = returnRootApi(StartNm: self.start, FinishNm: self.finish, Mode: self.standardInfo)
             
-            var extraMinStatIdString : String = ""
-            var extraMinStatnNmString : String = ""
+            let row = root.0
+            self.standardInfo = root.1
             
-            
-            if(standardInfo == 1){ //최소 시간 기준일 경우
-                extraMinStatIdString = row.shtStatnId
-                extraMinStatnNmString = row.shtStatnNm
-                totalTime = row.shtTravelTm + row.shtTransferCnt * 60
+            if(row.statnFid != ""){
                 
-                standardInfo = 1
-                standardBtnText.setTitle("최소 시간 기준", forState: .Normal)
-            }else if(standardInfo == 2){ //최소 환승 기준일 경우
-                extraMinStatIdString = row.minStatnId
-                extraMinStatnNmString = row.minStatnNm
-                totalTime = row.minTravelTm + row.minTransferCnt * 60
+                var extraMinStatIdString : String = ""
+                var extraMinStatnNmString : String = ""
                 
-                standardInfo = 2
-                standardBtnText.setTitle("최소 환승 기준", forState: .Normal)
-            }
-            
-            //===============경유하는 역ID 배열에 추가===============
-            var textTemp : String = ""
-            for ce in extraMinStatIdString.characters{
-                if(Int(String(ce)) != nil){
-                    textTemp = textTemp + String(ce)
-                } else if(Int(String(ce)) == nil){
-                    if(textTemp != ""){ minStatnId.append(textTemp) }
-                    textTemp = ""
-                }
-            }
-            //===============경유하는 역명 배열에 추가===============
-            
-            textTemp = ""
-            for ce in extraMinStatnNmString.characters{
-                if(String(ce) == "  " || String(ce) == " " || String(ce) == ","){//탭,공백,콤마 제외
-                    if(textTemp != ""){ minStatnNm.append(textTemp) }
-                    textTemp = ""
-                }else{
-                    textTemp = textTemp + String(ce)
-                }
-            }
-            //=======================종료========================
-            
-            upOrDown = checkUpOrDown(StartSTNm: self.minStatnNm[0], StartSTId: self.minStatnId[0], NextSTNm: self.minStatnNm[1])
-            
-            //-----원래 밖에 있던 부분-------
-            
-            var temporaryString : String = convertStartToFinishString(Start: 1, Finish: 4, string: self.minStatnId[0])
-            var indexTemp : Array<Int> = []
-            for te in self.minStatnId{
-                if(convertStartToFinishString(Start: 1, Finish: 4, string: te) == temporaryString){
-                    temporaryString = convertStartToFinishString(Start: 1, Finish: 4, string: te)
-                }else{
-                    indexTemp.append(minStatnId.indexOf(te)!)
-                    temporaryString = convertStartToFinishString(Start: 1, Finish: 4, string: te)
-                }
-            }
-            
-            //**********************핵심************************
-            self.info.removeAll()
-            self.info = parsingRoot(minStatNm: self.minStatnNm, minStatId: self.minStatnId)
-            //*************************************************
-            
-            
-            var scheduleYN : Bool = false
-            for ce in 0..<info.count{
-                if(self.info[ce].startSchedule.count == 0){
-                    scheduleYN = true
+                
+                if(standardInfo == 1){ //최소 시간 기준일 경우
+                    extraMinStatIdString = row.shtStatnId
+                    extraMinStatnNmString = row.shtStatnNm
+                    totalTime = row.shtTravelTm + row.shtTransferCnt * 60
                     
-                    let alert = UIAlertController(title: "오류", message: "시간표 정보를 가져오는데 실패하였습니다.", preferredStyle: .Alert)
-                    let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
-                        
-                        self.navigationController?.popViewControllerAnimated(true)
-                        
-                    }
-                    alert.addAction(cancelAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    setAllItem()
-                    //print(info)
+                    standardInfo = 1
+                    standardBtnText.setTitle("최소 시간 기준", forState: .Normal)
+                }else if(standardInfo == 2){ //최소 환승 기준일 경우
+                    extraMinStatIdString = row.minStatnId
+                    extraMinStatnNmString = row.minStatnNm
+                    totalTime = row.minTravelTm + row.minTransferCnt * 60
+                    
+                    standardInfo = 2
+                    standardBtnText.setTitle("최소 환승 기준", forState: .Normal)
                 }
+                
+                //===============경유하는 역ID 배열에 추가===============
+                var textTemp : String = ""
+                for ce in extraMinStatIdString.characters{
+                    if(Int(String(ce)) != nil){
+                        textTemp = textTemp + String(ce)
+                    } else if(Int(String(ce)) == nil){
+                        if(textTemp != ""){ minStatnId.append(textTemp) }
+                        textTemp = ""
+                    }
+                }
+                //===============경유하는 역명 배열에 추가===============
+                
+                textTemp = ""
+                for ce in extraMinStatnNmString.characters{
+                    if(String(ce) == "  " || String(ce) == " " || String(ce) == ","){//탭,공백,콤마 제외
+                        if(textTemp != ""){ minStatnNm.append(textTemp) }
+                        textTemp = ""
+                    }else{
+                        textTemp = textTemp + String(ce)
+                    }
+                }
+                //=======================종료========================
+                
+                upOrDown = checkUpOrDown(StartSTNm: self.minStatnNm[0], StartSTId: self.minStatnId[0], NextSTNm: self.minStatnNm[1])
+                
+                //-----원래 밖에 있던 부분-------
+                
+                var temporaryString : String = convertStartToFinishString(Start: 1, Finish: 4, string: self.minStatnId[0])
+                var indexTemp : Array<Int> = []
+                for te in self.minStatnId{
+                    if(convertStartToFinishString(Start: 1, Finish: 4, string: te) == temporaryString){
+                        temporaryString = convertStartToFinishString(Start: 1, Finish: 4, string: te)
+                    }else{
+                        indexTemp.append(minStatnId.indexOf(te)!)
+                        temporaryString = convertStartToFinishString(Start: 1, Finish: 4, string: te)
+                    }
+                }
+                
+                //**********************핵심************************
+                self.info.removeAll()
+                self.info = parsingRoot(minStatNm: self.minStatnNm, minStatId: self.minStatnId)
+                //*************************************************
+                
+                
+                var scheduleYN : Bool = false
+                for ce in 0..<info.count{
+                    if(self.info[ce].startSchedule.count == 0){
+                        scheduleYN = true
+                        
+                        let alert = UIAlertController(title: "오류", message: "시간표 정보를 가져오는데 실패하였습니다.", preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                            
+                            self.navigationController?.popViewControllerAnimated(true)
+                            
+                        }
+                        alert.addAction(cancelAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        setAllItem()
+                        //print(info)
+                    }
+                }
+                
+                if(scheduleYN == false){
+                    setAllItem()
+                    
+                    pickerView.reloadAllComponents()
+                    
+                    setSubwayTime()
+                }
+                
+            }else{
+                
+                let alert = UIAlertController(title: "오류", message: "이동경로를 가져오는데 실패하였습니다.\n역명을 확인해주세요.", preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                alert.addAction(cancelAction)
+                self.presentViewController(alert, animated: true, completion: nil)
+                
             }
+        
+        
+        
+        }else {
             
-            if(scheduleYN == false){
-                setAllItem()
-                
-                pickerView.reloadAllComponents()
-                
-                setSubwayTime()
-            }
-            
-        }else{
-            
-            let alert = UIAlertController(title: "오류", message: "이동경로를 가져오는데 실패하였습니다.\n역명을 확인해주세요.", preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
-                
-                self.navigationController?.popViewControllerAnimated(true)
-                
-            }
-            alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            networkAlert(1)
             
         }
-        
-        
-        
-        
         
         
         
@@ -698,29 +728,37 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var startTimeText1: UIButton!
     @IBAction func startTime1(sender: AnyObject) {
         
-        if(startTimeText1.titleLabel?.text != "-"){
+        if Reachability.isConnectedToNetwork() == true {
+        
+            if(startTimeText1.titleLabel?.text != "-"){
+                
+                startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                
+                checkInfo2()
+                
+                self.startTimeText = (startTimeText1.titleLabel?.text)!
+                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                
+                
+                info = setAllTimeToInfo(Info: info, Index: 0)
+                
+                checkFinishLine()
+                
+                setAllItem()
+                
+                finishTime.text = calculateFinishTime()
+                
+                
+                nextBtn.enabled = true
+            }else {
+                
+                networkAlert(0)
+                
+            }
             
-            startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            
-            checkInfo2()
-            
-            self.startTimeText = (startTimeText1.titleLabel?.text)!
-            self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-            
-            
-            info = setAllTimeToInfo(Info: info, Index: 0)
-            
-            checkFinishLine()
-            
-            setAllItem()
-            
-            finishTime.text = calculateFinishTime()
-            
-            
-            nextBtn.enabled = true
         }
         
     }
@@ -728,28 +766,35 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var startTimeText2: UIButton!
     @IBAction func startTime2(sender: AnyObject) {
         
-        if(startTimeText2.titleLabel?.text != "-"){
+        if Reachability.isConnectedToNetwork() == true {
+        
+            if(startTimeText2.titleLabel?.text != "-"){
+                
+                startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                
+                checkInfo2()
+                
+                self.startTimeText = (startTimeText2.titleLabel?.text)!
+                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                
+                info = setAllTimeToInfo(Info: info, Index: 0)
+                
+                checkFinishLine()
+                
+                setAllItem()
+                
+                finishTime.text = calculateFinishTime()
+                
+                
+                nextBtn.enabled = true
+                
+            }
+        }else {
             
-            startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            
-            checkInfo2()
-            
-            self.startTimeText = (startTimeText2.titleLabel?.text)!
-            self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-            
-            info = setAllTimeToInfo(Info: info, Index: 0)
-            
-            checkFinishLine()
-            
-            setAllItem()
-            
-            finishTime.text = calculateFinishTime()
-            
-            
-            nextBtn.enabled = true
+            networkAlert(0)
             
         }
         
@@ -758,28 +803,36 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var startTimeText3: UIButton!
     @IBAction func startTime3(sender: AnyObject) {
         
-        if(startTimeText3.titleLabel?.text != "-"){
+        if Reachability.isConnectedToNetwork() == true {
+        
+            if(startTimeText3.titleLabel?.text != "-"){
+                
+                startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                
+                checkInfo2()
+                
+                self.startTimeText = (startTimeText3.titleLabel?.text)!
+                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                
+                info = setAllTimeToInfo(Info: info, Index: 0)
+                
+                checkFinishLine()
+                
+                setAllItem()
+                
+                finishTime.text = calculateFinishTime()
+                
+                
+                nextBtn.enabled = true
+                
+            }
             
-            startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        }else {
             
-            checkInfo2()
-            
-            self.startTimeText = (startTimeText3.titleLabel?.text)!
-            self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-            
-            info = setAllTimeToInfo(Info: info, Index: 0)
-            
-            checkFinishLine()
-            
-            setAllItem()
-            
-            finishTime.text = calculateFinishTime()
-            
-            
-            nextBtn.enabled = true
+            networkAlert(0)
             
         }
         
@@ -788,48 +841,55 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var startTimeText4: UIButton!
     @IBAction func startTimeText4(sender: AnyObject) {
         
-        if(startTimeText4.titleLabel?.text != "-"){
-            
-            startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
-            
-            checkInfo2()
-            
-            if(startTimeText4.titleLabel?.text != "기타"){
-                self.startTimeText = (startTimeText4.titleLabel?.text)!
-                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+        if Reachability.isConnectedToNetwork() == true {
+        
+            if(startTimeText4.titleLabel?.text != "-"){
                 
-                info = setAllTimeToInfo(Info: info, Index: 0)
+                startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+                startTimeText3.setTitleColor(UIColor.grayColor(), forState: .Normal)
                 
-                checkFinishLine()
+                checkInfo2()
                 
-                setAllItem()
+                if(startTimeText4.titleLabel?.text != "기타"){
+                    self.startTimeText = (startTimeText4.titleLabel?.text)!
+                    self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                    
+                    info = setAllTimeToInfo(Info: info, Index: 0)
+                    
+                    checkFinishLine()
+                    
+                    setAllItem()
+                    
+                    finishTime.text = calculateFinishTime()
+                    
+                    nextBtn.enabled = true
+                }else if(startTimeText4.titleLabel?.text == "기타"){
+                    
+                    startTimeText4.setTitle(self.pickerViewFirstTime, forState: .Normal)
+                    self.startTimeText = self.pickerViewFirstTime//(startTimeText4.titleLabel?.text)!
+                    self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
+                    
+                    info = setAllTimeToInfo(Info: info, Index: 0)
+                    
+                    checkFinishLine()
+                    
+                    setAllItem()
+                    
+                    finishTime.text = calculateFinishTime()
+                    
+                    nextBtn.enabled = true
+                    
+                }
                 
-                finishTime.text = calculateFinishTime()
-                
-                nextBtn.enabled = true
-            }else if(startTimeText4.titleLabel?.text == "기타"){
-                
-                startTimeText4.setTitle(self.pickerViewFirstTime, forState: .Normal)
-                self.startTimeText = self.pickerViewFirstTime//(startTimeText4.titleLabel?.text)!
-                self.info[0].startTime = convertStringToSecond(self.startTimeText, Mode: 2)
-                
-                info = setAllTimeToInfo(Info: info, Index: 0)
-                
-                checkFinishLine()
-                
-                setAllItem()
-                
-                finishTime.text = calculateFinishTime()
-                
-                nextBtn.enabled = true
+                pickerView.hidden = false
+                toolBar.hidden = false
                 
             }
+        }else {
             
-            pickerView.hidden = false
-            toolBar.hidden = false
+            networkAlert(0)
             
         }
         

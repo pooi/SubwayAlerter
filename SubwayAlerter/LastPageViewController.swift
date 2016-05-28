@@ -86,20 +86,27 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet var returnTransferBtn: UIButton!
     @IBAction func returnTransfer(sender: AnyObject) {
         
-        self.checkReturnBtn = true
-        self.transferTimeSchedulCount -= 2
-        
-        //self.info[transferTimeSchedulCount+1].expressYN = false
-        //self.info[transferTimeSchedulCount+1].navigateTm = []
-        
-        transferAct1(ButtonNumber: 3)
-        
-        if(countTimeAct.text == "환승역 도착"){
-            timer.invalidate()
+        if Reachability.isConnectedToNetwork() == true {
+            
+            self.checkReturnBtn = true
+            self.transferTimeSchedulCount -= 2
+            
+            //self.info[transferTimeSchedulCount+1].expressYN = false
+            //self.info[transferTimeSchedulCount+1].navigateTm = []
+            
+            transferAct1(ButtonNumber: 3)
+            
+            if(countTimeAct.text == "환승역 도착"){
+                timer.invalidate()
+            }
+            
+            self.checkReturnBtn = false
+            
+        }else {
+            
+            networkAlert(0)
+            
         }
-        
-        self.checkReturnBtn = false
-        
         
     }
     
@@ -442,54 +449,123 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     func notificationAct1(notification:NSNotification){
         
+        if Reachability.isConnectedToNetwork() == true {
             
-        let index : Int = self.transferTimeSchedulCount
-        
-        for i in  index..<self.info.count{
+            let index : Int = self.transferTimeSchedulCount
             
-            if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
-                break;
-            }else{
-                self.checkReturnBtn = true
-                transferAct1(ButtonNumber: 1)
-                self.checkReturnBtn = false
+            for i in  index..<self.info.count{
+                
+                if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
+                    break;
+                }else{
+                    self.checkReturnBtn = true
+                    transferAct1(ButtonNumber: 1)
+                    self.checkReturnBtn = false
+                }
+                
             }
             
+            
+            transferAct1(ButtonNumber: 1)
+            
+        }else {
+            
+            setlocalNotificationWhenNotNetworkConnection()
+            //networkAlert(0)
+            
         }
-        
-        
-        transferAct1(ButtonNumber: 1)
-        
-        
         
     }
     
     func notificationAct2(notification:NSNotification){
         
         
-        let index : Int = self.transferTimeSchedulCount
-        
-        for i in  index..<self.info.count{
+        if Reachability.isConnectedToNetwork() == true {
             
-            if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
-                break;
-            }else{
-                self.checkReturnBtn = true
-                transferAct1(ButtonNumber: 1)
-                self.checkReturnBtn = false
+            let index : Int = self.transferTimeSchedulCount
+            
+            for i in  index..<self.info.count{
+                
+                if(self.info[i].navigateTm[self.info[i].navigateTm.count-1] - self.setAlertTime > returnCurrentTime()){
+                    break;
+                }else{
+                    self.checkReturnBtn = true
+                    transferAct1(ButtonNumber: 1)
+                    self.checkReturnBtn = false
+                }
+                
             }
             
+            
+            transferAct1(ButtonNumber: 2)
+            
+        }else {
+            
+            setlocalNotificationWhenNotNetworkConnection()
+            //networkAlert(0)
+            
         }
-        
-        
-        transferAct1(ButtonNumber: 2)
-        
         
         
     }
     
     func notificationAct3(notification:NSNotification){
         transferActPicker()
+    }
+    
+    func setlocalNotificationWhenNotNetworkConnection(){
+        
+        UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
+        
+        let now = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") // 로케일 설정
+        dateFormatter.dateFormat = "HH:mm:ss" // 날짜 형식 설정
+        let current : Int = returnCurrentTime()
+        
+        let hour : Int = Int(current/3600)
+        let min : Int = (current - (hour*3600))/60
+        let sec : Int = current - hour*3600 - min*60 + 2 //현재시간 2초뒤 알림 설정
+        
+        
+        let dateComp:NSDateComponents = NSDateComponents()
+        
+        dateFormatter.dateFormat = "yyyy"
+        var currentTime : Int = Int(dateFormatter.stringFromDate(now))!
+        dateComp.year = currentTime//local notification 설정
+        
+        dateFormatter.dateFormat = "MM"
+        currentTime = Int(dateFormatter.stringFromDate(now))!
+        dateComp.month = currentTime//local notification 설정
+        
+        dateFormatter.dateFormat = "dd"
+        currentTime = Int(dateFormatter.stringFromDate(now))!
+        dateComp.day = currentTime//local notification 설정
+        
+        
+        dateComp.hour = hour//local notification 설정
+        dateComp.minute = min//local notification 설정
+        dateComp.second = sec//local notification 설정
+        
+        
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        
+        
+        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date:NSDate = calender.dateFromComponents(dateComp)!
+        
+        let notification:UILocalNotification = UILocalNotification()
+        
+        
+        
+        
+        notification.alertBody = "네트워크가 연결되지 않아 알림이 설정되지 않았습니다.\n네트워크를 연결 후 시간표를 다시 선택해주세요.\n미설정시 남은 경로의 알림이 제공되지 않습니다."
+        notification.soundName = UILocalNotificationDefaultSoundName
+        
+        notification.fireDate = date
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
     }
     
     
@@ -564,49 +640,53 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
             let alert = UIAlertController(title: "해당 시간표로 설정하시겠습니까?", message: "\((transferBtn3.titleLabel?.text)!)", preferredStyle: .ActionSheet)
             let okAction = UIAlertAction(title: "설정", style: UIAlertActionStyle.Default){ (_) in
                 
-                
-                self.datePickerBool = false
-                if(self.info.count - 1 < self.transferTimeSchedulCount){
+                if Reachability.isConnectedToNetwork() == true {
                     
-                    if(convertStringToSecond(self.countTimeAct.text!, Mode: 3) <= 0){
-                        self.countTimeAct.text = "목적지 도착"
-                        self.returnTransferBtn.hidden = true
-                        self.returnTransferBtn.enabled = false
+                    self.datePickerBool = false
+                    if(self.info.count - 1 < self.transferTimeSchedulCount){
                         
-                        self.completeBtnOutlet.enabled = true
-                        self.completeBtnOutlet.tintColor = UIColor.whiteColor()
+                        if(convertStringToSecond(self.countTimeAct.text!, Mode: 3) <= 0){
+                            self.countTimeAct.text = "목적지 도착"
+                            self.returnTransferBtn.hidden = true
+                            self.returnTransferBtn.enabled = false
+                            
+                            self.completeBtnOutlet.enabled = true
+                            self.completeBtnOutlet.tintColor = UIColor.whiteColor()
+                        }else{
+                            self.timer.invalidate()
+                            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LastPageViewController.updateCounter), userInfo: nil, repeats: true)
+                        }
+                        
                     }else{
-                        self.timer.invalidate()
-                        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LastPageViewController.updateCounter), userInfo: nil, repeats: true)
+                        
+                        self.transferStationTimeSchduel(
+                            StartTime: convertStringToSecond((self.transferBtn3.titleLabel?.text)!, Mode: 2))
+                        
+                        if(self.transferTimeSchedulCount >= self.info.count){
+                            self.infoNextST.text = "목적지(" + self.info[self.transferTimeSchedulCount-1].navigate[self.info[self.transferTimeSchedulCount-1].navigate.count-1] + ")까지\n남은 시간"
+                            
+                            self.transferInfo.text = "다음 환승역 없음"
+                        }else{
+                            self.infoNextST.text = "환승역(" + self.info[self.transferTimeSchedulCount].navigate[0] + ")까지" + "\n" + "남은 시간"
+                            
+                            self.transferInfo.text = self.info[self.transferTimeSchedulCount].navigate[0] + "역 출발 시간 설정"
+                        }
+                        
+                        
+                        
+                        if(convertStringToSecond(self.countTimeAct.text!, Mode: 3) <= 0){
+                            self.countTimeAct.text = "환승역 도착"
+                        }else{
+                            self.timer.invalidate()
+                            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LastPageViewController.updateCounter), userInfo: nil, repeats: true)
+                        }
                     }
                     
-                }else{
+                }else {
                     
-                    self.transferStationTimeSchduel(
-                        StartTime: convertStringToSecond((self.transferBtn3.titleLabel?.text)!, Mode: 2))
+                    self.networkAlert(0)
                     
-                    if(self.transferTimeSchedulCount >= self.info.count){
-                        self.infoNextST.text = "목적지(" + self.info[self.transferTimeSchedulCount-1].navigate[self.info[self.transferTimeSchedulCount-1].navigate.count-1] + ")까지\n남은 시간"
-                        
-                        self.transferInfo.text = "다음 환승역 없음"
-                    }else{
-                        self.infoNextST.text = "환승역(" + self.info[self.transferTimeSchedulCount].navigate[0] + ")까지" + "\n" + "남은 시간"
-                        
-                        self.transferInfo.text = self.info[self.transferTimeSchedulCount].navigate[0] + "역 출발 시간 설정"
-                    }
-                    
-                    
-                    
-                    if(convertStringToSecond(self.countTimeAct.text!, Mode: 3) <= 0){
-                        self.countTimeAct.text = "환승역 도착"
-                    }else{
-                        self.timer.invalidate()
-                        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LastPageViewController.updateCounter), userInfo: nil, repeats: true)
-                    }
                 }
-                
-                
-                
                 
             }
             let okAction2 = UIAlertAction(title:"재설정", style: .Destructive){(_) in
@@ -880,6 +960,21 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         }else{
             localNotificationFunc(FinishTime: convertStringToSecond(countTimeActTemp, Mode: 3), StationName: self.info[index+1].navigate[0], FirstSchedule: schedule1, SecondSchedule: schedule2, FastExit: self.info[index].fastExit)
         }
+        
+    }
+    
+    func networkAlert(mode : Int){
+        
+        let alert = UIAlertController(title: "오류", message: "네트워크 연결을 확인해주세요.", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "확인", style: .Cancel){(_) in
+            
+            if(mode == 1){
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            
+        }
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
