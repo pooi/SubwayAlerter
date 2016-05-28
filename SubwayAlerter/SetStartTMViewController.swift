@@ -56,6 +56,12 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     //*****************************테이블셀*****************************//
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y<=0) {
+            scrollView.contentOffset = CGPointZero;
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         

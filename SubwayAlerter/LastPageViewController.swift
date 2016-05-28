@@ -1074,7 +1074,15 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if (segue.identifier == "viewToRoute2") {
+            
+            let navController = segue.destinationViewController as! NavigationController
+            let detailController = navController.topViewController as! AllRouteViewController
+            
+            detailController.info = self.info
+            detailController.lastPageCheck = true
+            
+        }
     }
     
     

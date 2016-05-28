@@ -518,7 +518,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g3C-Lb-MbO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g3C-Lb-MbO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="출발역 검색" id="9cg-VU-Lqr">
@@ -644,7 +644,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JzV-fq-Ozl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JzV-fq-Ozl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="도착역 검색" id="20k-tD-C4N">
@@ -1360,6 +1360,9 @@
                                 <state key="normal" title="전체 경로 확인">
                                     <color key="titleColor" red="0.29907852559999998" green="0.29907852559999998" blue="0.29907852559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="NwQ-Mh-AA5" kind="show" identifier="viewToRoute2" id="Lge-a0-ABw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwN-Bf-peT">
                                 <rect key="frame" x="0.0" y="486" width="414" height="40"/>
@@ -1477,7 +1480,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubh-HJ-aJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2373" y="1183"/>
+            <point key="canvasLocation" x="2397" y="1188"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rRN-dX-RZ0">
@@ -1709,7 +1712,8 @@
         <image name="setting" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zKA-aL-RDz"/>
-        <segue reference="jgf-li-qgP"/>
+        <segue reference="1gl-1u-Meo"/>
+        <segue reference="JcD-Mf-Ati"/>
+        <segue reference="Lge-a0-ABw"/>
     </inferredMetricsTieBreakers>
 </document>
