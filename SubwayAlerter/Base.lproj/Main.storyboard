@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--지하철 알리미-->
@@ -94,31 +95,46 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwV-AP-lz8" userLabel="알림설정">
                                 <rect key="frame" x="0.0" y="687" width="84" height="49"/>
                                 <connections>
-                                    <segue destination="0JC-BW-uYt" kind="show" id="Qeh-V7-uyA"/>
+                                    <segue destination="0JC-BW-uYt" kind="show" id="Qeh-V7-uyA">
+                                        <segue key="commit" inheritsFrom="parent" id="BfH-DK-peE"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Hqr-5C-fJR"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEZ-yH-cik" userLabel="가까운역">
                                 <rect key="frame" x="83" y="687" width="83" height="49"/>
                                 <connections>
-                                    <segue destination="sKb-We-42c" kind="show" id="pvu-ap-srA"/>
+                                    <segue destination="sKb-We-42c" kind="show" id="pvu-ap-srA">
+                                        <segue key="commit" inheritsFrom="parent" id="zzA-5p-IJ6"/>
+                                        <segue key="preview" inheritsFrom="commit" id="ZBe-oL-udi"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5E-jZ-mVg" userLabel="즐겨찾기">
                                 <rect key="frame" x="167" y="687" width="82" height="49"/>
                                 <connections>
-                                    <segue destination="QUl-rw-g65" kind="show" id="GBK-pQ-VxH"/>
+                                    <segue destination="QUl-rw-g65" kind="show" id="GBK-pQ-VxH">
+                                        <segue key="commit" inheritsFrom="parent" id="Qpx-lA-SR2"/>
+                                        <segue key="preview" inheritsFrom="commit" id="huQ-ij-iIy"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-yq-XfR" userLabel="최근">
                                 <rect key="frame" x="249" y="687" width="83" height="49"/>
                                 <connections>
-                                    <segue destination="IEf-BE-Jps" kind="show" id="ivS-1i-XWP"/>
+                                    <segue destination="IEf-BE-Jps" kind="show" id="ivS-1i-XWP">
+                                        <segue key="commit" inheritsFrom="parent" id="W0Q-Ul-zoN"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Jh8-Tv-lC7"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8W-t1-AGg" userLabel="설정">
                                 <rect key="frame" x="332" y="687" width="82" height="49"/>
                                 <connections>
-                                    <segue destination="tXt-Nq-acH" kind="show" id="5hY-sa-g6a"/>
+                                    <segue destination="tXt-Nq-acH" kind="show" id="5hY-sa-g6a">
+                                        <segue key="commit" inheritsFrom="parent" id="zRX-FS-jnN"/>
+                                        <segue key="preview" inheritsFrom="commit" id="S4H-6u-3uD"/>
+                                    </segue>
                                 </connections>
                             </button>
                         </subviews>
@@ -375,7 +391,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="jgf-li-qgP"/>
+                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="jgf-li-qgP">
+                                        <segue key="commit" inheritsFrom="parent" id="NDf-zh-qgJ"/>
+                                        <segue key="preview" inheritsFrom="commit" id="feG-3H-huA"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -462,7 +481,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="2up-D5-rax"/>
+                                    <segue destination="Fyu-Fu-Rgb" kind="show" identifier="moveToSet" id="2up-D5-rax">
+                                        <segue key="commit" inheritsFrom="parent" id="k29-s2-36L"/>
+                                        <segue key="preview" inheritsFrom="commit" id="WJx-ia-k8Q"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -868,7 +890,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NwQ-Mh-AA5" kind="show" identifier="viewToRoute" id="Deq-5g-uCy"/>
+                                    <segue destination="NwQ-Mh-AA5" kind="show" identifier="viewToRoute" id="Deq-5g-uCy">
+                                        <segue key="commit" inheritsFrom="parent" id="1xp-vR-V0i"/>
+                                        <segue key="preview" inheritsFrom="commit" id="N8U-u2-DgC"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="98" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-oA-08h">
@@ -1367,7 +1392,10 @@
                                     <color key="titleColor" red="0.29907852559999998" green="0.29907852559999998" blue="0.29907852559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NwQ-Mh-AA5" kind="show" identifier="viewToRoute2" id="Lge-a0-ABw"/>
+                                    <segue destination="NwQ-Mh-AA5" kind="show" identifier="viewToRoute2" id="Lge-a0-ABw">
+                                        <segue key="commit" inheritsFrom="parent" id="MwC-DD-Au5"/>
+                                        <segue key="preview" inheritsFrom="commit" id="DYq-Kf-icW"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwN-Bf-peT">
@@ -2096,6 +2124,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="bWm-It-FZk" kind="show" id="YNl-Pf-OLd">
+                                                <segue key="commit" inheritsFrom="parent" id="xGf-tG-ss3"/>
+                                                <segue key="preview" inheritsFrom="commit" id="hor-q1-SZJ"/>
                                                 <nil key="action"/>
                                             </segue>
                                         </connections>
@@ -2155,7 +2185,7 @@
         <!--출발역 설정-->
         <scene sceneID="eGi-XL-gGs">
             <objects>
-                <viewController id="Oh4-Cj-eqF" customClass="FavoriteAddListViewController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Oh4-Cj-eqF" customClass="FavoriteAddListViewController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mA5-X4-afm"/>
                         <viewControllerLayoutGuide type="bottom" id="8cU-jZ-QoH"/>
@@ -2241,7 +2271,7 @@
         <!--도착역 설정-->
         <scene sceneID="DiH-Pg-cB6">
             <objects>
-                <viewController id="6WT-jV-bIf" customClass="FavoriteAddListViewController2" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6WT-jV-bIf" customClass="FavoriteAddListViewController2" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r0c-Pn-QX3"/>
                         <viewControllerLayoutGuide type="bottom" id="vMa-P0-T0f"/>
@@ -2323,7 +2353,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Q5N-GS-sPV">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o9d-Of-wb3" customClass="NavigationController" customModule="_______________" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o9d-Of-wb3" customClass="NavigationController" customModule="SubwayAlerter" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GL4-Fm-Twv">
@@ -2349,7 +2379,13 @@
         <image name="setting" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1gl-1u-Meo"/>
+        <segue reference="GBK-pQ-VxH"/>
+        <segue reference="pvu-ap-srA"/>
+        <segue reference="Qeh-V7-uyA"/>
+        <segue reference="5hY-sa-g6a"/>
+        <segue reference="ivS-1i-XWP"/>
+        <segue reference="zKA-aL-RDz"/>
+        <segue reference="YNl-Pf-OLd"/>
         <segue reference="jgf-li-qgP"/>
         <segue reference="Lge-a0-ABw"/>
     </inferredMetricsTieBreakers>
