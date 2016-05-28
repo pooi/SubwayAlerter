@@ -781,7 +781,11 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if (segue.identifier == "moveToLast") {
+            
+            (segue.destinationViewController as? LastPageViewController)?.info = self.info
+            
+        }
     }
     
     
