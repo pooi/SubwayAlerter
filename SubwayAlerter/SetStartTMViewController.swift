@@ -858,7 +858,6 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                     
                     self.info = setAllTimeToInfo(Info: self.info, Index: 0)
                     
-                    self.nextBtn.enabled = true
                     
                     self.startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
                     self.startTimeText2.setTitleColor(UIColor.grayColor(), forState: .Normal)
@@ -872,6 +871,10 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                         self.setAllItem()
                         
                         self.finishTime.text = self.calculateFinishTime()
+                        
+                        
+                        self.nextBtn.enabled = true
+                        self.nextBtn.tintColor = UIColor.whiteColor()
                         
                         self.buttonsEnabled(true)
                         
@@ -917,7 +920,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                     
                     self.info = setAllTimeToInfo(Info: self.info, Index: 0)
                     
-                    self.nextBtn.enabled = true
+                    
                     
                     self.startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
                     self.startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
@@ -932,7 +935,8 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                         
                         self.finishTime.text = self.calculateFinishTime()
                         
-                        
+                        self.nextBtn.enabled = true
+                        self.nextBtn.tintColor = UIColor.whiteColor()
                         
                         self.buttonsEnabled(true)
                         
@@ -977,7 +981,6 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                     
                     self.info = setAllTimeToInfo(Info: self.info, Index: 0)
                     
-                    self.nextBtn.enabled = true
                     
                     self.startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
                     self.startTimeText1.setTitleColor(UIColor.grayColor(), forState: .Normal)
@@ -991,6 +994,10 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                         self.setAllItem()
                         
                         self.finishTime.text = self.calculateFinishTime()
+                        
+                        
+                        self.nextBtn.enabled = true
+                        self.nextBtn.tintColor = UIColor.whiteColor()
                         
                         self.buttonsEnabled(true)
                         
@@ -1041,6 +1048,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                     finishTime.text = calculateFinishTime()
                     
                     nextBtn.enabled = true
+                    self.nextBtn.tintColor = UIColor.whiteColor()
                 }else if(startTimeText4.titleLabel?.text == "기타"){
                     
                     startTimeText4.setTitle(self.pickerViewFirstTime, forState: .Normal)
@@ -1056,6 +1064,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
                     finishTime.text = calculateFinishTime()
                     
                     nextBtn.enabled = true
+                    self.nextBtn.tintColor = UIColor.whiteColor()
                     
                 }
                 
