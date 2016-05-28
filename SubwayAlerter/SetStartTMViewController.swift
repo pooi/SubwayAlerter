@@ -78,11 +78,14 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         
         cell.startStation.text = "출발 : " + self.info[section].navigate[0] + "역"
-        
+        cell.startStation.setFontSize(settingFontSize(1)+1)
         cell.finishStation.text = "도착 : " + self.info[section].navigate[self.info[section].navigate.count-1] + "역"
+        cell.finishStation.setFontSize(settingFontSize(1)+1)
         
         
         cell.stationInfo.text = String(self.info[section].navigate.count-2) + "개역 이동"
+        
+        cell.stationInfo.setFontSize(settingFontSize(1)-1)
         
         if(self.info[section].navigateTm.count != 0){
             
@@ -100,9 +103,25 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
             cell.timeInfo.text = "미설정"
         }
         
+        cell.startTime.setFontSize(settingFontSize(1))
+        cell.finishTime.setFontSize(settingFontSize(1))
+        cell.timeInfo.setFontSize(settingFontSize(1)-1)
+        
         cell.lineColor.backgroundColor = returnLineColor(SubwayId: self.info[section].subwayId)
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        
+        
+        header.textLabel!.textColor = UIColor.whiteColor()
+        header.alpha = 1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return settingFontSize(8)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

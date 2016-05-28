@@ -116,7 +116,21 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        self.transferInfo.setFontSize(settingFontSize(0))
+        self.transferBtn1.setFontSize(settingFontSize(0))
+        self.transferBtn2.setFontSize(settingFontSize(0))
+        self.transferBtn3.setFontSize(settingFontSize(0))
+        self.finishTime.setFontSize(settingFontSize(0))
+        self.returnTransferBtn.setFontSize(settingFontSize(1))
+        self.infoNextST.setFontSize(settingFontSize(4))
+        self.countTimeAct.setFontSize(settingFontSize(5))
+        self.fastExitLabel.setFontSize(settingFontSize(1)-1)
         
+        self.infoNextTopCon.constant = settingFontSize(3)
+        self.viewAllRouteBtn.setFontSize(settingFontSize(1))
+        self.cancelBtn.setFontSize(settingFontSize(1))
+        
+        self.bottomBarCon.constant = settingFontSize(6)
         
         pickerView.hidden = true
         tabBar.hidden = true

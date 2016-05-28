@@ -21,6 +21,8 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         
+        self.InfoLabel.setFontSize(settingFontSize(0))
+        
         self.startTableView.dataSource = self
         searchBar.delegate = self
         searchBar.barTintColor = UIColor(red:  233/255.0, green: 97/255.0, blue: 97/255.0, alpha: 0.0)
@@ -50,6 +52,8 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         navBarColor.barTintColor = UIColor(red:  230/255.0, green: 70/255.0, blue: 70/255.0, alpha: 0.0)
         navBarColor.tintColor = UIColor.whiteColor()
         navBarColor.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        self.bottomBarCon.constant = settingFontSize(6)
         
         // 스와이프 관려 문구
         let swipeRec = UISwipeGestureRecognizer()
@@ -149,6 +153,10 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return settingFontSize(9)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = startTableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
@@ -158,6 +166,8 @@ class StartSTViewController : UIViewController, UITableViewDataSource, UITableVi
         friend = self.filteredSubway[indexPath.row]
         
         cell.textLabel?.text = friend.name + "역"
+        
+        cell.textLabel?.setFontSize(settingFontSize(0))
         
         cell.detailTextLabel?.text = returnLineName(SubwayId : friend.line)
         

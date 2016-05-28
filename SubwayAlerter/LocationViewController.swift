@@ -26,6 +26,9 @@ class LocationViewController : UIViewController,CLLocationManagerDelegate, UITab
     
     override func viewDidLoad() {
         
+        underView.bounds.size.height = settingFontSize(9)
+        refresh.setFontSize(settingFontSize(0))
+        
         //네비게이션바 관련
         for parent in self.navigationController!.navigationBar.subviews{
             for childView in parent.subviews{
@@ -67,6 +70,10 @@ class LocationViewController : UIViewController,CLLocationManagerDelegate, UITab
         
         return 1
         
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return settingFontSize(9)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

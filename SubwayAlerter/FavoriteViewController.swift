@@ -12,6 +12,9 @@ class FavoriteViewController : UITableViewController {
     
     override func viewDidLoad() {
         
+        addAlertBtn.setFontSize(settingFontSize(1))
+        addListBtn.setFontSize(settingFontSize(1))
+        
         //여기부터 네비게이션바 관련
         //self.tabBarController?.tabBar.hidden = true
         for parent in self.navigationController!.navigationBar.subviews{
@@ -75,6 +78,9 @@ class FavoriteViewController : UITableViewController {
         return 1
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return settingFontSize(9)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
