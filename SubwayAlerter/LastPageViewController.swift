@@ -50,6 +50,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     @IBOutlet var viewAllRouteBtn: UIButton!
+    
+    // 경로 취소 버튼
     @IBOutlet var cancelBtn: UIButton!
     @IBAction func cancelBtnAct(sender: AnyObject) {
         let alert = UIAlertController(title: "현재 경로를 취소하시겠습니까?", message: nil, preferredStyle: .ActionSheet)
@@ -68,6 +70,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 알림 해제버튼
     @IBAction func cancelNotification(sender: AnyObject) {
         
         let alert = UIAlertController(title: "확인", message: "해당 경로의 모든 알림이 해제됩니다.\n모든 알림을 해제하시겠습니까?", preferredStyle: .Alert)
@@ -82,7 +85,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
-    
+    // 이전역으로 돌아가기 위한 버튼
     @IBOutlet var returnTransferBtn: UIButton!
     @IBAction func returnTransfer(sender: AnyObject) {
         
@@ -110,6 +113,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 최근경로에 저장하기 위한 함수
     func addRecentList(){
         
         let name : String = self.info[0].navigate[0] + "," + self.info[self.info.count-1].navigate[self.info[self.info.count-1].navigate.count-1]
@@ -146,6 +150,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 스와이프 관련
     func swipedViewRight(){
         
         timer.invalidate()
@@ -447,6 +452,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     //끝 ==================================================
     
+    // 로컬알림 첫번째 버튼이 눌렸을때 동작하는 함수(첫번째 시간표 기준 이후 알림 설정)
     func notificationAct1(notification:NSNotification){
         
         if Reachability.isConnectedToNetwork() == true {
@@ -477,6 +483,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 로컬알림 두번째 버튼이 눌렸을때 동작하는 함수(두번째 시간표 기준 이후 알림 설정)
     func notificationAct2(notification:NSNotification){
         
         
@@ -509,10 +516,12 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 없어도됨
     func notificationAct3(notification:NSNotification){
         transferActPicker()
     }
     
+    // 로컬 알림의 버튼을 눌렀지만 네트워크에 연결이 안되어있을 경우 경고 알림을 설정하는 함수
     func setlocalNotificationWhenNotNetworkConnection(){
         
         UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
@@ -569,8 +578,8 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     
-    
-    func transferAct1(ButtonNumber number : Int){ //첫번째 시간표
+    // 시간표 버튼이 눌렸을때 실행될 함수(몇번째 버튼인지를 인자로 받음)
+    func transferAct1(ButtonNumber number : Int){
         
         
         
@@ -727,7 +736,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     
     
-    
+    // 알림을 설정하는 함수 호출과 이후 이동시간, 시간표 등 시간표 버튼이 눌렸을경우 실행되야하는 모든 과정을 처리
     func transferStationTimeSchduel(StartTime sTime : Int) {
         
         
@@ -897,7 +906,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
-    //전체적으로 알림을 설정하기 위한 함수
+    // 전체적으로 알림을 설정하기 위한 함수
     func transferStationTimeSchduel2(StartTime sTime : Int, Index index : Int) {
         
         let fTime : Int = self.info[index].navigateTm[self.info[index].navigateTm.count-1]
@@ -963,6 +972,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 네트워크 경고창을 띄우는 함수
     func networkAlert(mode : Int){
         
         let alert = UIAlertController(title: "오류", message: "네트워크 연결을 확인해주세요.", preferredStyle: .Alert)
@@ -982,6 +992,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
     
     @IBOutlet var transferInfo: UILabel!
     
+    // 첫번째 시간표 버튼
     @IBOutlet var transferBtn1: UIButton!
     @IBAction func transferBtnAct1(sender: AnyObject) {
         
@@ -990,6 +1001,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 두번째 시간표 버튼
     @IBOutlet var transferBtn2: UIButton!
     @IBAction func transferBtnAct2(sender: AnyObject) {
         
@@ -997,6 +1009,7 @@ class LastPageViewController : UIViewController, UIPickerViewDataSource, UIPicke
         
     }
     
+    // 기타 시간표 버튼
     @IBOutlet var transferBtn3: UIButton!
     @IBAction func transferBtnAct3(sender: AnyObject) {
         
