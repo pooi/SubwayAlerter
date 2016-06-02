@@ -1,5 +1,6 @@
 import UIKit
 
+// 테이블뷰에 포함된 아웃렛들
 class AllRouteViewCell : UITableViewCell{
     
     @IBOutlet var lineColor: UILabel!
@@ -136,7 +137,7 @@ class AllRouteViewController : UIViewController, UITableViewDataSource, UITableV
         self.tableView.reloadData()
     }
     
-    
+    // 현재시간 기준 현재 무슨역인지 표시하기 위해 타이머를 통해 주기적으로 체크함
     func updateCounter() {
         
         let currentTime = returnCurrentTime()
