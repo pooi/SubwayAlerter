@@ -151,6 +151,7 @@ class FavoriteAddListViewController2 : UIViewController, UITableViewDelegate, UI
         for subView in topView.subviews {
             if subView.isKindOfClass(NSClassFromString("UINavigationButton")!) {
                 cancelButton = subView as! UIButton
+                cancelButton.tintColor = UIColor.whiteColor()
                 cancelButton.setTitle("닫기", forState: UIControlState.Normal)
             }
         }

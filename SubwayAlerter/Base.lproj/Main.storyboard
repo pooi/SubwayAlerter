@@ -1889,12 +1889,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="oX1-8Q-34g">
+                                        <rect key="frame" x="0.0" y="463.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oX1-8Q-34g" id="FFN-pe-611">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울시 열차 별 경유 지하철역 도착시간 정보 검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj4-ef-rcr">
+                                                    <rect key="frame" x="16" y="0.0" width="398" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qj4-ef-rcr" firstAttribute="centerY" secondItem="FFN-pe-611" secondAttribute="centerY" id="3Wl-uF-JJy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qj4-ef-rcr" secondAttribute="trailing" constant="-8" id="6yA-cw-QXO"/>
+                                                <constraint firstItem="Qj4-ef-rcr" firstAttribute="leading" secondItem="FFN-pe-611" secondAttribute="leadingMargin" constant="8" id="Snp-PF-OXj"/>
+                                                <constraint firstItem="Qj4-ef-rcr" firstAttribute="height" secondItem="FFN-pe-611" secondAttribute="height" id="zEx-zY-4A6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Daum Developers" id="vU1-cI-aso">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="MBh-RO-MwH">
-                                        <rect key="frame" x="0.0" y="513.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="557.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MBh-RO-MwH" id="GYA-Ws-dNK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -2201,7 +2223,7 @@
                                     <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="barTintColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
@@ -2287,7 +2309,7 @@
                                     <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="barTintColor" red="0.91372549020000005" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
@@ -2379,14 +2401,14 @@
         <image name="setting" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GBK-pQ-VxH"/>
+        <segue reference="zKA-aL-RDz"/>
         <segue reference="pvu-ap-srA"/>
         <segue reference="Qeh-V7-uyA"/>
-        <segue reference="5hY-sa-g6a"/>
         <segue reference="ivS-1i-XWP"/>
-        <segue reference="zKA-aL-RDz"/>
+        <segue reference="5hY-sa-g6a"/>
+        <segue reference="GBK-pQ-VxH"/>
         <segue reference="YNl-Pf-OLd"/>
-        <segue reference="jgf-li-qgP"/>
+        <segue reference="JcD-Mf-Ati"/>
         <segue reference="Lge-a0-ABw"/>
     </inferredMetricsTieBreakers>
 </document>
