@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-
+// 호선별 색을 반환하는 함수
 func returnLineColor(SubwayId subwayId : String) -> UIColor {
     
     
@@ -64,6 +64,7 @@ func returnLineColor(SubwayId subwayId : String) -> UIColor {
     return color
 }
 
+// 역코드를 통해 무슨 라인인지를 반환하는 함수
 func returnLineName(SubwayId subwayId : String) -> String{
     
     
@@ -132,6 +133,7 @@ struct StationNm{
     var code : String
 }
 
+// 지정된 노선의 전체 지하철 역들을 반환
 func returnLineList(SubwayId subwayId : String) -> Array<StationNm>{
     
     let line : Array<StationNm> = [
@@ -761,6 +763,7 @@ struct FastExit{
     var Exit : String = ""
 }
 
+// 빠른 환승 출구를 반환하는 함수
 func returnFastExit(SubwayId subwayId : String) -> Array<FastExit>{
     
     var list : Array<FastExit> = [
@@ -1514,6 +1517,7 @@ struct Express{
     var code : String
 }
 
+// 급행 경로를 반환하는 함수
 func expressList() -> Array<Array<Express>>{
     let expressList : Array<Array<Express>>=[
         [
@@ -1728,7 +1732,7 @@ func expressList() -> Array<Array<Express>>{
     return expressList
 }
 
-
+// 일반 경로가 급행경로로 바뀔 수 있는지 확인
 func setExpress(SubwayId subwayId : String, Navigate navigate : Array<String>) -> Bool{
     let express = expressList()
     
@@ -1748,6 +1752,7 @@ func setExpress(SubwayId subwayId : String, Navigate navigate : Array<String>) -
     return check
 }
 
+// 급행 경로로 바꿈
 func setNavigateToExpress(Info info2 : SubwayInfo, SubwayId subwayId : String) -> SubwayInfo{
     
     var info = info2

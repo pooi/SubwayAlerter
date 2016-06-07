@@ -10,7 +10,8 @@ class SettingViewController : UITableViewController {
     @IBOutlet var startPageYNLabel: UILabel!
     @IBOutlet var alertYNLabel: UILabel!
     @IBOutlet var informationLabel: UILabel!
-
+    
+    // 환승역 가중치 설정 도움말
     @IBOutlet var addTransTimeHelp: UIButton!
     @IBAction func addTransTimeHelpAct(sender: AnyObject) {
         
@@ -21,6 +22,7 @@ class SettingViewController : UITableViewController {
         
     }
     
+    // 알람 시간 설정 도움말
     @IBOutlet var setAlertTimeHelp: UIButton!
     @IBAction func setAlertTimeHelpAct(sender: AnyObject) {
         
@@ -70,6 +72,7 @@ class SettingViewController : UITableViewController {
         
     }
     
+    // 환승 가중치 설정
     @IBOutlet var addTrans: UISegmentedControl!
     @IBAction func addTransBtn(sender: AnyObject) {
         
@@ -93,7 +96,7 @@ class SettingViewController : UITableViewController {
         
     }
     
-    
+    // 알람 시간 설정
     @IBOutlet var setAlertTime: UISegmentedControl!
     @IBAction func setAlertTimeBtn(sender: AnyObject) {
         
@@ -117,7 +120,7 @@ class SettingViewController : UITableViewController {
         
     }
     
-    
+    // 알림 기능 on off
     @IBOutlet var AlertSwitch: UISwitch!
     @IBAction func AlertSwitchBtn(sender: AnyObject) {
         

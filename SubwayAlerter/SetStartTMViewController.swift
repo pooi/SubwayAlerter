@@ -400,6 +400,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         UIApplication.sharedApplication().cancelAllLocalNotifications()//모든 알람 종료
     }
     
+    // 네트워크 경고창을 띄우는 함수
     func networkAlert(mode : Int){
         
         dispatch_async(dispatch_get_main_queue()){
@@ -418,6 +419,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 스와이프 관련
     func swipedViewLeft(){
         
         
@@ -427,12 +429,14 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 스와이프 관련
     func swipedViewRight(){
         
         navigationController?.popViewControllerAnimated(true)
         
     }
     
+    // 변수 초기화
     func inital(){
         self.StartStationCode = ""
         self.startStationInfo = Array()
@@ -449,6 +453,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
     
     var timer = NSTimer()//타이머 관련
     
+    // 최소시간기준, 최소환승기준 등 기준을 바꿔주는 버튼
     @IBAction func standardBtn(sender: AnyObject) {
         
         if Reachability.isConnectedToNetwork() == true {
@@ -504,33 +509,33 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
         
     }
-    func updateCounter() {
-        timer.invalidate()
-        
-        inital()
-        
-        if(standardBtnText.titleLabel?.text == "최소 시간 기준"){
-            self.standardInfo = 2
-        }else{
-            self.standardInfo = 1
-        }
-        
-        startTimeText1.setTitle("-", forState: .Normal)
-        startTimeText2.setTitle("-", forState: .Normal)
-        startTimeText3.setTitle("-", forState: .Normal)
-        startTimeText4.setTitle("-", forState: .Normal)
-        
-        callSubwayApi()
-        
-        startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        
-        spinnerView.hidden = true
-        spinner.stopAnimating()
-        
-    }
+//    func updateCounter() {
+//        timer.invalidate()
+//        
+//        inital()
+//        
+//        if(standardBtnText.titleLabel?.text == "최소 시간 기준"){
+//            self.standardInfo = 2
+//        }else{
+//            self.standardInfo = 1
+//        }
+//        
+//        startTimeText1.setTitle("-", forState: .Normal)
+//        startTimeText2.setTitle("-", forState: .Normal)
+//        startTimeText3.setTitle("-", forState: .Normal)
+//        startTimeText4.setTitle("-", forState: .Normal)
+//        
+//        callSubwayApi()
+//        
+//        startTimeText1.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//        startTimeText2.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//        startTimeText3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//        startTimeText4.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//        
+//        spinnerView.hidden = true
+//        spinner.stopAnimating()
+//        
+//    }
     
     
     //최초의 지하철 이동경로 가져옴
@@ -667,6 +672,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 경로에 대한 정보를 설정하는 함수
     func setAllItem(){
         
         self.info3 = self.info
@@ -702,7 +708,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    //시작시간표 버튼 설정
+    //시작시간표 버튼의 내용을 설정하는 함수
     func setSubwayTime(){
         
         startStationInfo = self.info[0].startSchedule
@@ -835,7 +841,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    
+    // 첫번째 시간표 버튼
     @IBOutlet var startTimeText1: UIButton!
     @IBAction func startTime1(sender: AnyObject) {
         
@@ -899,6 +905,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 두번째 시간표 버튼
     @IBOutlet var startTimeText2: UIButton!
     @IBAction func startTime2(sender: AnyObject) {
         
@@ -960,6 +967,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 세번째 시간표 버튼
     @IBOutlet var startTimeText3: UIButton!
     @IBAction func startTime3(sender: AnyObject) {
         
@@ -1021,6 +1029,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 기타 시간표 버튼
     @IBOutlet var startTimeText4: UIButton!
     @IBAction func startTimeText4(sender: AnyObject) {
         
@@ -1082,6 +1091,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 급행 경로이었다가 일반 경로로 바뀔경우 일반경로를 원상복구 해주기 위한 함수
     func checkInfo2(){
         
         if(self.info2.count != 0){
@@ -1091,6 +1101,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    // 막차가 종료되어 노선이 없는 경우 확인
     func checkFinishLine(){
         
         
@@ -1120,7 +1131,7 @@ class SetStartTMViewController : UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    
+    // 예상 도착 시간을 구하는 함수
     func calculateFinishTime() -> String{
         
         

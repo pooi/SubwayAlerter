@@ -51,7 +51,7 @@ class RecentViewController : UITableViewController {
         
     }
     
-    
+    // 전체삭제 버튼
     @IBAction func deleteBtn(sender: AnyObject) {
         
         let alert = UIAlertController(title: "확인", message: "최근 경로를 전부 삭제하시겠습니까?", preferredStyle: .Alert)

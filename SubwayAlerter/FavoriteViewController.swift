@@ -11,10 +11,6 @@ class FavoriteViewController : UITableViewController {
     
     
     override func viewDidLoad() {
-//        var tabFrame : CGRect = (self.tabBarController?.tabBar.frame)!
-//        tabFrame.size.height = settingFontSize(6)//+10
-//        tabFrame.origin.y = self.view.frame.size.height - tabFrame.size.height + 1
-//        self.tabBarController!.tabBar.frame = tabFrame
         
         addAlertBtn.setFontSize(settingFontSize(1))
         addListBtn.setFontSize(settingFontSize(1))
@@ -51,6 +47,7 @@ class FavoriteViewController : UITableViewController {
 //        self.tabBarController?.tabBar.hidden = false
     }
     
+    // 닫기 버튼
     @IBOutlet var closeBtnTitle: UIBarButtonItem!
     @IBAction func closeBtn(sender: AnyObject) {
         
@@ -67,6 +64,7 @@ class FavoriteViewController : UITableViewController {
         
     }
     
+    // 편집 버튼
     @IBOutlet var editBtnTitle: UIBarButtonItem!
     @IBAction func editBtn(sender: AnyObject) {
         
@@ -89,7 +87,7 @@ class FavoriteViewController : UITableViewController {
         
     }
     
-    
+    // 즐겨찾기 추가 버튼(알림창을 통한 추가)
     @IBAction func addFavoriteBtn(sender: AnyObject) {
         
         
@@ -165,23 +163,6 @@ class FavoriteViewController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         
-
-        
-        //var alert2: UIAlertView = UIAlertView(title: "Title", message: "Please wait...", delegate: nil, cancelButtonTitle: "Cancel");
-//        let alert: UIAlertView = UIAlertView(title: "잠시만 기다려주세요.", message: nil, delegate: nil, cancelButtonTitle: "")
-//        
-//        
-//        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(50, 10, 37, 37)) as UIActivityIndicatorView
-//        loadingIndicator.center = self.view.center;
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-//        loadingIndicator.startAnimating();
-//        
-//        alert.setValue(loadingIndicator, forKey: "accessoryView")
-//        loadingIndicator.startAnimating()
-//        
-//        alert.show();
-        //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
     

@@ -50,7 +50,7 @@ let settingColor = [
     UIColor(red: 139/255, green: 46/255, blue: 46/255, alpha: 1.0)
 ]
 
-
+// 프로그램에서 필요한 주요 구조체
 struct SubwayInfo {
     var navigate : Array<String>
     var navigateId : Array<String>
@@ -68,6 +68,7 @@ struct SubwayInfo {
     var fastExit : String
 }
 
+// 최단 경로 정보를 저장하는 구조체
 struct Root{
     var statnFid : String = ""
     var statnTid : String = ""
@@ -87,12 +88,14 @@ struct Transfer {
     var Id : String //환승역 ID
 }
 
+// 지하철 역정보를 저장하는 구조체
 struct SubwayList {
     var line : String //열차 호선
     var stationNm : String //지하철 역명
     var chosung : String //지하철 역명 초성
 }
 
+// 시간표를 저장하는 구조체
 struct Schedule {
     var arriveTime : Int //도착 시간 단위 : 초
     var leftTime : Int //출발 시간
@@ -101,11 +104,13 @@ struct Schedule {
     var expressYN : String //급행여부 Yes or No
 }
 
+// 열차 도착 시간을 저장하는 구조체
 struct trainTime{
     var station : String
     var arriveTime : Int
 }
 
+// 가까운역을 저장하는 구조체
 struct nealStation{
     var statnNm : String = ""
     var subwayId : String = ""
@@ -113,7 +118,8 @@ struct nealStation{
     var ord : Int = 0
 }
 
-extension String { // 초성을 가져오기 위해 함수 추가
+// 초성을 가져오기 위해 확장 함수 추가
+extension String {
     var hangul: String {
         get {
             let hangle = [ // 초성, 중성, 종성 순
@@ -135,6 +141,7 @@ extension String { // 초성을 가져오기 위해 함수 추가
 }
 
 
+// 해상도 최적화를 위해
 extension UILabel {
     
     func setFontSize (sizeFont: CGFloat) {
@@ -144,14 +151,15 @@ extension UILabel {
     
 }
 
+// 해상도 최적화를 위해
 extension UIButton {
     func setFontSize (size : CGFloat){
         self.titleLabel?.font = UIFont(name: self.titleLabel!.font.fontName, size: size)
     }
 }
 
-//################################# 부가 기능 함수 #################################
 
+// 해상도 최적화를 위해
 func settingFontSize(mode : Int) -> CGFloat{
     
     if(UIScreen.mainScreen().bounds.size.width == 320.0 && UIScreen.mainScreen().bounds.size.height == 480.0){
@@ -296,6 +304,7 @@ func settingFontSize(mode : Int) -> CGFloat{
     
 }
 
+// 정해진 범위의 문자를 반환하는 함수
 func convertStartToFinishString(let Start start : Int, let Finish finish : Int, let string str : String) -> String{
     
     var count : Int = 1
@@ -420,6 +429,7 @@ func convertStringToSecond(set : String, Mode mode2 : Int) -> Int {
     
 }
 
+// "군자, 어린이대공원"을 군자 어린이대공원 2개로 나눔
 func removeComma(Name name : String) -> (String, String){
     
     var start : String = ""
@@ -443,6 +453,7 @@ func removeComma(Name name : String) -> (String, String){
     
 }
 
+// "ㅁ역 -> ㅁ역"을 만들기 위한 함수
 func convertTitle(Title name : String) -> String{
     
     var start : String = ""
@@ -465,6 +476,7 @@ func convertTitle(Title name : String) -> String{
     
 }
 
+// 만약"군자역"을 인자로 받을 경우 '역'을 지우는 함수
 func removeString(Name name : String) -> String {
     
     var stationYN : Bool = false
@@ -553,6 +565,7 @@ func convertSecondToString(let set : Int, let Mode mode : Int) -> String{
     return timeText
 }
 
+// 현재시간을 시간초로 반환하는 함수
 func returnCurrentTime() -> Int {
     
     var temp : Int = 0
@@ -576,8 +589,10 @@ func returnCurrentTime() -> Int {
     return mainCurrentTime
 }
 
+// 평일 : 1, 토요일 : 2, 공휴일/일요일 : 3 반환
 func weekTag() -> String {
     
+    // 2016년 공휴일 수동 선언
     let holiday : Array<String> = [
         "01-01",
         "03-01",
@@ -629,8 +644,7 @@ func weekTag() -> String {
     }
 }
 
-//################################# 부가 함수 #################################
-
+// apiData를 가져올때 네트워크가 유실되는지 확인하며 가져옴
 func checkNetworkApiData(ApiURI apiURI : NSURL) -> NSData?{
     
     
@@ -656,6 +670,7 @@ func checkNetworkApiData(ApiURI apiURI : NSURL) -> NSData?{
     return data
 }
 
+// 전체 경로의 모든 시간정보를 info구조체에 저장하는 함수
 func setAllTimeToInfo(Info info2 : Array<SubwayInfo>, Index mainIndex : Int) -> Array<SubwayInfo>{
     
     var info = info2
@@ -722,7 +737,7 @@ func setAllTimeToInfo(Info info2 : Array<SubwayInfo>, Index mainIndex : Int) -> 
 }
 
 
-
+// 최단 경로를 mode에 맞춰 반환함(0 : 추천, 1 : 최소시간, 2 : 최소환승)
 func returnRootApi(StartNm start2 : String, FinishNm finish2 : String, Mode mode2 : Int) -> (Root, Int){
     
     var start = start2
@@ -879,7 +894,7 @@ func returnRootApi(StartNm start2 : String, FinishNm finish2 : String, Mode mode
 }
 
 
-//상행인지 하행인지 체크
+//상행인지 하행인지 체크하기 위한 함수
 func checkUpOrDown(StartSTNm startSTNm : String, StartSTId startSTId : String, NextSTNm nextSTNm : String) -> String{
     
     var UpDn : String = ""
@@ -928,7 +943,7 @@ func checkUpOrDown(StartSTNm startSTNm : String, StartSTId startSTId : String, N
     return UpDn
 }
 
-
+// info구조체의 전체적인 정보를 저장하는 함수(시간표, 급행여부 등)
 func parsingRoot(minStatNm statNm : Array<String>, minStatId statId : Array<String>) -> Array<SubwayInfo>{
     
     var info : Array<SubwayInfo> = []
@@ -1092,6 +1107,7 @@ func parsingRoot(minStatNm statNm : Array<String>, minStatId statId : Array<Stri
     return info
 }
 
+// 시간표를 불러온 뒤 저장하는 함수
 func setTranferTimeBySubwayId2(StationNm stationNm : String, SubwayId subwayId : String, UpDnLine updnLine2 : String, ExpressCheck express : Bool) -> Array<Schedule> {
     
     var updnLine = updnLine2
@@ -1211,7 +1227,7 @@ func setTranferTimeBySubwayId2(StationNm stationNm : String, SubwayId subwayId :
     return tranSchdule
 }
 
-
+// 열차번호를 통해 각역별 도착시간을 설정하는 함수
 func setInfoToTrainNo(Info info2 : SubwayInfo) -> SubwayInfo{
     
     var info = info2
@@ -1310,6 +1326,7 @@ func setInfoToTrainNo(Info info2 : SubwayInfo) -> SubwayInfo{
     return info
 }
 
+// 열차 번호를 통해 그 열차의 운행정보를 반환함
 func returnTrainSchedule(TrainNo trainNo : String, UpDn updn2 : String) -> Array<trainTime>{
     var updn = updn2
     
@@ -1347,7 +1364,7 @@ func returnTrainSchedule(TrainNo trainNo : String, UpDn updn2 : String) -> Array
     return trainTemp
 }
 
-
+// 해상도 최적화를 위한 함수
 extension UIView {
     
     func setWidth(width:CGFloat) {
