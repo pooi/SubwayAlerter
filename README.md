@@ -5,6 +5,8 @@ License : BSD-3-Clause
 
 Contact & Help : ldayou@me.com
 
+Swift 2.0 (Swift3.0+ not support yet)
+
 <br>
 ## Usage
 이 프로젝트를 사용하기 위해서는 반드시 <a href="https://github.com/pooi/SubwayAlerter/blob/master/SubwayAlerter/ApiKey.swift">이 파일</a>에 Api Key를 입력해주세요.<br>
